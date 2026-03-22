@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Latitude 37 - Manifesto</title>
+
+<!--
+  FONT SETUP
+  ─────────────────────────────────────────────────────
+  Real fonts: uncomment @font-face blocks in CSS,
+  remove the Google Fonts <link> below, place
+  .woff2 files in a /fonts/ folder next to this file.
+  ─────────────────────────────────────────────────────
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+
+/*
+@font-face {
+  font-family: 'Merlo Original';
+  src: url('/fonts/MerloOriginal-Regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Steradian';
+  src: url('/fonts/Steradian-Medium.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'September Spirit Alt';
+  src: url('/fonts/SeptemberSpiritAlt-Regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+*/
+
+/* ── TOKENS ─────────────────────────────────────────────────── */
+:root {
+  --bg:          #EDECE9;
+  --surface-1:   #EAE4DA;
+  --surface-2:   #F1F2F2;
+  --ink:         #231F20;
+  --ink-2:       #4B4E53;
+  --rule:        rgba(35,31,32,0.14);
+
+  --f-head:    'Merlo Original','Cormorant Garamond',Georgia,serif;
+  --f-sub:     'Steradian','DM Sans',system-ui,sans-serif;
+  --f-body:    'Merlo Original','Cormorant Garamond',Georgia,serif;
+  --f-call:    'September Spirit Alt','Cormorant Garamond',Georgia,serif;
+
+  --gap:        clamp(72px,10vw,140px);
+  --wide:       1060px;
+  --nav-h:      56px;
+}
+
+/* ── RESET ──────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:20px;
+  line-height:1.6;
+  letter-spacing:-0.01em;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%;height:auto;}
+
+/* ── NAV ────────────────────────────────────────────────────── */
+.nav{
+  position:fixed;top:0;left:0;right:0;
+  height:var(--nav-h);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(24px,5vw,64px);
+  background:var(--bg);
+  border-bottom:1px solid var(--rule);
+  z-index:100;
+}
+.nav-logo{
+  font-family:var(--f-sub);font-weight:500;
+  font-size:13px;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--ink);text-decoration:none;
+}
+.nav-acts{display:flex;gap:clamp(20px,3vw,44px);list-style:none;}
+.nav-acts a{
+  font-family:var(--f-sub);font-weight:500;
+  font-size:12px;letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--ink-2);text-decoration:none;
+  position:relative;padding-bottom:2px;transition:color 0.2s;
+}
+.nav-acts a::after{
+  content:'';position:absolute;bottom:-1px;left:0;
+  width:0;height:1px;background:var(--ink);transition:width 0.25s ease;
+}
+.nav-acts a:hover{color:var(--ink);}
+.nav-acts a:hover::after,.nav-acts a.active::after{width:100%;}
+.nav-acts a.active{color:var(--ink);}
+
+.progress{
+  position:fixed;top:var(--nav-h);left:0;
+  height:1px;background:var(--ink);width:0%;z-index:101;
+  transition:width 0.1s linear;
+}
+
+/* ── WRAPPER ────────────────────────────────────────────────── */
+.w{max-width:var(--wide);margin:0 auto;padding:0 clamp(24px,5vw,80px);}
+
+/* ── TYPE SCALE ─────────────────────────────────────────────── */
+h1{
+  font-family:var(--f-head);font-weight:400;
+  font-size:clamp(48px,7vw,88px);line-height:1.08;letter-spacing:-0.02em;
+}
+h2{
+  font-family:var(--f-head);font-weight:400;
+  font-size:clamp(34px,4.5vw,64px);line-height:1.2;letter-spacing:-0.01em;
+  margin-bottom:clamp(20px,3vw,36px);
+}
+h3{
+  font-family:var(--f-sub);font-weight:500;
+  font-size:24px;line-height:1.0;
+  color:var(--ink);
+  margin-top:clamp(40px,5vw,60px);margin-bottom:10px;
+}
+h3+p,h3+.placeholder{margin-top:8px;}
+h4{
+  font-family:var(--f-sub);font-weight:500;
+  font-size:13px;letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--ink-2);
+  margin-top:28px;margin-bottom:6px;
+  padding-bottom:6px;
+  border-bottom:1px solid var(--rule);
+}
+h4+p{margin-top:6px;}
+p{
+  font-family:var(--f-body);font-size:20px;
+  line-height:1.6;letter-spacing:-0.01em;
+  font-weight:500;
+  color:var(--ink);max-width:62ch;margin-bottom:22px;
+}
+p:last-child{margin-bottom:0;}
+p.dim{color:var(--ink-2);font-size:18px;}
+p.large{font-size:clamp(22px,2.5vw,26px);line-height:1.45;}
+
+/* Callout - September Spirit Alt expressive moments
+   Fallback uses italic Cormorant to distinguish from upright headings
+   until the real font file is installed                               */
+.callout{
+  display:block;
+  font-family:'September Spirit Alt','Cormorant Garamond',Georgia,serif;
+  font-weight:400;
+  font-style:italic; /* removed once September Spirit Alt is loaded - it has its own personality */
+  font-size:clamp(36px,4.5vw,64px);line-height:1.05;letter-spacing:0.02em;
+  color:var(--ink);
+  margin:clamp(48px,8vw,96px) 0;
+}
+
+/* ── RULES ──────────────────────────────────────────────────── */
+hr.rule{border:none;border-top:1px solid var(--rule);margin:clamp(40px,6vw,80px) 0;}
+
+/* ── COVER ──────────────────────────────────────────────────── */
+.cover{
+  min-height:100svh;padding-top:var(--nav-h);
+  display:flex;flex-direction:column;justify-content:center;
+  padding-bottom:clamp(48px,8vw,96px);
+}
+.cover-eyebrow{
+  font-family:var(--f-sub);font-weight:500;
+  font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--ink-2);margin-bottom:28px;
+}
+.cover h1{margin-bottom:clamp(32px,5vw,56px);}
+.cover h1 span{display:block;white-space:nowrap;}
+.cover-meta{display:flex;gap:clamp(28px,5vw,72px);flex-wrap:wrap;}
+.meta-item{display:flex;flex-direction:column;gap:5px;}
+.meta-label{
+  font-family:var(--f-sub);font-weight:500;
+  font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-2);
+}
+.meta-value{font-family:var(--f-body);font-size:16px;color:var(--ink);}
+
+/* ── ACT OPENER ─────────────────────────────────────────────── */
+.act-opener{
+  padding:var(--gap) 0 clamp(40px,6vw,80px);
+  border-top:1px solid var(--ink);
+}
+.act-n{
+  font-family:var(--f-sub);font-weight:500;
+  font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--ink-2);display:block;margin-bottom:20px;
+}
+.act-opener h2{
+  font-size:clamp(48px,7vw,88px);max-width:12ch;margin-bottom:20px;
+}
+.act-opener p{color:var(--ink-2);font-size:20px;max-width:46ch;margin:0;}
+
+/* ── SECTION ────────────────────────────────────────────────── */
+.section{
+  padding:var(--gap) 0;
+  border-top:1px solid var(--rule);
+}
+.si{
+  display:grid;
+  grid-template-columns:56px 1fr;
+  gap:0 clamp(28px,4vw,56px);
+  align-items:start;
+}
+.sn{
+  font-family:var(--f-sub);font-weight:500;
+  font-size:11px;letter-spacing:0.06em;color:var(--ink-2);padding-top:6px;
+}
+.sb{min-width:0;}
+
+/* ── DIAGRAM PLACEHOLDER ────────────────────────────────────── */
+.placeholder{
+  background:var(--surface-1);
+  border:1px dashed rgba(35,31,32,0.2);
+  border-radius:2px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:10px;padding:48px 32px;
+  margin:clamp(36px,5vw,56px) 0;
+  text-align:center;
+}
+.ph-label{
+  font-family:var(--f-sub);font-weight:500;
+  font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-2);
+}
+.ph-title{
+  font-family:var(--f-body);font-size:17px;color:var(--ink);margin:0;max-width:none;
+}
+.ph-sm{min-height:180px;}.ph-md{min-height:300px;}
+.ph-lg{min-height:420px;}.ph-xl{min-height:540px;}
+.ph-bleed{
+  margin-left:calc(-1 * clamp(24px,5vw,80px));
+  margin-right:calc(-1 * clamp(24px,5vw,80px));
+  border-radius:0;
+}
+
+/* ── PULL QUOTE ─────────────────────────────────────────────── */
+.pq{
+  border-left:1px solid var(--ink);
+  padding-left:clamp(20px,3vw,36px);
+  margin:clamp(36px,5vw,56px) 0;
+}
+.pq p{
+  font-family:var(--f-head);
+  font-size:clamp(20px,2.5vw,28px);line-height:1.35;
+  letter-spacing:-0.01em;color:var(--ink);margin:0;max-width:44ch;
+}
+
+/* ── CARD ───────────────────────────────────────────────────── */
+.card{
+  background:var(--surface-1);
+  padding:clamp(28px,4vw,44px);
+  margin:clamp(36px,5vw,56px) 0;
+}
+.card h3{margin-top:0;}
+.card p:last-child{margin-bottom:0;}
+
+/* ── SHIFT TABLE ────────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:clamp(28px,4vw,44px) 0;}
+table{width:100%;border-collapse:collapse;font-family:var(--f-sub);font-size:15px;}
+th{
+  font-weight:500;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--ink-2);text-align:left;
+  padding:10px 16px 10px 0;border-bottom:1px solid var(--ink);
+}
+td{padding:14px 16px 14px 0;border-bottom:1px solid var(--rule);color:var(--ink);vertical-align:top;line-height:1.5;}
+tr:last-child td{border-bottom:none;}
+
+/* ── MINDSET GRID ───────────────────────────────────────────── */
+.mindset-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1px;
+  background:var(--rule);
+  margin:clamp(32px,4vw,48px) 0;
+  border:1px solid var(--rule);
+}
+.mindset-card{
+  background:var(--bg);
+  padding:clamp(20px,3vw,32px);
+}
+.mindset-name{
+  font-family:var(--f-sub);font-weight:500;
+  font-size:13px;letter-spacing:0.04em;
+  color:var(--ink);margin-bottom:8px;
+}
+.mindset-desc{
+  font-family:var(--f-body);font-size:17px;
+  line-height:1.5;color:var(--ink-2);
+  margin:0;max-width:none;
+}
+
+/* ── BEHAVIOUR LIST ─────────────────────────────────────────── */
+.blist{list-style:none;margin:clamp(24px,3vw,40px) 0;}
+.blist li{
+  padding:20px 0;
+  border-bottom:1px solid var(--rule);
+}
+.blist li:first-child{border-top:1px solid var(--rule);}
+.blist-title{
+  font-family:var(--f-sub);font-weight:500;
+  font-size:18px;color:var(--ink);margin-bottom:6px;
+}
+.blist-body{
+  font-family:var(--f-body);font-size:18px;
+  line-height:1.55;color:var(--ink-2);margin:0;max-width:none;
+}
+
+/* ── PRACTICE LIST ──────────────────────────────────────────── */
+.plist{
+  list-style:none;
+  margin:16px 0 28px;
+  padding:0;
+}
+.plist li{
+  font-family:var(--f-body);font-size:18px;
+  line-height:1.55;color:var(--ink);
+  padding:8px 0 8px 20px;
+  border-bottom:1px solid var(--rule);
+  position:relative;
+}
+.plist li::before{
+  content:'-';
+  position:absolute;left:0;
+  color:var(--ink-2);font-size:14px;
+  top:10px;
+}
+.plist li:last-child{border-bottom:none;}
+
+/* ── JOURNEY STAGES ─────────────────────────────────────────── */
+.journey-stages{
+  display:flex;align-items:stretch;flex-wrap:nowrap;
+  overflow-x:auto;
+  gap:0;
+  margin:clamp(28px,4vw,44px) 0;
+  font-family:var(--f-sub);font-weight:500;
+  font-size:13px;letter-spacing:0.04em;
+  scrollbar-width:none;-ms-overflow-style:none;
+}
+.journey-stages::-webkit-scrollbar{display:none;}
+.js{
+  padding:10px 18px;
+  background:var(--surface-1);
+  color:var(--ink);
+  white-space:nowrap;
+  flex-shrink:0;
+  display:flex;align-items:center;
+}
+.js-arrow{
+  color:var(--ink-2);
+  padding:0 2px;
+  font-size:14px;
+  flex-shrink:0;
+  display:flex;align-items:center;
+}
+
+/* ── FOOTER ─────────────────────────────────────────────────── */
+.footer{padding:clamp(56px,9vw,120px) 0 clamp(36px,5vw,56px);border-top:1px solid var(--rule);}
+.footer-inner{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:28px;}
+.footer-wm{font-family:var(--f-head);font-size:clamp(28px,4.5vw,52px);letter-spacing:-0.01em;line-height:1;}
+.footer-note{font-family:var(--f-sub);font-size:12px;color:var(--ink-2);letter-spacing:0.04em;line-height:1.7;max-width:28ch;text-align:right;}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────── */
+@media(max-width:640px){
+  .si{grid-template-columns:1fr;}
+  .sn{display:none;}
+  .nav-acts{display:none;}
+  .footer-note{text-align:left;}
+  .mindset-grid{grid-template-columns:1fr;}
+}
+
+/* ── FADE ANIMATIONS ────────────────────────────────────────── */
+.fu{opacity:0;transform:translateY(20px);transition:opacity 0.65s ease,transform 0.65s ease;}
+.fu.in{opacity:1;transform:translateY(0);}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#cover" class="nav-logo">Latitude 37</a>
+  <ul class="nav-acts">
+    <li><a href="#story" data-act="story">The Story</a></li>
+    <li><a href="#guide" data-act="guide">The Guide</a></li>
+    <li><a href="#rules" data-act="rules">The Rules</a></li>
+  </ul>
+</nav>
+<div class="progress" id="prog"></div>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     COVER
+     ════════════════════════════════════════════════════════════ -->
+<section id="cover" class="cover">
+  <div class="w">
+    <p class="cover-eyebrow">Internal Manifesto</p>
+    <h1><span>Latitude to create.</span><span>Crafted for life.</span></h1>
+    <div class="cover-meta">
+      <div class="meta-item">
+        <span class="meta-label">Acts</span>
+        <span class="meta-value">Three</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">For</span>
+        <span class="meta-value">Everyone at Latitude 37</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Read</span>
+        <span class="meta-value">Slowly</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     ACT I - THE STORY
+     ════════════════════════════════════════════════════════════ -->
+<article id="story" data-act="story">
+<div class="w">
+
+  <div class="act-opener fu">
+    <span class="act-n">Act I</span>
+    <h2>The Story</h2>
+    <p>How we think. How we work. How we create experiences clients recommend.</p>
+  </div>
+
+
+  <!-- 1.1 Welcome ──────────────────────────────────────────── -->
+  <div id="s1-1" class="section fu">
+    <div class="si"><span class="sn">1.1</span>
+    <div class="sb">
+      <h2>Welcome</h2>
+      <p>Welcome to Latitude 37.</p>
+      <p>You're joining a business built on a simple idea:</p>
+
+      <div class="pq">
+        <p>When people feel supported, understood and confident in their decisions, remarkable homes - and lasting relationships - follow.</p>
+      </div>
+
+      <p>Our ambition is clear.</p>
+      <p class="large">Create an experience every client would recommend.</p>
+      <p>This document explains how Latitude 37 works, how we think, and how each of us contributes to building a better business.</p>
+    </div></div>
+  </div>
+
+
+  <!-- 1.2 Two moments ──────────────────────────────────────── -->
+  <div id="s1-2" class="section fu">
+    <div class="si"><span class="sn">1.2</span>
+    <div class="sb">
+      <h2>Two moments that shaped the business</h2>
+      <p>The philosophy of Latitude 37 was shaped early. Not through strategy documents, but through real conversations with clients.</p>
+
+      <h3>Val and Bob</h3>
+      <p>One of our earlier clients was a couple, Val and Bob.</p>
+      <p>Val and her husband were retired and avid golfers. They loved the home Latitude 37 designed and built for them - a single storey golf-front home in Sandhurst. So much so that they offered to open their home to prospective clients.</p>
+      <p>The L37 team would arrive with guests, wait outside as Val invited them in, made tea and showed them around their new home, sharing their experience of building with Latitude 37. No questions were off the table. A full, frank and genuine endorsement of our service and reliability.</p>
+      <p>But it didn't stop there. They shared their stories with friends at the golf club, and new introductions came in thick and fast.</p>
+
+      <div class="pq">
+        <p>When someone independent proudly shares their experience, others listen.</p>
+      </div>
+
+      <p>That is how Latitude 37 grew. Over the next ten to twelve years, Latitude 37 built upwards of 80 homes in Sandhurst.</p>
+
+      <h3>Jodie and Darren</h3>
+      <p>Doug was leaving Val and Bob's construction site one day when he met a young mother pushing a pram. Seeing the site signage, she asked if he was from Latitude 37. He said he was.</p>
+      <p>She introduced herself as Jodie and started talking about the site. Not about the house being built - but about how the site looked. Clean. Organised. Respectful of the street. She said it showed that we cared about our client's property.</p>
+      <p>She compared it with another builder down the road whose site was messy and disruptive to neighbours. For Jodie, this signified a lack of care and poor quality.</p>
+      <p>Doug continued to listen.</p>
+      <p>Jodie and her husband had already commissioned a design and asked if Latitude 37 would build it. At the time, Latitude 37 preferred to work on fully integrated design-and-build projects.</p>
+      <p>Instead of declining, Doug suggested reviewing and improving the design for a modest fee - refundable if they didn't find the recommendations valuable.</p>
+      <p>Jodie and Darren loved the improvements. Latitude 37 built their home. They remain friends to this day.</p>
+
+      <div class="pq">
+        <p>Listening carefully often leads to better work.</p>
+      </div>
+
+    </div></div>
+  </div>
+
+
+  <!-- 1.3 Humble beginnings ────────────────────────────────── -->
+  <div id="s1-3" class="section fu">
+    <div class="si"><span class="sn">1.3</span>
+    <div class="sb">
+      <h2>Humble beginnings</h2>
+      <p>In the early days, planning meetings took place around a card table in Doug's home.</p>
+      <p>The setting was simple. The conversations were not.</p>
+      <p>What we stood for. Who we worked with. What mattered. What didn't.</p>
+      <p>That discipline of listening, working things through and making considered decisions still defines how we operate today.</p>
+    </div></div>
+  </div>
+
+  <div class="fu">
+    <span class="callout">The table has changed.<br>The mindset hasn't.</span>
+  </div>
+
+
+  <!-- 1.4 The category problem ─────────────────────────────── -->
+  <div id="s1-4" class="section fu">
+    <div class="si"><span class="sn">1.4</span>
+    <div class="sb">
+      <h2>The category problem</h2>
+      <p>The high-end custom home industry has become increasingly uniform.</p>
+      <p>Beautiful images. Minimalist language. Limited guidance.</p>
+      <p>Many brands focus on the finished product while leaving clients to navigate the complexity of the journey on their own.</p>
+      <p>The industry tends to split into two modes:</p>
+      <ul class="plist">
+        <li>Architects prioritise design purity.</li>
+        <li>Builders prioritise construction efficiency.</li>
+      </ul>
+      <p>Clients are left trying to bridge the gap between the two.</p>
+      <p>Latitude 37 operates in that space - combining the continuity and care of a close working relationship with the structure, capability and discipline to deliver consistently, at scale.</p>
+    </div></div>
+  </div>
+
+
+  <!-- 1.5 Strategy shift ───────────────────────────────────── -->
+  <div id="s1-5" class="section fu">
+    <div class="si"><span class="sn">1.5</span>
+    <div class="sb">
+      <h2>Strategy shift</h2>
+      <p>Over the past few years the business has made several deliberate shifts. Not cosmetic changes, but structural ones.</p>
+
+      <div class="tw">
+        <table>
+          <thead>
+            <tr>
+              <th>From</th>
+              <th>To</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Funnel - focused on sales</td>
+              <td>Flywheel - a self-reinforcing cycle</td>
+            </tr>
+            <tr>
+              <td>Business-first</td>
+              <td>Client-centric</td>
+            </tr>
+            <tr>
+              <td>Advertising - promoting ourselves</td>
+              <td>Guiding - sharing knowledge</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>These shifts change not just how we work, but how we measure what matters.</p>
+
+      <div class="card">
+        <h3>Flywheel</h3>
+        <p>We measure referrals and conversion across the full journey, recognising that reputation drives demand.</p>
+
+        <h3>Client-centred</h3>
+        <p>We use advocacy (NPS) as a learning system - understanding how clients feel, and importantly, why.</p>
+
+        <h3>Guiding</h3>
+        <p>We track how often we are discovered, trusted and cited by search engines and generative AI, reflecting our role as a partner, not a provider.</p>
+      </div>
+
+    </div></div>
+  </div>
+
+  <div class="fu">
+    <span class="callout">Experience creates reputation.<br>Reputation creates demand.</span>
+  </div>
+
+
+  <!-- 1.6 Who we design for ────────────────────────────────── -->
+  <div id="s1-6" class="section fu">
+    <div class="si"><span class="sn">1.6</span>
+    <div class="sb">
+      <h2>Who we design for</h2>
+      <p>Not every client approaches a custom home in the same way.</p>
+      <p>The clients who create the best outcomes are what we call Confident Collaborators. They value design, but also clarity, partnership and expertise.</p>
+      <p>Within this group there are several distinct primary mindsets, understanding that many clients can hold more than one.</p>
+
+      <div class="mindset-grid">
+        <div class="mindset-card">
+          <p class="mindset-name">Vision-First Families</p>
+          <p class="mindset-desc">Creative and curious. They explore possibilities and want a home that reflects their identity.</p>
+        </div>
+        <div class="mindset-card">
+          <p class="mindset-name">Pragmatic Investors</p>
+          <p class="mindset-desc">Analytical and careful. They seek transparency, certainty and long-term value.</p>
+        </div>
+        <div class="mindset-card">
+          <p class="mindset-name">Lifestyle Curators</p>
+          <p class="mindset-desc">Focused on how life unfolds in the home - family routines, gatherings and everyday rituals.</p>
+        </div>
+        <div class="mindset-card">
+          <p class="mindset-name">Coastal Sophisticates</p>
+          <p class="mindset-desc">Strongly connected to place, seeking timeless homes that belong naturally to their landscape.</p>
+        </div>
+      </div>
+
+      <p>They may have different motivations and expectations. But all thrive on partnership, clarity and craftsmanship, which builds trust.</p>
+    </div></div>
+  </div>
+
+
+  <!-- 1.7 The balance that defines us ─────────────────────── -->
+  <div id="s1-7" class="section fu">
+    <div class="si"><span class="sn">1.7</span>
+    <div class="sb">
+      <h2>The balance that defines us</h2>
+      <p>Latitude 37 occupies a space where empathy and precision meet.</p>
+      <p class="large">Human-led design + executional certainty.</p>
+      <p>This is our internal truth, where human understanding shapes design, and disciplined execution brings it to life.</p>
+      <p>We don't try to resolve this tension, but work within it, deliberately.</p>
+      <p>The overlap is where great homes - and great client experiences - are created. And where our promise to clients takes shape.</p>
+
+      <figure style="margin:clamp(40px,6vw,64px) 0;background:#EAE4DA;padding:clamp(40px,6vw,72px) clamp(24px,4vw,48px);">
+        <svg viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:640px;height:auto;display:block;margin:0 auto;" aria-label="Organic geometry: circle representing empathy overlapping square representing precision">
+
+          <!-- Square fill - cool, sits behind -->
+          <path d="M 298,18 C 388,15 484,16 574,20 C 578,112 577,207 573,298 C 480,302 384,302 298,298 C 294,206 295,110 298,18 Z"
+                fill="#F1F2F2" opacity="1"/>
+
+          <!-- Circle fill - warm, layered on top -->
+          <path d="M 202,18 C 288,15 355,84 354,170 C 353,258 284,322 202,321 C 120,322 55,255 56,170 C 54,83 118,19 202,18 Z"
+                fill="#EAE4DA" opacity="1"/>
+
+          <!-- Overlap tint - where both meet, slightly darker warm -->
+          <path d="M 298,18 C 340,15 355,40 354,100 C 353,210 340,295 298,298 C 294,206 295,110 298,18 Z"
+                fill="#4B4E53" opacity="0.07"/>
+
+          <!-- Square stroke -->
+          <path d="M 298,18 C 388,15 484,16 574,20 C 578,112 577,207 573,298 C 480,302 384,302 298,298 C 294,206 295,110 298,18 Z"
+                fill="none" stroke="#231F20" stroke-width="1.5"/>
+
+          <!-- Circle stroke -->
+          <path d="M 202,18 C 288,15 355,84 354,170 C 353,258 284,322 202,321 C 120,322 55,255 56,170 C 54,83 118,19 202,18 Z"
+                fill="none" stroke="#231F20" stroke-width="1.5"/>
+
+          <!-- EMPATHY label -->
+          <text x="160" y="356" text-anchor="middle"
+                font-family="'Steradian','DM Sans',system-ui,sans-serif"
+                font-weight="500" font-size="14" fill="#231F20" letter-spacing="3">EMPATHY</text>
+          <text x="160" y="378" text-anchor="middle"
+                font-family="'Cormorant Garamond',Georgia,serif"
+                font-size="20" font-weight="500" fill="#231F20">Human-led design</text>
+
+          <!-- PRECISION label -->
+          <text x="436" y="356" text-anchor="middle"
+                font-family="'Steradian','DM Sans',system-ui,sans-serif"
+                font-weight="500" font-size="14" fill="#231F20" letter-spacing="3">PRECISION</text>
+          <text x="436" y="378" text-anchor="middle"
+                font-family="'Cormorant Garamond',Georgia,serif"
+                font-size="20" font-weight="500" fill="#231F20">Executional certainty</text>
+
+        </svg>
+      </figure>
+    </div></div>
+  </div>
+
+
+  <!-- 1.8 Our promise ──────────────────────────────────────── -->
+  <div id="s1-8" class="section fu">
+    <div class="si"><span class="sn">1.8</span>
+    <div class="sb">
+      <h2>Our promise</h2>
+      <p>Building a home takes courage.</p>
+      <p>It is thrilling to imagine what life could look like in a new space. But committing to that vision can feel daunting.</p>
+      <ul class="plist">
+        <li>Clients question whether the vision will hold.</li>
+        <li>Whether the process will overwhelm.</li>
+        <li>Whether the outcome will match what they imagined.</li>
+      </ul>
+      <p>Latitude 37 responds in two ways:</p>
+      <ul class="plist">
+        <li>We create the space for clients to explore what matters most to them.</li>
+        <li>We deliver with the discipline and precision required to bring it to life - and for it to endure.</li>
+      </ul>
+
+      <figure style="margin:clamp(40px,6vw,72px) 0;padding:clamp(48px,8vw,96px) clamp(32px,5vw,64px);background:#EAE4DA;">
+        <p style="font-family:'Merlo Original','Cormorant Garamond',Georgia,serif;font-size:clamp(36px,6vw,80px);line-height:1.15;letter-spacing:-0.01em;color:#231F20;margin:0;">
+          <span style="display:block;">Latitude <span style="font-family:'September Spirit Alt','Cormorant Garamond',Georgia,serif;font-style:italic;font-size:clamp(40px,6.5vw,88px);letter-spacing:0.01em;">to create.</span></span>
+          <span style="display:block;">Crafted <span style="font-family:'September Spirit Alt','Cormorant Garamond',Georgia,serif;font-style:italic;font-size:clamp(40px,6.5vw,88px);letter-spacing:0.01em;">for life.</span></span>
+        </p>
+      </figure>
+
+      <p>The result is that every home carries two signatures: the family who imagined it, and the team who built it.</p>
+    </div></div>
+  </div>
+
+
+  <!-- 1.9 How Latitude 37 works ───────────────────────────── -->
+  <div id="s1-9" class="section fu">
+    <div class="si"><span class="sn">1.9</span>
+    <div class="sb">
+      <h2>How Latitude 37 works</h2>
+      <p>Three behaviours guide the way we work with clients and with each other. They are how we deliver on our promise.</p>
+
+      <ul class="blist">
+        <li>
+          <p class="blist-title">Show up well</p>
+          <p class="blist-body">Be present, prepared and respectful of the responsibility we hold.</p>
+        </li>
+        <li>
+          <p class="blist-title">Listen to understand</p>
+          <p class="blist-body">Take the time to understand what truly matters to the client.</p>
+        </li>
+        <li>
+          <p class="blist-title">Guide thoughtfully</p>
+          <p class="blist-body">Provide clarity and confidence as clients navigate a complex journey.</p>
+        </li>
+      </ul>
+
+      <p>When these behaviours are consistent, trust builds and relationships strengthen.</p>
+
+      <figure style="margin:clamp(40px,6vw,64px) 0 0;background:#EAE4DA;padding:clamp(48px,7vw,88px) clamp(24px,5vw,80px);margin-left:calc(-1 * clamp(24px,5vw,80px));margin-right:calc(-1 * clamp(24px,5vw,80px));">
+        <svg viewBox="0 0 700 720" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:560px;height:auto;display:block;margin:0 auto;" aria-label="Three behaviours: Show up well, Listen to understand, Guide thoughtfully">
+
+          <!-- Segment 1: top-right arc (12 o'clock to 4 o'clock) — Show up well — warm fill -->
+          <!-- Centroid angle: -30deg, at 2/3 radius: approx (523, 252) -->
+          <path d="M 350,350 Q 349,196 354,54 A 296,296 0 0,1 606,498 Q 476,428 350,350 Z"
+                fill="#EAE4DA" stroke="#231F20" stroke-width="1.5" stroke-linejoin="round"/>
+
+          <!-- Segment 2: bottom arc (4 o'clock to 8 o'clock) — Listen to understand — cool fill -->
+          <!-- Centroid angle: 90deg, at 2/3 radius: approx (350, 548) -->
+          <path d="M 350,350 Q 476,428 606,498 A 296,296 0 0,1 94,498 Q 224,428 350,350 Z"
+                fill="#F1F2F2" stroke="#231F20" stroke-width="1.5" stroke-linejoin="round"/>
+
+          <!-- Segment 3: left arc (8 o'clock to 12 o'clock) — Guide thoughtfully — surface fill -->
+          <!-- Centroid angle: 210deg, at 2/3 radius: approx (177, 252) -->
+          <path d="M 350,350 Q 224,428 94,498 A 296,296 0 0,1 354,54 Q 349,196 350,350 Z"
+                fill="#EDECE9" stroke="#231F20" stroke-width="1.5" stroke-linejoin="round"/>
+
+          <!-- Organic outer circle — slightly imperfect bezier, no fill -->
+          <path d="M 354,54 C 448,49 636,144 649,350 C 662,556 452,648 350,648 C 248,648 40,554 51,350 C 62,146 260,59 354,54 Z"
+                fill="none" stroke="#231F20" stroke-width="1.5"/>
+
+          <!-- Centre dot -->
+          <circle cx="350" cy="350" r="4" fill="#231F20"/>
+
+          <!-- SEGMENT 1: Show up well — upper right centroid ~(510, 235) -->
+          <text x="510" y="215" text-anchor="middle"
+                font-family="'Steradian','DM Sans',system-ui,sans-serif"
+                font-weight="500" font-size="13" fill="#231F20" letter-spacing="3">SHOW UP WELL</text>
+          <text x="510" y="242" text-anchor="middle"
+                font-family="'Cormorant Garamond',Georgia,serif"
+                font-size="20" fill="#231F20">Present. Prepared.</text>
+          <text x="510" y="265" text-anchor="middle"
+                font-family="'Cormorant Garamond',Georgia,serif"
+                font-size="20" fill="#231F20">Responsible.</text>
+
+          <!-- SEGMENT 2: Listen to understand — bottom centre centroid ~(350, 542) -->
+          <text x="350" y="522" text-anchor="middle"
+                font-family="'Steradian','DM Sans',system-ui,sans-serif"
+                font-weight="500" font-size="13" fill="#231F20" letter-spacing="3">LISTEN TO UNDERSTAND</text>
+          <text x="350" y="549" text-anchor="middle"
+                font-family="'Cormorant Garamond',Georgia,serif"
+                font-size="20" fill="#231F20">What truly matters.</text>
+
+          <!-- SEGMENT 3: Guide thoughtfully — upper left centroid ~(190, 235) -->
+          <text x="190" y="215" text-anchor="middle"
+                font-family="'Steradian','DM Sans',system-ui,sans-serif"
+                font-weight="500" font-size="13" fill="#231F20" letter-spacing="3">GUIDE</text>
+          <text x="190" y="237" text-anchor="middle"
+                font-family="'Steradian','DM Sans',system-ui,sans-serif"
+                font-weight="500" font-size="13" fill="#231F20" letter-spacing="3">THOUGHTFULLY</text>
+          <text x="190" y="264" text-anchor="middle"
+                font-family="'Cormorant Garamond',Georgia,serif"
+                font-size="20" fill="#231F20">Clarity. Confidence.</text>
+
+          <!-- Outer label at bottom -->
+          <text x="350" y="700" text-anchor="middle"
+                font-family="'Steradian','DM Sans',system-ui,sans-serif"
+                font-weight="500" font-size="10" fill="#4B4E53" letter-spacing="3">LATITUDE TO CREATE · CRAFTED FOR LIFE</text>
+
+        </svg>
+      </figure>
+    </div></div>
+  </div>
+
+
+  <!-- 1.10 What this looks like in practice ───────────────── -->
+  <div id="s1-10" class="section fu">
+    <div class="si"><span class="sn">1.10</span>
+    <div class="sb">
+      <h2>What this looks like in practice</h2>
+      <p>"Latitude to create. Crafted for life." is not a statement. It's how we make decisions every day.</p>
+      <p>It shows up in small moments.</p>
+
+      <h3>Latitude to create means</h3>
+      <ul class="plist">
+        <li>Taking the time to understand what matters before moving to solutions.</li>
+        <li>Creating space for clients to explore, not rushing them to decide.</li>
+        <li>Staying open to better ideas, even when they challenge the brief.</li>
+        <li>Being curious, not defensive, when something doesn't feel right.</li>
+      </ul>
+
+      <h3>Crafted for life means</h3>
+      <ul class="plist">
+        <li>Getting the details right, even when no one is watching.</li>
+        <li>Thinking beyond handover - how the home will live, age and endure.</li>
+        <li>Following through on commitments, not leaving loose ends.</li>
+        <li>Making decisions that hold up over time, not just in the moment.</li>
+      </ul>
+
+      <p>Often, these two are in tension. Speed vs care. Creativity vs buildability. Client ambition vs budget reality.</p>
+      <p>Our role is not to take sides. It is to navigate that tension with judgement.</p>
+
+      <h3>What it doesn't look like</h3>
+      <ul class="plist">
+        <li>Rushing decisions to keep things moving.</li>
+        <li>Defaulting to "we've always done it this way."</li>
+        <li>Passing issues on because they sit with another team.</li>
+        <li>Accepting "good enough" when better is achievable.</li>
+        <li>Avoiding hard conversations with clients or colleagues.</li>
+        <li>Prioritising speed or cost at the expense of the outcome.</li>
+      </ul>
+
+      <h3>How this shows up across the business</h3>
+
+      <h4>In early conversations - Exploring, Planning, Choosing</h4>
+      <ul class="plist">
+        <li>We don't jump straight to solutions.</li>
+        <li>We help clients make sense of what matters, even if it slows things down.</li>
+        <li>We guide, rather than sell.</li>
+      </ul>
+
+      <h4>In design and pre-site - Designing, Committing</h4>
+      <ul class="plist">
+        <li>We challenge ideas constructively to improve the outcome.</li>
+        <li>We resolve complexity early, not pass it forward.</li>
+        <li>We align design, cost and buildability - not treat them separately.</li>
+      </ul>
+
+      <h4>In construction - Building, Living</h4>
+      <ul class="plist">
+        <li>We don't walk past details that will be visible later.</li>
+        <li>We communicate early when something changes.</li>
+        <li>We finish properly, not just practically.</li>
+      </ul>
+
+      <h4>Across every role</h4>
+      <ul class="plist">
+        <li>We take responsibility for the whole experience, not just our part.</li>
+        <li>We share context early to avoid downstream issues.</li>
+        <li>We make decisions with the client in mind, not just the task in front of us.</li>
+      </ul>
+
+      <div class="pq">
+        <p>This is what clients experience. Not our process, but how we show up within it.</p>
+      </div>
+
+    </div></div>
+  </div>
+
+
+  <!-- 1.11 The client journey ─────────────────────────────── -->
+  <div id="s1-11" class="section fu">
+    <div class="si"><span class="sn">1.11</span>
+    <div class="sb">
+      <h2>The client journey</h2>
+      <p>Everything we do revolves around the client journey.</p>
+
+      <div class="journey-stages">
+        <span class="js">Exploring</span>
+        <span class="js-arrow">→</span>
+        <span class="js">Planning</span>
+        <span class="js-arrow">→</span>
+        <span class="js">Choosing</span>
+        <span class="js-arrow">→</span>
+        <span class="js">Designing</span>
+        <span class="js-arrow">→</span>
+        <span class="js">Committing</span>
+        <span class="js-arrow">→</span>
+        <span class="js">Building</span>
+        <span class="js-arrow">→</span>
+        <span class="js">Living</span>
+      </div>
+
+      <p>Each stage brings different questions, decisions and pressures.</p>
+      <p>Client Experience Leads steward this journey - holding the thread of each project, protecting alignment between design intent, delivery and commercial discipline, while ensuring the client experience remains central throughout.</p>
+
+    </div></div>
+  </div>
+
+
+  <!-- 1.12 How the business sustains itself ───────────────── -->
+  <div id="s1-12" class="section fu">
+    <div class="si"><span class="sn">1.12</span>
+    <div class="sb">
+      <h2>How the business sustains itself</h2>
+      <p>When the experience works well, clients recommend us.</p>
+      <p>That recommendation becomes the next opportunity.</p>
+
+      <figure style="margin:clamp(40px,6vw,64px) 0;background:#EAE4DA;padding:clamp(40px,6vw,56px) clamp(24px,4vw,48px);">
+        <svg viewBox="0 0 560 560" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:480px;height:auto;display:block;margin:0 auto;" aria-label="Flywheel: Refer, Find, Trust, Choose — a self-reinforcing cycle">
+
+          <!--
+            Centre: 280,280   Outer radius: 200   Inner radius: 72
+            Clockwise from 12 o'clock:
+              REFER    0°– 90°   (top-right)    centroid at 45°,  r=136
+              FIND    90°–180°   (bottom-right)  centroid at 135°, r=136
+              TRUST  180°–270°   (bottom-left)   centroid at 225°, r=136
+              CHOOSE 270°–360°   (top-left)      centroid at 315°, r=136
+
+            Cardinal points on outer ring (r=200):
+              12 o'clock: (280,  80)
+               3 o'clock: (480, 280)
+               6 o'clock: (280, 480)
+               9 o'clock: ( 80, 280)
+
+            Arrow midpoints on outer ring at 45°,135°,225°,315° (r=200):
+              45°:  (421, 139)
+             135°:  (421, 421)
+             225°:  (139, 421)
+             315°:  (139, 139)
+
+            Label centroids at r=136:
+              45°:  (376, 184)   REFER
+             135°:  (376, 376)   FIND
+             225°:  (184, 376)   TRUST
+             315°:  (184, 184)   CHOOSE
+          -->
+
+          <!-- Segment fills — four quarter-circle wedges -->
+
+          <!-- REFER: 12→3 o'clock, warm -->
+          <path d="M 280,280 L 280,80 A 200,200 0 0,1 480,280 Z"
+                fill="#EAE4DA" stroke="#231F20" stroke-width="1.5"/>
+
+          <!-- FIND: 3→6 o'clock, cool -->
+          <path d="M 280,280 L 480,280 A 200,200 0 0,1 280,480 Z"
+                fill="#F1F2F2" stroke="#231F20" stroke-width="1.5"/>
+
+          <!-- TRUST: 6→9 o'clock, warm -->
+          <path d="M 280,280 L 280,480 A 200,200 0 0,1 80,280 Z"
+                fill="#EAE4DA" stroke="#231F20" stroke-width="1.5"/>
+
+          <!-- CHOOSE: 9→12 o'clock, cool -->
+          <path d="M 280,280 L 80,280 A 200,200 0 0,1 280,80 Z"
+                fill="#F1F2F2" stroke="#231F20" stroke-width="1.5"/>
+
+          <!-- Outer ring — slightly organic -->
+          <path d="M 280,78 C 380,74 484,170 484,280 C 484,390 382,486 280,484 C 178,482 76,388 76,280 C 76,172 180,82 280,78 Z"
+                fill="none" stroke="#231F20" stroke-width="1.5"/>
+
+          <!-- Inner circle — creates donut feel -->
+          <circle cx="280" cy="280" r="72" fill="#EDECE9" stroke="#231F20" stroke-width="1"/>
+
+          <!-- Centre word -->
+          <text x="280" y="272" text-anchor="middle"
+                font-family="'Steradian','DM Sans',system-ui,sans-serif"
+                font-weight="500" font-size="10" fill="#231F20" letter-spacing="2">EXPERIENCE</text>
+          <text x="280" y="288" text-anchor="middle"
+                font-family="'Steradian','DM Sans',system-ui,sans-serif"
+                font-weight="500" font-size="10" fill="#231F20" letter-spacing="2">CREATES</text>
+          <text x="280" y="304" text-anchor="middle"
+                font-family="'Steradian','DM Sans',system-ui,sans-serif"
+                font-weight="500" font-size="10" fill="#231F20" letter-spacing="2">DEMAND</text>
+
+          <!-- Clockwise arrows — at arc midpoints on outer ring, large enough to read -->
+          <!-- 45°  → (421,139), tangent direction = SE = rotate(45) -->
+          <polygon points="-9,-5 0,0 -9,5" fill="#231F20"
+                   transform="translate(421,139) rotate(45)"/>
+          <!-- 135° → (421,421), tangent = SW = rotate(135) -->
+          <polygon points="-9,-5 0,0 -9,5" fill="#231F20"
+                   transform="translate(421,421) rotate(135)"/>
+          <!-- 225° → (139,421), tangent = NW = rotate(225) -->
+          <polygon points="-9,-5 0,0 -9,5" fill="#231F20"
+                   transform="translate(139,421) rotate(225)"/>
+          <!-- 315° → (139,139), tangent = NE = rotate(315) -->
+          <polygon points="-9,-5 0,0 -9,5" fill="#231F20"
+                   transform="translate(139,139) rotate(315)"/>
+
+          <!-- REFER label — centroid (376, 184) -->
+          <text x="366" y="172" text-anchor="middle"
+                font-family="'Steradian','DM Sans',system-ui,sans-serif"
+                font-weight="500" font-size="12" fill="#231F20" letter-spacing="2">REFER</text>
+          <text x="366" y="194" text-anchor="middle"
+                font-family="'Cormorant Garamond',Georgia,serif"
+                font-size="17" fill="#4B4E53">Clients advocate.</text>
+
+          <!-- FIND label — centroid (376, 376) -->
+          <text x="366" y="364" text-anchor="middle"
+                font-family="'Steradian','DM Sans',system-ui,sans-serif"
+                font-weight="500" font-size="12" fill="#231F20" letter-spacing="2">FIND</text>
+          <text x="366" y="386" text-anchor="middle"
+                font-family="'Cormorant Garamond',Georgia,serif"
+                font-size="17" fill="#4B4E53">New clients discover.</text>
+
+          <!-- TRUST label — centroid (184, 376) -->
+          <text x="194" y="364" text-anchor="middle"
+                font-family="'Steradian','DM Sans',system-ui,sans-serif"
+                font-weight="500" font-size="12" fill="#231F20" letter-spacing="2">TRUST</text>
+          <text x="194" y="386" text-anchor="middle"
+                font-family="'Cormorant Garamond',Georgia,serif"
+                font-size="17" fill="#4B4E53">Reputation precedes.</text>
+
+          <!-- CHOOSE label — centroid (184, 184) -->
+          <text x="194" y="172" text-anchor="middle"
+                font-family="'Steradian','DM Sans',system-ui,sans-serif"
+                font-weight="500" font-size="12" fill="#231F20" letter-spacing="2">CHOOSE</text>
+          <text x="194" y="194" text-anchor="middle"
+                font-family="'Cormorant Garamond',Georgia,serif"
+                font-size="17" fill="#4B4E53">Confidence converts.</text>
+
+        </svg>
+      </figure>
+
+      <p>Experience strengthens reputation. Reputation attracts the right clients. The cycle continues.</p>
+    </div></div>
+  </div>
+
+
+  <!-- 1.13 What this means for everyone ───────────────────── -->
+  <div id="s1-13" class="section fu">
+    <div class="si"><span class="sn">1.13</span>
+    <div class="sb">
+      <h2>What this means for everyone</h2>
+      <p>Every role in Latitude 37 shapes the client experience.</p>
+      <p>Every decision strengthens or weakens trust.</p>
+      <p>Whether you're designing, planning, building or supporting the team behind the scenes, your work contributes to how clients experience their journey with us. Hundreds of small decisions shape that experience.</p>
+      <p>When we show up well, understand deeply and guide thoughtfully, the result is stronger relationships and better homes.</p>
+
+      <div class="pq">
+        <p>That is the work we share.</p>
+      </div>
+    </div></div>
+  </div>
+
+</div>
+</article>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     ACT II - THE GUIDE  (6 sections - copy to come)
+     ════════════════════════════════════════════════════════════ -->
+<article id="guide" data-act="guide">
+<div class="w">
+
+  <div class="act-opener fu">
+    <span class="act-n">Act II</span>
+    <h2>The Guide</h2>
+    <p>How we work, how we deliver, and where to find everything you need.</p>
+  </div>
+
+  <!-- 2.1 How we work -->
+  <div id="s2-1" class="section fu">
+    <div class="si"><span class="sn">2.1</span>
+    <div class="sb">
+      <h2>How we work</h2>
+      <p>Latitude 37 is overseen by a small Board comprising two Non-Executive Directors and the CEO, providing governance and independent perspective.</p>
+      <p>The chart below shows how Latitude 37 is structured - not how clients experience us.</p>
+
+      <figure style="margin:clamp(40px,6vw,64px) 0;">
+
+        <!-- Row label style -->
+        <style>
+          .org-row{display:flex;flex-direction:column;gap:0;margin-bottom:0;}
+          .org-tier{display:flex;align-items:flex-start;gap:0;margin-bottom:1px;}
+          .org-tier-label{
+            font-family:'Steradian','DM Sans',system-ui,sans-serif;
+            font-weight:500;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+            color:#4B4E53;width:120px;flex-shrink:0;padding-top:20px;
+          }
+          .org-cards{display:flex;gap:1px;flex:1;}
+          .org-card{
+            flex:1;background:#EAE4DA;
+            padding:20px;
+            display:flex;flex-direction:column;gap:12px;
+          }
+          .org-card.surface{background:#F1F2F2;}
+          .org-photo{
+            width:56px;height:56px;
+            border-radius:50%;
+            background:#EDECE9;
+            flex-shrink:0;
+            overflow:hidden;
+          }
+          .org-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+          .org-photo-label{
+            font-family:'Steradian','DM Sans',system-ui,sans-serif;
+            font-size:10px;letter-spacing:0.08em;text-transform:uppercase;
+            color:#4B4E53;
+          }
+          .org-name{
+            font-family:'Merlo Original','Cormorant Garamond',Georgia,serif;
+            font-size:20px;line-height:1.2;letter-spacing:-0.01em;color:#231F20;
+            margin:0;
+          }
+          .org-title{
+            font-family:'Steradian','DM Sans',system-ui,sans-serif;
+            font-size:12px;letter-spacing:0.04em;color:#4B4E53;
+            margin:0;line-height:1.4;
+          }
+          .org-connector{
+            display:flex;align-items:flex-start;
+            padding-left:120px;
+            margin-bottom:1px;
+          }
+          .org-connector-inner{
+            flex:1;display:flex;justify-content:center;
+          }
+          .org-line-v{width:1px;height:32px;background:#231F20;opacity:0.2;}
+          @media(max-width:640px){
+            .org-tier{flex-direction:column;}
+            .org-tier-label{width:auto;padding-top:0;margin-bottom:8px;}
+            .org-connector{padding-left:0;}
+          }
+        </style>
+
+        <div class="org-row">
+
+          <!-- The Board -->
+          <div class="org-tier">
+            <span class="org-tier-label">The Board</span>
+            <div class="org-cards">
+              <div class="org-card">
+                <div class="org-photo" style="overflow:hidden;"><img src="data:image/png;base64,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" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"></div>
+                <div>
+                  <p class="org-name">Doug MacLeod</p>
+                  <p class="org-title">Non-Executive Director</p>
+                </div>
+              </div>
+              <div class="org-card">
+                <div class="org-photo" style="overflow:hidden;"><img src="data:image/png;base64,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" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"></div>
+                <div>
+                  <p class="org-name">Dean Lewis</p>
+                  <p class="org-title">Non-Executive Director</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Connector -->
+          <div class="org-connector"><div class="org-connector-inner"><div class="org-line-v"></div></div></div>
+
+          <!-- CEO/CFO -->
+          <div class="org-tier">
+            <span class="org-tier-label">CEO / CFO</span>
+            <div class="org-cards">
+              <div class="org-card surface" style="max-width:calc(50% - 0.5px);">
+                <div class="org-photo"><img src="data:image/jpeg;base64,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" alt="Ray Tesoriero" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+                <div>
+                  <p class="org-name">Ray Tesoriero</p>
+                  <p class="org-title">Chief Executive &amp; Financial Officer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Connector -->
+          <div class="org-connector"><div class="org-connector-inner"><div class="org-line-v"></div></div></div>
+
+          <!-- Leadership Team -->
+          <div class="org-tier">
+            <span class="org-tier-label">Leadership</span>
+            <div class="org-cards">
+              <div class="org-card">
+                <div class="org-photo"><img src="data:image/jpeg;base64,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" alt="Kaitie Youngs" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+                <div>
+                  <p class="org-name">Kaitie Youngs</p>
+                  <p class="org-title">Sales, Design &amp; Marketing</p>
+                </div>
+              </div>
+              <div class="org-card">
+                <div class="org-photo"><img src="data:image/jpeg;base64,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" alt="Stephanie McCarthy" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+                <div>
+                  <p class="org-name">Stephanie McCarthy</p>
+                  <p class="org-title">Pre-site</p>
+                </div>
+              </div>
+              <div class="org-card">
+                <div class="org-photo"><img src="data:image/jpeg;base64,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" alt="Joel Rowland" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+                <div>
+                  <p class="org-name">Joel Rowland</p>
+                  <p class="org-title">On-site Construction</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </figure>
+
+      <p>Rather than operating as separate departments, our teams align around the client journey, working together across the stages of Exploring, Planning, Choosing, Designing, Committing, Building and Living.</p>
+      <p>To create continuity for clients, we've introduced an integrated Client Experience layer. This ensures clients have only two primary guides throughout their journey: one guiding the early stages of exploration and decision-making, and another stewarding the project from design through to handover and beyond.</p>
+      <p>Four areas of responsibility support this journey, each bringing specialised expertise at different moments, with Commercial supporting the entire journey:</p>
+      <ul class="plist">
+        <li>Design, Marketing &amp; Sales</li>
+        <li>Pre-site</li>
+        <li>Construction</li>
+        <li>Commercial Operations</li>
+      </ul>
+
+
+
+      <div class="pq">
+        <p>The organisation works less like siloed departments and more like a coordinated system supporting one connected client experience.</p>
+      </div>
+    </div></div>
+  </div>
+
+
+  <!-- 2.2 How we deliver the client journey -->
+  <div id="s2-2" class="section fu">
+    <div class="si"><span class="sn">2.2</span>
+    <div class="sb">
+      <h2>How we deliver the client journey</h2>
+      <p>Clients do not experience our departments. They experience one connected journey.</p>
+      <p>Our teams work together across each stage to create clarity, continuity and confidence - from the first conversation through to life in the home.</p>
+
+      <h3>Client journey</h3>
+      <div class="journey-stages">
+        <span class="js">Exploring</span><span class="js-arrow">→</span>
+        <span class="js">Planning</span><span class="js-arrow">→</span>
+        <span class="js">Choosing</span><span class="js-arrow">→</span>
+        <span class="js">Designing</span><span class="js-arrow">→</span>
+        <span class="js">Committing</span><span class="js-arrow">→</span>
+        <span class="js">Building</span><span class="js-arrow">→</span>
+        <span class="js">Living</span>
+      </div>
+      <p>Each stage brings different questions, decisions and pressures. Our role is to support clients at the right moment, in the right way.</p>
+
+      <h3>Client experience integrated layer</h3>
+      <p>Clients will work with two primary guides throughout their journey.</p>
+      <div class="card">
+        <h4>Exploring, Planning, Choosing</h4>
+        <p>Emily</p>
+        <h4>Designing, Committing, Building, Living</h4>
+        <p>Georgia / Laura / Kat</p>
+      </div>
+      <p>They hold the thread of each project, maintaining continuity, alignment and clarity from start to finish.</p>
+
+      <h3>How our teams contribute</h3>
+
+      <h4>Exploring, Planning, Choosing</h4>
+      <p class="dim">Design, Marketing &amp; Client Experience - Sales</p>
+      <p>We help clients understand where to start, what matters, and what's possible. We combine insight, creativity and guidance to turn early ideas into clear direction, helping clients make confident, informed decisions.</p>
+      <p>We also ensure the clients we partner with are the right fit for Latitude 37, setting the foundation for a strong working relationship.</p>
+
+      <h4>Designing, Committing</h4>
+      <p class="dim">Pre-site: Client Experience - Projects, Interior Design, Drafting, Estimating, Quality</p>
+      <p>We translate intent into detail. Working closely with clients, we refine the design, resolve complexity and align scope, budget and buildability before construction begins.</p>
+      <p>This stage requires deep collaboration across disciplines, ensuring that what is imagined can be delivered with clarity and precision.</p>
+
+      <h4>Building, Living</h4>
+      <p class="dim">Construction</p>
+      <p>We bring the home to life with care and discipline. We manage delivery, coordinate trades and maintain alignment with the original design intent - ensuring quality, consistency and a well-supported client experience through to handover and beyond.</p>
+
+      <h4>Across every stage</h4>
+      <p class="dim">Commercial Operations: Finance, Estimating support</p>
+      <p>We provide the structure that supports the entire journey. From financial management and reporting to procurement and cost control, we ensure the business remains commercially sound while enabling strong client outcomes.</p>
+
+      <div class="pq">
+        <p>No single team delivers the experience. It is created through how we work together, stage by stage, detail by detail.</p>
+      </div>
+
+      <p>This only works when teams share context, communicate early and take collective responsibility for the outcome.</p>
+    </div></div>
+  </div>
+
+
+  <!-- 2.3 Our systems and tools -->
+  <div id="s2-3" class="section fu">
+    <div class="si"><span class="sn">2.3</span>
+    <div class="sb">
+      <h2>Our systems and tools</h2>
+      <p>Our systems enable a connected, end-to-end client experience. They help us share information, maintain alignment and deliver with clarity and discipline across every stage of the journey.</p>
+      <p>Different tools underpin different parts of the process, but they work together as a single ecosystem.</p>
+
+      <div class="card">
+        <h4>IT support</h4>
+        <p>Day-to-day support is available through our IT partner, Infotrust, and internally via Chloe.</p>
+        <ul class="plist" style="margin-top:10px;">
+          <li>General support: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b6dbd7d8d7d1d3d2c2d3d5def6dfd8d0d9c2c4c3c5c298d5d9db98d7c3">[email&#160;protected]</a> &nbsp;|&nbsp; 1300 007 001</li>
+          <li>On-site support: Second Wednesday of each month, 9am–1pm</li>
+          <li>Internal support: Chloe can assist with day-to-day issues and help coordinate more complex requests</li>
+        </ul>
+      </div>
+
+      <h3>Client &amp; project workflow</h3>
+      <p>These systems hold the core information that keeps projects moving.</p>
+      <h4>BuildPass</h4>
+      <p>Our core onsite mobile-first management platform, used across the business to manage workflow, real-time tracking of staff, contractors, sites and equipment, and document management. All projects are set up and maintained here, and it is critical that information is kept current to ensure alignment across teams.</p>
+
+      <h3>Client relationships &amp; journey management</h3>
+      <p>These tools support how we engage, qualify and guide clients in the early stages.</p>
+      <h4>HubSpot</h4>
+      <p>Used to manage enquiries, track opportunities and support the client journey through exploration, planning and early design stages. HubSpot also enables our client advocacy program, with automated surveys at key stages of the journey - helping us understand how clients are feeling in real time, and more importantly, why.</p>
+
+      <h3>Design &amp; visualisation</h3>
+      <p>These tools support how we explore, develop and communicate design.</p>
+      <h4>Revit + Enscape</h4>
+      <p>Used to design and present homes in 3D, enabling clients to visualise and refine their home before construction.</p>
+      <h4>SketchUp</h4>
+      <p>Used by the Interior Design team to develop and communicate detailed interior concepts and selections.</p>
+      <p class="dim">We are progressively moving toward a more integrated design environment to improve speed, consistency and reduce translation between tools.</p>
+
+      <h3>Cost, procurement &amp; financial control</h3>
+      <p>These systems ensure commercial discipline across every project.</p>
+      <h4>Databuild</h4>
+      <p>Used for estimating, cost control and financial reporting across projects.</p>
+      <h4>Cubit</h4>
+      <p>Used to measure and calculate quantities for estimating.</p>
+      <h4>Therefore</h4>
+      <p>Used to manage and approve invoices digitally, supporting timely payments to trades and suppliers. All approvals require appropriate scrutiny to ensure accuracy, quality and alignment with agreed scope.</p>
+
+      <h3>Planning &amp; delivery</h3>
+      <p>These tools support how we plan and manage construction.</p>
+      <h4>MS Project</h4>
+      <p>Used to develop and maintain detailed project schedules, helping teams plan, track and adjust timelines as projects progress.</p>
+
+      <h3>People &amp; administration</h3>
+      <p>These tools support how we operate as a team.</p>
+      <h4>Employment Hero</h4>
+      <p>Used for employee administration including leave, payslips and policies. Leave should be planned in advance and coordinated to ensure projects remain well supported.</p>
+
+      <h3>How our systems support the journey</h3>
+      <figure style="margin:clamp(36px,5vw,56px) 0;background:#EAE4DA;padding:28px 0 32px;overflow:hidden;">
+        <svg viewBox="0 0 900 316" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;" aria-label="Systems swimlane across the client journey">
+
+          <!-- Stage header background -->
+          <rect x="148" y="0" width="752" height="36" fill="#231F20" opacity="0.07"/>
+
+          <!-- Stage header labels -->
+          <text x="203" y="23" text-anchor="middle" font-family="'Steradian','DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#231F20" letter-spacing="1">Exploring</text>
+          <text x="310" y="23" text-anchor="middle" font-family="'Steradian','DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#231F20" letter-spacing="1">Planning</text>
+          <text x="417" y="23" text-anchor="middle" font-family="'Steradian','DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#231F20" letter-spacing="1">Choosing</text>
+          <text x="524" y="23" text-anchor="middle" font-family="'Steradian','DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#231F20" letter-spacing="1">Designing</text>
+          <text x="631" y="23" text-anchor="middle" font-family="'Steradian','DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#231F20" letter-spacing="1">Committing</text>
+          <text x="738" y="23" text-anchor="middle" font-family="'Steradian','DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#231F20" letter-spacing="1">Building</text>
+          <text x="845" y="23" text-anchor="middle" font-family="'Steradian','DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#231F20" letter-spacing="1">Living</text>
+
+          <!-- Column separator lines -->
+          <line x1="148" y1="0" x2="148" y2="316" stroke="#231F20" stroke-opacity="0.12" stroke-width="1"/>
+          <line x1="257" y1="36" x2="257" y2="316" stroke="#231F20" stroke-opacity="0.08" stroke-width="1" stroke-dasharray="2,4"/>
+          <line x1="364" y1="36" x2="364" y2="316" stroke="#231F20" stroke-opacity="0.08" stroke-width="1" stroke-dasharray="2,4"/>
+          <line x1="471" y1="36" x2="471" y2="316" stroke="#231F20" stroke-opacity="0.08" stroke-width="1" stroke-dasharray="2,4"/>
+          <line x1="578" y1="36" x2="578" y2="316" stroke="#231F20" stroke-opacity="0.12" stroke-width="1"/>
+          <line x1="685" y1="36" x2="685" y2="316" stroke="#231F20" stroke-opacity="0.08" stroke-width="1" stroke-dasharray="2,4"/>
+          <line x1="792" y1="36" x2="792" y2="316" stroke="#231F20" stroke-opacity="0.08" stroke-width="1" stroke-dasharray="2,4"/>
+
+          <!-- Tool name labels — left column -->
+          <text x="8"  y="59" font-family="'Steradian','DM Sans',system-ui,sans-serif" font-size="11" font-weight="500" fill="#231F20">HubSpot</text>
+          <text x="8"  y="97" font-family="'Steradian','DM Sans',system-ui,sans-serif" font-size="11" font-weight="500" fill="#231F20">Revit / SketchUp</text>
+          <text x="8" y="135" font-family="'Steradian','DM Sans',system-ui,sans-serif" font-size="11" font-weight="500" fill="#231F20">Databuild / Cubit</text>
+          <text x="8" y="173" font-family="'Steradian','DM Sans',system-ui,sans-serif" font-size="11" font-weight="500" fill="#231F20">OHS</text>
+          <text x="8" y="211" font-family="'Steradian','DM Sans',system-ui,sans-serif" font-size="11" font-weight="500" fill="#231F20">Therefore</text>
+          <text x="8" y="249" font-family="'Steradian','DM Sans',system-ui,sans-serif" font-size="11" font-weight="500" fill="#231F20">BuildPass</text>
+          <text x="8" y="287" font-family="'Steradian','DM Sans',system-ui,sans-serif" font-size="11" font-weight="500" fill="#231F20">MS Project</text>
+
+          <!-- Row 1: HubSpot — Exploring through Committing (148 to 685) -->
+          <rect x="148" y="44" width="537" height="26" rx="2" fill="#231F20" opacity="0.1"/>
+
+          <!-- Row 2: Revit / SketchUp — Exploring through Designing (148 to 578) -->
+          <rect x="148" y="82" width="430" height="26" rx="2" fill="#231F20" opacity="0.07"/>
+
+          <!-- Row 3: Databuild / Cubit — Exploring through Designing (148 to 578) -->
+          <rect x="148" y="120" width="430" height="26" rx="2" fill="#231F20" opacity="0.1"/>
+
+          <!-- Row 4: OHS — full span (148 to 900) -->
+          <rect x="148" y="158" width="752" height="26" rx="2" fill="#231F20" opacity="0.07"/>
+
+          <!-- Row 5: Therefore — full span (148 to 900) -->
+          <rect x="148" y="196" width="752" height="26" rx="2" fill="#231F20" opacity="0.1"/>
+
+          <!-- Row 6: BuildPass — Committing through Living (578 to 900) -->
+          <rect x="578" y="234" width="322" height="26" rx="2" fill="#231F20" opacity="0.07"/>
+
+          <!-- Row 7: MS Project — Committing through Living (578 to 900) -->
+          <rect x="578" y="272" width="322" height="26" rx="2" fill="#231F20" opacity="0.1"/>
+
+        </svg>
+      </figure>
+      <p class="dim">These systems support how we work, but they rely on all of us to keep information current, apply good judgement and use them consistently.</p>
+
+      <h3>How you can access the system</h3>
+      <p>Chloe will provide your personal and private login information.</p>
+    </div></div>
+  </div>
+
+
+  <!-- 2.4 Key documents -->
+  <div id="s2-4" class="section fu">
+    <div class="si"><span class="sn">2.4</span>
+    <div class="sb">
+      <h2>Key documents</h2>
+      <p>There are a number of documents that support how we work and how we deliver projects at Latitude 37. Together, they define what we deliver, how we deliver it, and the standards we work to across each stage of the client journey.</p>
+      <p>You'll be introduced to these documents as you onboard. We encourage you to familiarise yourself with them and ask questions along the way.</p>
+      <p class="dim">As these documents are regularly updated, always refer to the latest version on the L: drive rather than relying on printed copies.</p>
+
+      <h3>Understanding the client journey</h3>
+      <h4>Custom Home Process</h4>
+      <p>Provides an overview of the end-to-end journey, from initial enquiry through to handover.</p>
+      <p class="dim">L:\8. Marketing\General Marketing Items\Flyers</p>
+
+      <h3>Contract &amp; project documentation</h3>
+      <p>These documents define the scope, quality and expectations of each project. Together, they form the foundation of how a home is designed, documented and delivered.</p>
+      <ul class="plist">
+        <li>Master Builders Building Contract (including Special Conditions and Contract Document Review)</li>
+        <li>General Specification - <span style="color:var(--ink-2);font-size:17px;">L:\PROCEDURES &amp; STANDARD DOCUMENTS\Templates\Contract Documents</span></li>
+        <li>Working Drawings</li>
+        <li>Engineering Drawings</li>
+        <li>Finishes &amp; Fixtures Schedule</li>
+        <li>Sanitary Fixtures (Reece)</li>
+        <li>Appliances (E&amp;S)</li>
+        <li>Electrical layout and schedule</li>
+        <li>HVAC layout and quote</li>
+        <li>Tile schedule</li>
+      </ul>
+      <p class="dim">These documents must remain aligned, as together they represent the agreed scope and intent of the project.</p>
+
+      <h3>Alignment &amp; decision frameworks</h3>
+      <h4>Contract Document Review (CDR)</h4>
+      <p>Supports alignment across documentation before construction begins.</p>
+      <h4>Key Agreements</h4>
+      <p>Captures agreed approaches to how Latitude 37 operates in situations where multiple solutions are possible.</p>
+      <p class="dim">L:\PROCEDURES &amp; STANDARD DOCUMENTS\Templates\Key Agreements</p>
+
+      <h3>Trades &amp; supplier network</h3>
+      <h4>Trade Contract List</h4>
+      <p>A curated list of preferred trades and suppliers, including priority order and guidance on who we partner with. This supports consistency, quality and strong working relationships across projects.</p>
+
+      <div class="pq">
+        <p>These documents provide structure. How we apply them - with judgement and care - shapes the client experience.</p>
+      </div>
+    </div></div>
+  </div>
+
+
+  <!-- 2.5 Where to find information -->
+  <div id="s2-5" class="section fu">
+    <div class="si"><span class="sn">2.5</span>
+    <div class="sb">
+      <h2>Where to find information</h2>
+      <p>We work in a shared environment where information is accessible, current and easy to follow. Clear, well-managed information helps us maintain continuity, reduce rework and deliver a consistent client experience.</p>
+      <p>Two core systems support this:</p>
+      <ul class="plist">
+        <li>Outlook Public Folders - for email correspondence</li>
+        <li>L: Drive - for all project and business documentation</li>
+      </ul>
+
+      <h3>Email correspondence</h3>
+      <h4>Outlook Public Folders</h4>
+      <p>All project-related email correspondence is stored in shared public folders. This ensures that communication is visible, traceable and accessible to anyone involved in the project.</p>
+      <p>When sending emails, include:</p>
+      <ul class="plist">
+        <li>Project name</li>
+        <li>Project number</li>
+        <li>A clear subject description</li>
+      </ul>
+      <p class="dim">This helps ensure emails can be easily identified and filed.</p>
+
+      <h3>Project and business documentation</h3>
+      <h4>L: Drive</h4>
+      <p>The L: Drive is the central location for all business and project information. Each project has its own folder, organised by year and job number, containing all relevant documentation including drawings, permits and project records.</p>
+      <p class="dim">The most efficient way to locate a project folder is via OnSite Companion (OSC), which links directly to the relevant L: Drive location.</p>
+
+      <h3>A shared responsibility</h3>
+      <p>Maintaining clear and consistent information is a shared responsibility. Filing emails, keeping documentation current and using consistent naming conventions all contribute to a smoother workflow and better client outcomes.</p>
+      <p>If you're unsure where something belongs or how to find it, your team leader or Chloe can assist.</p>
+
+      <div class="pq">
+        <p>Clients experience the outcome of how well we manage information - not the systems themselves.</p>
+      </div>
+    </div></div>
+  </div>
+
+
+  <!-- 2.6 Our workplace -->
+  <div id="s2-6" class="section fu">
+    <div class="si"><span class="sn">2.6</span>
+    <div class="sb">
+      <h2>Our workplace</h2>
+      <p>Our office is designed to support how we work together, providing spaces for collaboration, focused work and client meetings. We ask that everyone uses shared spaces with care and consideration for others.</p>
+
+      <h3>Facilities</h3>
+      <p>The Dandenong South office includes a range of shared facilities available to all staff:</p>
+      <ul class="plist">
+        <li>Kitchen and dining area</li>
+        <li>Meeting rooms</li>
+        <li>Gym and end-of-trip facilities</li>
+        <li>Breakout and recreational spaces</li>
+      </ul>
+      <p class="dim">Please use these spaces safely and respectfully, and leave them ready for others to use. If you need help with equipment or facilities, Chloe or a team member can assist.</p>
+
+      <h3>Access</h3>
+      <p>Standard office hours are 8:30am–5pm. Access outside these hours is available where required. Keys and alarm access can be arranged through Chloe or your manager, depending on your role.</p>
+
+      <h3>Meeting rooms</h3>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th style="width:35%">Room</th><th>Use</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Boardroom</td><td>Larger meetings, up to 10 people</td></tr>
+            <tr><td>Design Room</td><td>Client presentations and design reviews</td></tr>
+            <tr><td>Meeting Rooms 1–3</td><td>General meetings, up to 6 people</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="dim">Rooms can be booked via your Outlook calendar by selecting the room as the meeting location. Once confirmed, the space is reserved for your meeting.</p>
+
+      <h3>A shared environment</h3>
+      <p>Our workplace supports both our team and our clients. How we use it - from preparing rooms to hosting meetings - contributes to the overall experience of Latitude 37.</p>
+
+      <div class="pq">
+        <p>How we show up in our environment reflects how we show up for our clients.</p>
+      </div>
+    </div></div>
+  </div>
+
+</div>
+</article>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     ACT III - THE RULES  (4 sections - copy to come)
+     ════════════════════════════════════════════════════════════ -->
+<article id="rules" data-act="rules">
+<div class="w">
+
+  <div class="act-opener fu">
+    <span class="act-n">Act III</span>
+    <h2>The Rules</h2>
+    <p>Not policies. Not procedures. The few things we hold non-negotiable.</p>
+  </div>
+
+  <!-- 3.1 How we work day-to-day -->
+  <div id="s3-1" class="section fu">
+    <div class="si"><span class="sn">3.1</span>
+    <div class="sb">
+      <h2>How we work day-to-day</h2>
+      <p>These are not instructions. They are standards.</p>
+      <p>They define how we apply judgement, take ownership and deliver consistently, across every project.</p>
+      <p>They exist to protect:</p>
+      <ul class="plist">
+        <li>Our clients</li>
+        <li>Our team</li>
+        <li>The integrity of the homes we design and build</li>
+      </ul>
+    </div></div>
+  </div>
+
+
+  <!-- 3.2 Safety & responsibility -->
+  <div id="s3-2" class="section fu">
+    <div class="si"><span class="sn">3.2</span>
+    <div class="sb">
+      <h2>Safety &amp; responsibility</h2>
+      <p>Creating a safe place to work is a non-negotiable at Latitude 37. This applies to our team, our subcontractors, our clients and the broader public. Every person who enters our sites must be protected from harm.</p>
+      <p>We maintain a zero-tolerance approach to unsafe practices - particularly in relation to working at heights and electrical safety, which remain the most significant risks in our industry.</p>
+      <p>All site staff must hold appropriate OHS qualifications, be trained in first aid and carry a first aid kit. Non-site staff and clients must be appropriately inducted and supervised at all times.</p>
+      <p>Our OHS systems and procedures (managed through BuildPass) must be followed on every project, without exception. This includes:</p>
+      <ul class="plist">
+        <li>OHS Management System Manual</li>
+        <li>Project-specific SWMS for all high-risk work</li>
+        <li>RCD protection, tested monthly</li>
+        <li>Tagged tools and leads</li>
+        <li>Secure, well-maintained and clearly accessible sites</li>
+        <li>Appropriate fall protection for all work above 2 metres</li>
+      </ul>
+      <p>Independent safety audits are conducted regularly. Any hazards identified must be addressed immediately.</p>
+
+      <div class="pq">
+        <p>Safety is not a checklist - it is a shared responsibility. If something is unsafe, we act.</p>
+      </div>
+
+      <p class="dim">Well-run, safe and organised sites also reflect the care we bring to our clients' homes. They are visible proof of how we work.</p>
+    </div></div>
+  </div>
+
+
+  <!-- 3.3 Emergency & safety contacts -->
+  <div id="s3-3" class="section fu">
+    <div class="si"><span class="sn">3.3</span>
+    <div class="sb">
+      <h2>Emergency &amp; safety contacts</h2>
+
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th style="width:40%">Role</th><th>Name</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Office Fire Warden</td><td>Chloe Lee</td></tr>
+            <tr><td rowspan="8" style="vertical-align:top;padding-top:14px;">First Aid Trained</td><td>Chloe Lee</td></tr>
+            <tr><td>Michael Burdack</td></tr>
+            <tr><td>Mark Natoli</td></tr>
+            <tr><td>Chris Van Suylen</td></tr>
+            <tr><td>Steve Tutek</td></tr>
+            <tr><td>Michael Franklyn</td></tr>
+            <tr><td>Joel Rowland</td></tr>
+            <tr><td>Tristram Sexton</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="dim">Evacuation plans and emergency equipment locations are displayed throughout the office.</p>
+    </div></div>
+  </div>
+
+
+  <!-- 3.4 Construction: How we deliver -->
+  <div id="s3-4" class="section fu">
+    <div class="si"><span class="sn">3.4</span>
+    <div class="sb">
+      <h2>Construction: how we deliver</h2>
+      <p>Construction is where intent becomes reality. It's where design, planning and client trust are tested - and proven - every day.</p>
+      <p>This requires consistent judgement, balancing design intent, delivery discipline and client expectations at every stage. The role of the Construction team is to deliver each home with care, precision, accountability and respect for the client's experience.</p>
+
+      <h3>Client experience</h3>
+      <p>We maintain a consistent, proactive relationship with every client.</p>
+      <ul class="plist">
+        <li>Speak with every client weekly by phone, providing clarity on progress and what comes next</li>
+        <li>Follow up key points in writing where needed</li>
+        <li>Record all interactions in OSC</li>
+        <li>Ensure all formal meetings are documented and agreed</li>
+      </ul>
+      <p class="dim">Clients should never feel uncertain about where they stand. If something changes, we communicate early.</p>
+
+      <h3>Planning and delivery</h3>
+      <p>Strong planning underpins confident delivery.</p>
+      <ul class="plist">
+        <li>Plan at least 30 days ahead</li>
+        <li>Maintain momentum across all sites</li>
+        <li>Minimise delays by reducing gaps, not compressing quality</li>
+        <li>Coordinate trades proactively and realistically</li>
+        <li>Take ownership of delivery timelines, including during periods of leave</li>
+      </ul>
+      <p class="dim">We don't wait for direction. We anticipate and plan ahead.</p>
+
+      <h3>Quality</h3>
+      <p>Details matter. Small oversights compound quickly and are visible to clients. We take responsibility for the complete outcome, not just our part.</p>
+      <ul class="plist">
+        <li>Complete all required QC checks at each stage</li>
+        <li>Maintain BuildPass accurately and consistently</li>
+        <li>Address issues before work progresses</li>
+        <li>Ensure the home is watertight, compliant and ready before advancing stages</li>
+      </ul>
+      <p class="dim">We don't pass problems forward. We resolve them.</p>
+
+      <h3>Cost and commercial discipline</h3>
+      <p>We balance value, cost and outcome - not just price.</p>
+      <ul class="plist">
+        <li>Approve invoices only when work is complete and meets expectations</li>
+        <li>Ensure all work is properly authorised before proceeding</li>
+        <li>Manage contingency and spend responsibly</li>
+      </ul>
+      <p class="dim">Every decision has a commercial impact.</p>
+
+      <h3>Safety</h3>
+      <p>Safety standards must be upheld at all times.</p>
+      <ul class="plist">
+        <li>Follow all OHS requirements without exception</li>
+        <li>Conduct regular audits</li>
+        <li>Act immediately on any risks identified</li>
+      </ul>
+      <p class="dim">We do not walk past unsafe conditions.</p>
+
+      <h3>Variations and changes</h3>
+      <p>Changes are a natural part of a custom home journey. We approach change with openness, but not casually. Our role is to manage them carefully - balancing client intent, buildability, timing and cost.</p>
+      <ul class="plist">
+        <li>No changes proceed without proper documentation and client approval</li>
+        <li>All variations must be clearly scoped, priced and agreed before work begins</li>
+        <li>We guide clients through implications, ensuring informed decisions</li>
+      </ul>
+      <p class="dim">Where requests introduce complexity or risk, we assess them carefully and involve the Construction Director where required. Well-managed changes protect the integrity of the build - and the client experience.</p>
+
+      <h3>Ownership and continuity</h3>
+      <p>Every project is shared, but never fragmented.</p>
+      <ul class="plist">
+        <li>We take responsibility beyond our immediate role</li>
+        <li>We do not defer issues because they sit "with another team"</li>
+        <li>We maintain continuity of information, intent and decision-making</li>
+      </ul>
+      <p class="dim">Clients experience the whole, not our individual responsibilities.</p>
+
+      <h3>How this comes together</h3>
+      <p>These standards are not independent. They work together.</p>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th style="width:40%">Standard</th><th>What it protects</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Safety</td><td>People</td></tr>
+            <tr><td>Planning</td><td>Momentum</td></tr>
+            <tr><td>Quality</td><td>Outcomes</td></tr>
+            <tr><td>Commercial discipline</td><td>The business</td></tr>
+            <tr><td>Client experience</td><td>Everything</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pq">
+        <p>When applied consistently, they earn trust. And what clients remember is how it felt to work with us - and whether they'd recommend it.</p>
+      </div>
+
+    </div></div>
+  </div>
+
+  <div class="fu">
+    <span class="callout">Welcome to Latitude 37.</span>
+  </div>
+
+  <hr class="rule">
+
+</div>
+</article>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="w">
+    <div class="footer-inner">
+      <div class="footer-wm">Latitude 37</div>
+      <p class="footer-note">Internal document.<br>Not for distribution.<br>Version 1.0</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- JS -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function(){
+  var prog = document.getElementById('prog');
+  var links = document.querySelectorAll('.nav-acts a[data-act]');
+  var acts  = document.querySelectorAll('article[data-act]');
+
+  function onScroll(){
+    var s = window.scrollY;
+    var h = document.body.scrollHeight - window.innerHeight;
+    prog.style.width = (h > 0 ? s/h*100 : 0) + '%';
+    var mid = s + window.innerHeight/2;
+    var cur = '';
+    acts.forEach(function(a){ if(a.offsetTop <= mid) cur = a.dataset.act; });
+    links.forEach(function(l){ l.classList.toggle('active', l.dataset.act === cur); });
+  }
+
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  },{threshold:0.07, rootMargin:'0px 0px -40px 0px'});
+
+  document.querySelectorAll('.fu').forEach(function(el){ obs.observe(el); });
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+
+</body>
+</html>
