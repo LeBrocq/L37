@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Latitude 37 | Build Timing Calculator</title>
+  <meta name="description" content="A premium scenario calculator to help future custom home clients understand how timing can change project cost, holding costs, and handover timing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alike&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #231f20;
+      --white: #ffffff;
+      --sand: #eae4da;
+      --mist: #edece9;
+      --slate: #4b4e53;
+      --panel-soft: #f7f4ef;
+      --gold: #c99d59;
+      --dark-card: #211b16;
+      --border: rgba(35,31,32,0.12);
+      --shadow: 0 18px 50px rgba(35,31,32,0.08);
+      --max: 1220px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Alike', Georgia, serif;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f6f3ee 0%, #f2efea 100%);
+      min-height: 100vh;
+    }
+
+    button, input, select, textarea { font: inherit; }
+
+    .page-shell {
+      min-height: 100vh;
+      padding: 18px 14px 34px;
+      background:
+        radial-gradient(circle at top left, rgba(234,228,218,0.55), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(75,78,83,0.06), transparent 24%);
+    }
+
+    .shell { max-width: var(--max); margin: 0 auto; }
+
+    .hero-card,
+    .content-card {
+      background: var(--white);
+      border: 1px solid rgba(35,31,32,0.08);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-card { margin-bottom: 18px; }
+    .hero-inner { padding: 22px 18px; display: grid; gap: 22px; }
+
+    .brand-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand-text {
+      font: 700 clamp(1.35rem, 5vw, 2.4rem)/1 'Roboto', Arial, sans-serif;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .hero-kicker,
+    .step-kicker,
+    .field-label,
+    .metric-label,
+    .compare-label,
+    .mini-label,
+    .assumption-item .label,
+    .hero-action-label,
+    .progress-label,
+    .next-step-kicker,
+    .next-option-label {
+      font-family: 'Roboto', Arial, sans-serif;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .hero-kicker { font-size: 0.78rem; line-height: 1.2; color: rgba(35,31,32,0.74); margin: 0 0 14px; }
+    .hero h1 { margin: 0; font-size: clamp(2.2rem, 7vw, 4.5rem); line-height: 0.98; font-weight: 400; max-width: 10.5ch; }
+    .hero p.lead { margin: 14px 0 0; max-width: 42rem; font-size: clamp(1rem, 2.4vw, 1.15rem); line-height: 1.75; color: rgba(35,31,32,0.78); }
+
+    .hero-meta { display: grid; gap: 12px; }
+    .hero-action { border: 1px solid rgba(35,31,32,0.12); border-radius: 22px; background: var(--panel-soft); padding: 14px; display: grid; gap: 10px; }
+    .hero-action-label { font-size: 0.68rem; color: var(--slate); }
+    .hero-action-button { background: var(--sand); border-radius: 999px; padding: 14px 16px; text-align: center; font: 500 0.85rem/1.1 'Roboto', Arial, sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
+
+    .content-grid { display: grid; }
+    .sidebar { padding: 24px 20px; background: linear-gradient(180deg, rgba(237,236,233,0.7), rgba(255,255,255,0.96)); border-bottom: 1px solid rgba(35,31,32,0.08); }
+    .sidebar h2, .wizard h2, .results h2 { margin: 0; font-size: clamp(1.9rem, 4vw, 2.45rem); line-height: 1.08; font-weight: 400; }
+    .intro-script { margin: 18px 0 8px; font: 500 0.78rem/1.2 'Roboto', Arial, sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--slate); }
+    .sidebar p { margin: 14px 0 0; font-size: 1rem; line-height: 1.75; color: rgba(35,31,32,0.82); }
+
+    .assumption-list { display: grid; gap: 10px; margin-top: 22px; }
+    .assumption-item { border-top: 1px solid var(--border); padding-top: 12px; }
+    .assumption-item .label { font-size: 0.74rem; line-height: 1.2; color: var(--slate); margin-bottom: 6px; }
+    .assumption-item .value { font-size: 1rem; line-height: 1.55; }
+
+    .wizard, .results { padding: 24px 20px 28px; }
+    .progress-wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+    .progress-label { font-size: 0.78rem; line-height: 1.2; color: var(--slate); }
+    .progress-bar { flex: 1; height: 7px; border-radius: 999px; background: rgba(35,31,32,0.08); overflow: hidden; }
+    .progress-fill { height: 100%; width: 12.5%; border-radius: 999px; background: linear-gradient(90deg, var(--ink), #6a7078); transition: width 0.28s ease; }
+
+    .step { display: none; animation: fadeUp 0.28s ease; }
+    .step.active { display: block; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .step-header { margin-bottom: 18px; }
+    .step-kicker { font-size: 0.74rem; line-height: 1.2; color: var(--slate); margin-bottom: 8px; }
+    .step-header p { margin: 10px 0 0; font-size: 1rem; line-height: 1.7; color: rgba(35,31,32,0.76); }
+
+    .option-grid, .metric-grid, .compare-grid, .insight-grid, .lead-grid, .inline-two { display: grid; gap: 12px; }
+    .option-card, .select-wrap, .input-wrap, .metric-card, .compare-card, .insight-card, .lead-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: rgba(255,255,255,0.94);
+      padding: 16px;
+    }
+
+    .option-card { padding-left: 48px; position: relative; cursor: pointer; transition: all 0.2s ease; }
+    .option-card:hover, .select-wrap:focus-within, .input-wrap:focus-within { border-color: rgba(35,31,32,0.2); transform: translateY(-1px); box-shadow: 0 12px 26px rgba(35,31,32,0.05); }
+    .option-card input { position: absolute; opacity: 0; pointer-events: none; }
+    .option-card .radio { position: absolute; left: 16px; top: 18px; width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid rgba(35,31,32,0.34); background: white; }
+    .option-card input:checked + .radio { border-color: var(--ink); background: var(--sand); }
+    .option-card input:checked + .radio::after { content: ''; position: absolute; inset: 3px; border-radius: 50%; background: var(--ink); }
+    .option-card.selected { background: linear-gradient(180deg, rgba(234,228,218,0.85), rgba(255,255,255,0.96)); border-color: rgba(35,31,32,0.18); }
+
+    .option-title { font: 500 0.95rem/1.45 'Roboto', Arial, sans-serif; margin-bottom: 4px; }
+    .option-desc { font-size: 0.94rem; line-height: 1.6; color: rgba(35,31,32,0.72); }
+    .field-label, .metric-label, .compare-label, .mini-label { display: block; font-size: 0.72rem; line-height: 1.2; color: var(--slate); margin-bottom: 8px; }
+
+    .input-wrap, .select-wrap { padding: 12px 14px; }
+    input[type="number"], input[type="text"], input[type="email"], select { width: 100%; border: none; outline: none; background: transparent; font-size: 1rem; color: var(--ink); }
+    input::placeholder { color: rgba(35,31,32,0.44); }
+    .hint { margin-top: 8px; font-size: 0.86rem; line-height: 1.5; color: rgba(35,31,32,0.66); }
+    .hidden { display: none !important; }
+
+    .nav-row { display: flex; gap: 10px; justify-content: space-between; margin-top: 22px; flex-wrap: wrap; }
+    .btn { appearance: none; border: none; border-radius: 999px; padding: 14px 20px; min-width: 138px; cursor: pointer; font: 500 0.86rem/1 'Roboto', Arial, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; }
+    .btn-primary { background: var(--ink); color: var(--white); box-shadow: 0 16px 35px rgba(35,31,32,0.14); }
+    .btn-secondary { background: var(--sand); color: var(--ink); }
+    .btn-ghost { background: transparent; border: 1px solid rgba(35,31,32,0.18); color: var(--ink); }
+
+    .results { display: none; }
+    .results.visible { display: block; }
+    .result-shell { display: grid; gap: 16px; margin-top: 18px; }
+    .summary-banner { background: linear-gradient(135deg, rgba(35,31,32,0.96), rgba(75,78,83,0.9)); color: var(--white); border-radius: 24px; padding: 18px; }
+    .summary-banner .eyebrow { font: 500 0.74rem/1.2 'Roboto', Arial, sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.72); margin-bottom: 10px; }
+    .summary-banner h3 { margin: 0; font-size: clamp(1.7rem, 5vw, 2.7rem); font-weight: 400; line-height: 1.02; max-width: 14ch; }
+    .summary-banner p, .metric-copy, .compare-copy, .insight-card p, .lead-card p { font-size: 0.95rem; line-height: 1.7; color: rgba(35,31,32,0.75); margin: 0; }
+    .summary-banner p { margin-top: 12px; color: rgba(255,255,255,0.85); }
+    .metric-value, .compare-value { font-size: clamp(1.4rem, 4.2vw, 2rem); line-height: 1.08; margin-bottom: 8px; }
+    .compare-card.emphasis { background: linear-gradient(180deg, rgba(234,228,218,0.92), rgba(255,255,255,0.9)); }
+    .insight-card h4, .lead-card h4 { margin: 0 0 8px; font-size: 1.12rem; font-weight: 400; line-height: 1.3; }
+
+    .next-step-panel { padding: 24px 18px; border-radius: 24px; background: linear-gradient(135deg, #2c241c, var(--dark-card)); border: 1px solid rgba(199,153,84,0.36); color: var(--white); position: relative; overflow: hidden; }
+    .next-step-panel::after { content: ''; position: absolute; top: -54px; right: -38px; width: 140px; height: 140px; border: 1px solid rgba(199,153,84,0.22); border-radius: 50%; }
+    .next-step-kicker { font-size: 0.72rem; line-height: 1.2; color: var(--gold); margin-bottom: 14px; }
+    .next-step-panel h3 { margin: 0; font-size: clamp(1.8rem, 5vw, 2.65rem); line-height: 1.05; font-weight: 400; }
+    .next-step-panel h3 em { font-style: italic; }
+    .next-step-intro { margin: 16px 0 22px; max-width: 58rem; font-family: 'Roboto', Arial, sans-serif; font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,0.64); }
+    .next-step-options { display: grid; gap: 14px; }
+    .next-option { border: 1px solid rgba(199,153,84,0.36); background: rgba(0,0,0,0.18); border-radius: 8px; padding: 18px; }
+    .next-option-label { font-size: 0.72rem; line-height: 1.2; color: var(--gold); margin-bottom: 16px; }
+    .next-option h4 { margin: 0 0 14px; font-size: 1.45rem; line-height: 1.18; font-weight: 400; color: var(--white); }
+    .next-option p { margin: 0 0 18px; font-family: 'Roboto', Arial, sans-serif; line-height: 1.7; color: rgba(255,255,255,0.62); }
+    .next-option .price-note { color: rgba(255,255,255,0.48); }
+    .next-option .price-note strong { color: var(--gold); font-weight: 500; }
+    .cta-button { display: block; width: 100%; border-radius: 4px; border: 1px solid rgba(199,153,84,0.55); padding: 15px 16px; text-align: center; text-decoration: none; font: 500 0.86rem/1 'Roboto', Arial, sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); background: transparent; }
+    .cta-button.filled { background: var(--gold); color: #17110d; }
+
+    .disclaimer { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 0.84rem; line-height: 1.65; color: rgba(35,31,32,0.66); }
+    .results-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+    .footer-note { max-width: var(--max); margin: 22px auto 0; padding: 0 16px 10px; text-align: center; color: rgba(35,31,32,0.62); font: 400 0.88rem/1.7 'Roboto', Arial, sans-serif; }
+
+    @media (min-width: 780px) {
+      .page-shell { padding: 24px 20px 36px; }
+      .hero-inner { padding: 28px; }
+      .hero-meta { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .content-grid { grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1.18fr); }
+      .sidebar { padding: 30px 28px; border-right: 1px solid rgba(35,31,32,0.08); border-bottom: none; }
+      .wizard, .results { padding: 30px 28px 32px; }
+      .inline-two, .metric-grid, .compare-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .insight-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .lead-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .next-step-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media print {
+      body { background: white; }
+      .hero-card, .wizard, .footer-note { display: none !important; }
+      .content-card, .content-grid, .sidebar { border: none; box-shadow: none; background: white; }
+      .sidebar { display: none; }
+      .results { display: block !important; }
+      .results-actions { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <div class="shell">
+      <section class="hero hero-card">
+        <div class="hero-inner">
+          <div class="brand-row">
+            <div class="brand-text" aria-label="Latitude 37">Latitude 37</div>
+          </div>
+          <div>
+            <p class="hero-kicker">Custom home build timing and confidence calculator</p>
+            <h1>Navigate your build with greater certainty.</h1>
+            <p class="lead">A guided, premium calculator to understand how timing may affect build cost, holding cost, temporary living arrangements, and ultimate handover date.</p>
+          </div>
+          <div class="hero-meta">
+            <div class="hero-action"><div class="hero-action-label">Construction costs</div><div class="hero-action-button">1–2% Cost Escalation</div></div>
+            <div class="hero-action"><div class="hero-action-label">Project journey</div><div class="hero-action-button">2.5 Year Typical Journey</div></div>
+            <div class="hero-action"><div class="hero-action-label">Holding costs</div><div class="hero-action-button">5.5–6.5% Holding Rate</div></div>
+            <div class="hero-action"><div class="hero-action-label">Summary tools</div><div class="hero-action-button">Save or Email Summary</div></div>
+          </div>
+        </div>
+      </section>
+
+      <main class="content-card">
+        <div class="content-grid">
+          <aside class="sidebar">
+            <h2>Custom home design and build</h2>
+            <div class="intro-script">Begin your journey today</div>
+            <p>This calculator is designed to provide some reassurance when everything feels a little uncertain. And that there are some considered steps you can take before making a full commitment.</p>
+            <p>Costs impacted by delays are mostly due to timing, construction cost escalation, holding costs and temporary accommodation. There are also some practical next steps depending on where you are in the journey.</p>
+            <div class="assumption-list">
+              <div class="assumption-item"><div class="label">Construction costs escalation</div><div class="value">Modelled as a range from 1.0% to 2.0% annually.</div></div>
+              <div class="assumption-item"><div class="label">Holding costs</div><div class="value">Land finance assumed at 5.5% to 6.5% with council-related holding rates of 0.1% to 0.4% annually.</div></div>
+              <div class="assumption-item"><div class="label">Temporary accommodation</div><div class="value">Rental allowance modelled at $1,000 per week where relevant.</div></div>
+              <div class="assumption-item"><div class="label">Market references</div><div class="value">Assumptions reflect available market data as at April 2026. Sourced from Cotality, Canstar, the Essential Services Commission, and realestate.com.au.</div></div>
+            </div>
+          </aside>
+
+          <section class="wizard" id="wizardPanel">
+            <div class="progress-wrap">
+              <div class="progress-label" id="progressLabel">Step 1 of 8</div>
+              <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+            </div>
+
+            <form id="calcForm">
+              <div class="step active" data-step="1">
+                <div class="step-header"><div class="step-kicker">Readiness</div><h2>Where are you in the process?</h2><p>This helps frame the result to match where you are in your journey.</p></div>
+                <div class="option-grid">
+                  <label class="option-card"><input type="radio" name="stage" value="exploring" checked><span class="radio"></span><div class="option-title">Just exploring</div><div class="option-desc">Early thinking, comparing options, wanting a clearer sense of timing and process.</div></label>
+                  <label class="option-card"><input type="radio" name="stage" value="landIdeas"><span class="radio"></span><div class="option-title">Have land and early ideas</div><div class="option-desc">You have a site or likely site and a broad sense of what you may want to create.</div></label>
+                  <label class="option-card"><input type="radio" name="stage" value="clearBrief"><span class="radio"></span><div class="option-title">Clearer brief and budget</div><div class="option-desc">You can describe your needs, priorities, and likely investment range with some confidence.</div></label>
+                  <label class="option-card"><input type="radio" name="stage" value="ready"><span class="radio"></span><div class="option-title">Ready for feasibility or design</div><div class="option-desc">You are close to taking a considered next step, but broader uncertainty is affecting timing.</div></label>
+                </div>
+              </div>
+
+              <div class="step" data-step="2">
+                <div class="step-header"><div class="step-kicker">Project value</div><h2>What build investment range are you considering?</h2><p>This is used as the build-cost basis before timing and holding adjustments are applied.</p></div>
+                <div class="option-grid">
+                  <label class="option-card"><input type="radio" name="budget" value="1500000-2000000" checked><span class="radio"></span><div class="option-title">$1.5m – $2m</div><div class="option-desc">Entry premium custom home scenario.</div></label>
+                  <label class="option-card"><input type="radio" name="budget" value="2000000-3000000"><span class="radio"></span><div class="option-title">$2m – $3m</div><div class="option-desc">Typical premium family project.</div></label>
+                  <label class="option-card"><input type="radio" name="budget" value="3000000-5000000"><span class="radio"></span><div class="option-title">$3m – $5m</div><div class="option-desc">Upper premium custom build with greater exposure to delay.</div></label>
+                  <label class="option-card"><input type="radio" name="budget" value="5000000-6500000"><span class="radio"></span><div class="option-title">$5m or above</div><div class="option-desc">High-value project where timing, carrying costs and sequencing become even more significant.</div></label>
+                </div>
+              </div>
+
+              <div class="step" data-step="3">
+                <div class="step-header"><div class="step-kicker">Timing</div><h2>When were you thinking of beginning?</h2><p>The delay selected here is used to model both a later commencement and a later handover.</p></div>
+                <div class="option-grid">
+                  <label class="option-card"><input type="radio" name="delayPreset" value="0" checked><span class="radio"></span><div class="option-title">Begin now</div><div class="option-desc">Start conversations and next-step planning immediately.</div></label>
+                  <label class="option-card"><input type="radio" name="delayPreset" value="3"><span class="radio"></span><div class="option-title">Delay by 3 months</div><div class="option-desc">A short pause that may affect cost and handover timing.</div></label>
+                  <label class="option-card"><input type="radio" name="delayPreset" value="6"><span class="radio"></span><div class="option-title">Delay by 6 months</div><div class="option-desc">A material shift in both escalation and carrying costs.</div></label>
+                  <label class="option-card"><input type="radio" name="delayPreset" value="12"><span class="radio"></span><div class="option-title">Delay by 12 months</div><div class="option-desc">A full-year pause, with compounding effect over the project journey.</div></label>
+                  <label class="option-card"><input type="radio" name="delayPreset" value="custom"><span class="radio"></span><div class="option-title">Use a custom delay</div><div class="option-desc">Enter a specific number of months below.</div></label>
+                </div>
+                <div class="inline-two hidden" id="customDelayWrap" style="margin-top:12px;">
+                  <div class="input-wrap"><label class="field-label" for="customDelay">Custom delay in months</label><input id="customDelay" name="customDelay" type="number" min="0" max="36" step="1" placeholder="e.g. 9" /><div class="hint">Between 0 and 36 months.</div></div>
+                </div>
+              </div>
+
+              <div class="step" data-step="4">
+                <div class="step-header"><div class="step-kicker">Project type</div><h2>What kind of project are you planning?</h2><p>This affects temporary living assumptions and the sense of disruption through the build.</p></div>
+                <div class="option-grid">
+                  <label class="option-card"><input type="radio" name="projectType" value="newBuild" checked><span class="radio"></span><div class="option-title">New build on vacant land</div><div class="option-desc">You may still carry land holding costs, but accommodation pressure may be lower.</div></label>
+                  <label class="option-card"><input type="radio" name="projectType" value="knockdown"><span class="radio"></span><div class="option-title">Demolish and build</div><div class="option-desc">Temporary accommodation may be necessary.</div></label>
+                  <label class="option-card"><input type="radio" name="projectType" value="unsure"><span class="radio"></span><div class="option-title">Not yet certain</div><div class="option-desc">We will apply a balanced assumption.</div></label>
+                </div>
+              </div>
+
+              <div class="step" data-step="5">
+                <div class="step-header"><div class="step-kicker">Living arrangements</div><h2>Where are you likely to live during the build?</h2><p>This adds context around the real cost of delay and the practical disruption to family life.</p></div>
+                <div class="option-grid">
+                  <label class="option-card"><input type="radio" name="living" value="currentHome" checked><span class="radio"></span><div class="option-title">Stay in our current home</div><div class="option-desc">Potential for duplicate ownership or property-related costs during the project.</div></label>
+                  <label class="option-card"><input type="radio" name="living" value="rent"><span class="radio"></span><div class="option-title">Rent nearby</div><div class="option-desc">Useful where proximity to school, sport, and community matters during the build.</div></label>
+                  <label class="option-card"><input type="radio" name="living" value="family"><span class="radio"></span><div class="option-title">Live with family or in alternate accommodation</div><div class="option-desc">Usually a lower direct cost, though still disruptive.</div></label>
+                  <label class="option-card"><input type="radio" name="living" value="unsure"><span class="radio"></span><div class="option-title">Not sure yet</div><div class="option-desc">We will model a moderate temporary accommodation scenario.</div></label>
+                </div>
+              </div>
+
+              <div class="step" data-step="6">
+                <div class="step-header"><div class="step-kicker">Location</div><h2>Which region best fits your (desired) site?</h2><p>Region influences the land component used in the carrying-cost estimate.</p></div>
+                <div class="option-grid">
+                  <label class="option-card"><input type="radio" name="region" value="inner" checked><span class="radio"></span><div class="option-title">Inner Melbourne</div><div class="option-desc">High land-value weighting and stronger holding-cost sensitivity.</div></label>
+                  <label class="option-card"><input type="radio" name="region" value="east"><span class="radio"></span><div class="option-title">East</div><div class="option-desc">Premium metropolitan land context with balanced assumptions.</div></label>
+                  <label class="option-card"><input type="radio" name="region" value="southeast"><span class="radio"></span><div class="option-title">South East</div><div class="option-desc">Established family market with premium suburban holding costs.</div></label>
+                  <label class="option-card"><input type="radio" name="region" value="mornington"><span class="radio"></span><div class="option-title">Mornington Peninsula</div><div class="option-desc">Higher land sensitivity and project sequencing considerations.</div></label>
+                  <label class="option-card"><input type="radio" name="region" value="other"><span class="radio"></span><div class="option-title">Other or not sure</div><div class="option-desc">Uses a midpoint land-value assumption.</div></label>
+                </div>
+              </div>
+
+              <div class="step" data-step="7">
+                <div class="step-header"><div class="step-kicker">Finance</div><h2>How will the land most likely be held?</h2><p>This shapes the holding cost calculation while you wait and while the project moves through design and construction.</p></div>
+                <div class="option-grid">
+                  <label class="option-card"><input type="radio" name="finance" value="cash" checked><span class="radio"></span><div class="option-title">Owned outright or mostly cash</div><div class="option-desc">Lower finance pressure, though rates and land-related charges still matter.</div></label>
+                  <label class="option-card"><input type="radio" name="finance" value="partial"><span class="radio"></span><div class="option-title">Partially financed</div><div class="option-desc">Moderate sensitivity to holding-rate changes.</div></label>
+                  <label class="option-card"><input type="radio" name="finance" value="high"><span class="radio"></span><div class="option-title">Mostly financed</div><div class="option-desc">Delay has a stronger carrying-cost impact.</div></label>
+                  <label class="option-card"><input type="radio" name="finance" value="unsure"><span class="radio"></span><div class="option-title">Prefer not to say or unsure</div><div class="option-desc">We will use a balanced assumption.</div></label>
+                </div>
+              </div>
+
+              <div class="step" data-step="8">
+                <div class="step-header"><div class="step-kicker">Details for summary</div><h2>Would you like a shareable summary?</h2><p>Providing details remains optional until the end. If included, the email action can be used to send a summary or connect to your CRM webhook later.</p></div>
+                <div class="inline-two">
+                  <div class="input-wrap"><label class="field-label" for="fullName">Name</label><input id="fullName" name="fullName" type="text" placeholder="Your name" /></div>
+                  <div class="input-wrap"><label class="field-label" for="email">Email</label><input id="email" name="email" type="email" placeholder="name@example.com" /></div>
+                </div>
+                <div class="inline-two" style="margin-top:12px;">
+                  <div class="input-wrap"><label class="field-label" for="postcode">Postcode</label><input id="postcode" name="postcode" type="text" inputmode="numeric" placeholder="e.g. 3142" /></div>
+                  <div class="select-wrap"><label class="field-label" for="projectSuburb">Project region</label><select id="projectSuburb" name="projectSuburb"><option value="">Select a region</option><option>Inner Melbourne</option><option>East</option><option>South East</option><option>Mornington Peninsula</option><option>Other</option></select></div>
+                </div>
+                <div class="hint"></div>
+              </div>
+
+              <div class="nav-row"><button type="button" class="btn btn-secondary hidden" id="prevBtn">Back</button><button type="button" class="btn btn-primary" id="nextBtn">Continue</button></div>
+            </form>
+          </section>
+
+          <section class="results" id="resultsPanel" aria-live="polite">
+            <div class="step-kicker">Your personalised summary</div>
+            <h2>How timing may shape your project.</h2>
+            <div class="result-shell">
+              <div class="summary-banner"><div class="eyebrow">Scenario summary</div><h3 id="headlineText">Delaying may meaningfully increase your total project spend.</h3><p id="summaryText">Your results will appear here after completing the guided steps.</p></div>
+
+              <div class="metric-grid">
+                <div class="metric-card"><div class="metric-label">Projected project cost range</div><div class="metric-value" id="projectRange">—</div><p class="metric-copy">Build, estimated holding costs, and temporary accommodation allowances where relevant.</p></div>
+                <div class="metric-card"><div class="metric-label">Additional cost from delay</div><div class="metric-value" id="delayCost">—</div><p class="metric-copy">Compared with beginning now using the same underlying project assumptions.</p></div>
+                <div class="metric-card"><div class="metric-label">Estimated handover timing</div><div class="metric-value" id="handoverTiming">—</div><p class="metric-copy">Based on a typical 2.5 year journey from first conversation to handover.</p></div>
+                <div class="metric-card"><div class="metric-label">Confidence band</div><div class="metric-value" id="confidenceBand">—</div><p class="metric-copy">A reflection of how much is known about your brief, timing, and current readiness.</p></div>
+              </div>
+
+              <div class="compare-grid">
+                <div class="compare-card"><div class="compare-label">Begin now</div><div class="compare-value" id="nowCost">—</div><p class="compare-copy" id="nowCopy">—</p></div>
+                <div class="compare-card emphasis"><div class="compare-label">Selected timing scenario</div><div class="compare-value" id="laterCost">—</div><p class="compare-copy" id="laterCopy">—</p></div>
+              </div>
+
+              <div class="insight-grid">
+                <div class="insight-card"><div class="mini-label">Escalation effect</div><h4 id="insightEscalation">—</h4><p id="insightEscalationCopy">—</p></div>
+                <div class="insight-card"><div class="mini-label">Holding cost effect</div><h4 id="insightHolding">—</h4><p id="insightHoldingCopy">—</p></div>
+              </div>
+
+              <div class="next-step-panel">
+                <div class="next-step-kicker">Where to from here</div>
+                <h3>Two ways to take a <em>considered next step.</em></h3>
+                <p class="next-step-intro">You do not need to make a full commitment today. Both options below are low-barrier and low-risk — and either one moves you forward while the costs of waiting continue to accumulate.</p>
+                <div class="next-step-options">
+                  <div class="next-option"><div class="next-option-label">Option 1</div><h4>Feasibility Discussion</h4><p>A conversation with our team to understand your project at a big-picture level — site, programme, budget, and what is genuinely achievable. We'll help you see the full financial picture before making any decisions.</p><p class="price-note"><strong>No cost.</strong> No obligation.</p><a class="cta-button" href="mailto:hello@latitude37.com.au?subject=Start%20a%20conversation">Start a conversation →</a></div>
+                  <div class="next-option"><div class="next-option-label">Option 2</div><h4>Design Concept</h4><p>A defined engagement to develop an initial design concept for your home — something real to respond to. Work with a Senior Designer.</p><p class="price-note">Up to <strong>$5,000.</strong> No obligation to proceed.</p><a class="cta-button filled" href="mailto:hello@latitude37.com.au?subject=Start%20a%20concept">Start a concept →</a></div>
+                </div>
+              </div>
+
+              <div class="lead-card"><div class="mini-label">Share or save</div><h4>Email yourself a summary</h4><p>If name and email have been provided, the summary email button below will open a draft email with the calculated scenario.</p><div class="results-actions"><button type="button" class="btn btn-primary" id="emailBtn">Email summary</button><button type="button" class="btn btn-secondary" id="printBtn">Print summary</button><button type="button" class="btn btn-ghost" id="restartBtn">Test another scenario</button></div></div>
+              <div class="disclaimer">This indicative tool is designed for education and early planning only. It uses scenario assumptions informed by independent market references noted by Latitude 37 as current in April 2026. It is not a fixed quotation, financial product, valuation, or substitute for project-specific advice.</div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <div class="footer-note"></div>
+    </div>
+  </div>
+
+  <script>
+    'use strict';
+
+    const steps = Array.from(document.querySelectorAll('.step'));
+    const progressFill = document.getElementById('progressFill');
+    const progressLabel = document.getElementById('progressLabel');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const resultsPanel = document.getElementById('resultsPanel');
+    const wizardPanel = document.getElementById('wizardPanel');
+    const form = document.getElementById('calcForm');
+    const customDelayWrap = document.getElementById('customDelayWrap');
+    const delayRadios = Array.from(document.querySelectorAll('input[name="delayPreset"]'));
+
+    let currentStep = 0;
+    let latestSummary = '';
+
+    const assumptions = {
+      escalationLow: 0.01,
+      escalationHigh: 0.02,
+      holdingLow: 0.055,
+      holdingHigh: 0.065,
+      councilLow: 0.001,
+      councilHigh: 0.004,
+      rentWeekly: 1000,
+      totalJourneyMonths: 30,
+      buildMonths: 18
+    };
+
+    const budgetMap = {
+      '1500000-2000000': { min: 1500000, max: 2000000 },
+      '2000000-3000000': { min: 2000000, max: 3000000 },
+      '3000000-5000000': { min: 3000000, max: 5000000 },
+      '5000000-6500000': { min: 5000000, max: 6500000 }
+    };
+
+    const regionLandShare = { inner: 0.60, east: 0.54, southeast: 0.50, mornington: 0.58, other: 0.52 };
+    const financeWeight = { cash: 0.35, partial: 0.65, high: 1, unsure: 0.72 };
+    const livingMonths = { currentHome: 12, rent: 18, family: 5, unsure: 10 };
+    const confidenceMap = { exploring: 'Indicative', landIdeas: 'Guided', clearBrief: 'Refined', ready: 'High-level project ready' };
+    const nextStepTitles = {
+      exploring: 'Begin with a low-commitment conversation',
+      landIdeas: 'Move into feasibility and brief alignment',
+      clearBrief: 'Refine scope and protect momentum',
+      ready: 'Progress into a considered design step'
+    };
+
+    function getCheckedValue(name) {
+      const checkedInput = document.querySelector('input[name="' + name + '"]:checked');
+      return checkedInput ? checkedInput.value : '';
+    }
+
+    function getCheckedLabel(name) {
+      const checkedInput = document.querySelector('input[name="' + name + '"]:checked');
+      if (!checkedInput || !checkedInput.closest('label')) return '';
+      const title = checkedInput.closest('label').querySelector('.option-title');
+      return title ? title.textContent : checkedInput.value;
+    }
+
+    function getSelectText(selectElement) {
+      if (!selectElement || selectElement.selectedIndex < 0) return '';
+      return selectElement.options[selectElement.selectedIndex].text;
+    }
+
+    function formatCurrency(value) {
+      return new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', maximumFractionDigits: 0 }).format(value);
+    }
+
+    function formatRange(min, max) {
+      return formatCurrency(min) + ' – ' + formatCurrency(max);
+    }
+
+    function ordinalMonthLabel(months) {
+      return months === 0 ? 'Now' : months + ' month' + (months === 1 ? '' : 's') + ' later';
+    }
+
+    function getDelayMonths() {
+      const selected = getCheckedValue('delayPreset');
+      if (selected === 'custom') {
+        const custom = Number(form.elements.customDelay.value || 0);
+        return Math.max(0, Math.min(36, custom));
+      }
+      return Number(selected || 0);
+    }
+
+    function updateDelayUI() {
+      const isCustom = getCheckedValue('delayPreset') === 'custom';
+      customDelayWrap.classList.toggle('hidden', !isCustom);
+    }
+
+    function updateSelectedCards() {
+      document.querySelectorAll('.option-card').forEach(function(card) {
+        const input = card.querySelector('input');
+        card.classList.toggle('selected', Boolean(input && input.checked));
+      });
+    }
+
+    function updateWizard() {
+      steps.forEach(function(step, index) {
+        step.classList.toggle('active', index === currentStep);
+      });
+      progressFill.style.width = (((currentStep + 1) / steps.length) * 100) + '%';
+      progressLabel.textContent = 'Step ' + (currentStep + 1) + ' of ' + steps.length;
+      prevBtn.classList.toggle('hidden', currentStep === 0);
+      nextBtn.textContent = currentStep === steps.length - 1 ? 'See results' : 'Continue';
+      updateSelectedCards();
+    }
+
+    function validateStep() {
+      if (currentStep !== 2) return true;
+      if (getCheckedValue('delayPreset') === 'custom') {
+        const custom = Number(form.elements.customDelay.value);
+        if (Number.isNaN(custom) || custom < 0 || custom > 36) {
+          alert('Please enter a custom delay between 0 and 36 months.');
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function calculateScenario(delayMonths) {
+      const actualDelayMonths = typeof delayMonths === 'number' ? delayMonths : getDelayMonths();
+      const stage = getCheckedValue('stage') || 'exploring';
+      const budget = budgetMap[getCheckedValue('budget')] || budgetMap['1500000-2000000'];
+      const projectType = getCheckedValue('projectType') || 'newBuild';
+      const living = getCheckedValue('living') || 'currentHome';
+      const region = getCheckedValue('region') || 'inner';
+      const finance = getCheckedValue('finance') || 'cash';
+
+      const landShare = regionLandShare[region] || regionLandShare.other;
+      const financeRatio = financeWeight[finance] || financeWeight.unsure;
+      const delayYears = actualDelayMonths / 12;
+      const totalMonths = assumptions.totalJourneyMonths + actualDelayMonths;
+      const landValueMin = budget.min * landShare;
+      const landValueMax = budget.max * landShare;
+      const escalatedBuildMin = budget.min * Math.pow(1 + assumptions.escalationLow, delayYears);
+      const escalatedBuildMax = budget.max * Math.pow(1 + assumptions.escalationHigh, delayYears);
+      const holdingMin = landValueMin * ((assumptions.holdingLow * financeRatio) + assumptions.councilLow) * (totalMonths / 12);
+      const holdingMax = landValueMax * ((assumptions.holdingHigh * financeRatio) + assumptions.councilHigh) * (totalMonths / 12);
+
+      let tempMonthsMin = 0;
+      let tempMonthsMax = 0;
+      if (living === 'rent') {
+        tempMonthsMin = assumptions.buildMonths;
+        tempMonthsMax = assumptions.buildMonths;
+      } else if (living === 'currentHome') {
+        tempMonthsMin = Math.round(livingMonths.currentHome * 0.35);
+        tempMonthsMax = Math.round(livingMonths.currentHome * 0.65);
+      } else if (living === 'family') {
+        tempMonthsMin = 0;
+        tempMonthsMax = Math.round(livingMonths.family * 0.4);
+      } else {
+        tempMonthsMin = Math.round(livingMonths.unsure * 0.4);
+        tempMonthsMax = livingMonths.unsure;
+      }
+
+      if (projectType === 'knockdown') {
+        tempMonthsMin = Math.max(tempMonthsMin, 12);
+        tempMonthsMax = Math.max(tempMonthsMax, 18);
+      } else if (projectType === 'newBuild' && living !== 'rent') {
+        tempMonthsMin = Math.round(tempMonthsMin * 0.45);
+        tempMonthsMax = Math.round(tempMonthsMax * 0.55);
+      }
+
+      const tempCostMin = tempMonthsMin * 4.33 * assumptions.rentWeekly;
+      const tempCostMax = tempMonthsMax * 4.33 * assumptions.rentWeekly;
+      const totalMin = escalatedBuildMin + holdingMin + tempCostMin;
+      const totalMax = escalatedBuildMax + holdingMax + tempCostMax;
+      const nowScenario = actualDelayMonths === 0 ? null : calculateScenario(0);
+      const extraMin = nowScenario ? totalMin - nowScenario.totalMin : 0;
+      const extraMax = nowScenario ? totalMax - nowScenario.totalMax : 0;
+      const today = new Date();
+      const handoverDate = new Date(today.getFullYear(), today.getMonth() + totalMonths, 1);
+      const handoverLabel = handoverDate.toLocaleDateString('en-AU', { month: 'long', year: 'numeric' });
+
+      return {
+        stage: stage,
+        budget: budget,
+        region: region,
+        finance: finance,
+        projectType: projectType,
+        living: living,
+        delayMonths: actualDelayMonths,
+        totalMin: totalMin,
+        totalMax: totalMax,
+        extraMin: extraMin,
+        extraMax: extraMax,
+        handoverLabel: handoverLabel,
+        holdingMin: holdingMin,
+        holdingMax: holdingMax,
+        tempCostMin: tempCostMin,
+        tempCostMax: tempCostMax,
+        escalatedBuildMin: escalatedBuildMin,
+        escalatedBuildMax: escalatedBuildMax,
+        nowScenario: nowScenario
+      };
+    }
+
+    function renderResults() {
+      const scenario = calculateScenario();
+      const nowScenario = scenario.nowScenario || calculateScenario(0);
+      const confidenceBand = confidenceMap[scenario.stage] || confidenceMap.exploring;
+      const nextStepTitle = nextStepTitles[scenario.stage] || nextStepTitles.exploring;
+
+      document.getElementById('projectRange').textContent = formatRange(scenario.totalMin, scenario.totalMax);
+      document.getElementById('delayCost').textContent = scenario.delayMonths === 0 ? 'No added delay cost' : formatRange(scenario.extraMin, scenario.extraMax);
+      document.getElementById('handoverTiming').textContent = scenario.handoverLabel;
+      document.getElementById('confidenceBand').textContent = confidenceBand;
+      document.getElementById('nowCost').textContent = formatRange(nowScenario.totalMin, nowScenario.totalMax);
+      document.getElementById('nowCopy').textContent = 'Indicative handover around ' + nowScenario.handoverLabel + '.';
+      document.getElementById('laterCost').textContent = formatRange(scenario.totalMin, scenario.totalMax);
+      document.getElementById('laterCopy').textContent = scenario.delayMonths === 0 ? 'This scenario assumes you begin the process now.' : ordinalMonthLabel(scenario.delayMonths) + ' with indicative handover around ' + scenario.handoverLabel + '.';
+
+      document.getElementById('headlineText').textContent = scenario.delayMonths === 0 ? 'Beginning now helps preserve more options and more certainty.' : 'A ' + scenario.delayMonths + '-month delay may add ' + formatRange(scenario.extraMin, scenario.extraMax) + ' to the wider project picture.';
+      document.getElementById('summaryText').textContent = scenario.delayMonths === 0 ? 'Your selected scenario suggests value in moving into a considered next step now, before further escalation and carrying cost accumulate over time.' : 'The increase comes not only from construction escalation, but also from ongoing holding costs and the way delay pushes the entire project timeline outward.';
+      document.getElementById('insightEscalation').textContent = formatRange(scenario.escalatedBuildMin - scenario.budget.min, scenario.escalatedBuildMax - scenario.budget.max);
+      document.getElementById('insightEscalationCopy').textContent = scenario.delayMonths === 0 ? 'With no delay selected, this version does not apply additional construction escalation beyond the current starting point.' : 'This reflects the modelled rise in construction cost alone across the chosen delay period.';
+      document.getElementById('insightHolding').textContent = formatRange(scenario.holdingMin, scenario.holdingMax);
+      document.getElementById('insightHoldingCopy').textContent = 'This estimate combines modelled finance-based holding cost and council-related charges over the full project journey.';
+
+      const name = form.elements.fullName.value.trim();
+      const email = form.elements.email.value.trim();
+      const postcode = form.elements.postcode.value.trim();
+      const regionSelect = form.elements.projectSuburb;
+      const regionText = regionSelect.value || getCheckedLabel('region');
+      latestSummary = [
+        'Latitude 37 Build Timing Summary',
+        '',
+        name ? 'Name: ' + name : '',
+        email ? 'Email: ' + email : '',
+        postcode ? 'Postcode: ' + postcode : '',
+        regionText ? 'Project region: ' + regionText : '',
+        'Readiness stage: ' + getCheckedLabel('stage'),
+        'Budget range: ' + getCheckedLabel('budget'),
+        'Timing scenario: ' + (scenario.delayMonths === 0 ? 'Begin now' : scenario.delayMonths + ' months later'),
+        'Projected project cost range: ' + formatRange(scenario.totalMin, scenario.totalMax),
+        'Additional cost from delay: ' + (scenario.delayMonths === 0 ? 'No added delay cost modelled' : formatRange(scenario.extraMin, scenario.extraMax)),
+        'Estimated handover timing: ' + scenario.handoverLabel,
+        'Confidence band: ' + confidenceBand,
+        'Considered next step: ' + nextStepTitle,
+        '',
+        'Indicative only. Assumptions informed by independent market references noted by Latitude 37 as current in April 2026.'
+      ].filter(Boolean).join('\n');
+
+      resultsPanel.classList.add('visible');
+      resultsPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function nextStepAction() {
+      if (!validateStep()) return;
+      if (currentStep < steps.length - 1) {
+        currentStep += 1;
+        updateWizard();
+      } else {
+        renderResults();
+      }
+    }
+
+    function prevStepAction() {
+      if (currentStep > 0) {
+        currentStep -= 1;
+        updateWizard();
+      }
+    }
+
+    function runCalculatorTests() {
+      console.assert(formatCurrency(1000).includes('1,000'), 'formatCurrency should format thousands');
+      console.assert(formatRange(1000, 2000).includes('–'), 'formatRange should include an en dash');
+      console.assert(ordinalMonthLabel(0) === 'Now', 'ordinalMonthLabel should handle zero months');
+      console.assert(ordinalMonthLabel(1) === '1 month later', 'ordinalMonthLabel should handle singular month');
+      console.assert(ordinalMonthLabel(2) === '2 months later', 'ordinalMonthLabel should handle plural months');
+      const nowScenario = calculateScenario(0);
+      const delayedScenario = calculateScenario(12);
+      console.assert(nowScenario.totalMin > 0 && nowScenario.totalMax > nowScenario.totalMin, 'base scenario should produce a positive range');
+      console.assert(delayedScenario.extraMin >= 0 && delayedScenario.extraMax >= delayedScenario.extraMin, 'delay scenario should produce a non-negative added cost range');
+    }
+
+    delayRadios.forEach(function(radio) { radio.addEventListener('change', function() { updateDelayUI(); updateSelectedCards(); }); });
+    document.querySelectorAll('.option-card input').forEach(function(input) { input.addEventListener('change', updateSelectedCards); });
+    nextBtn.addEventListener('click', nextStepAction);
+    prevBtn.addEventListener('click', prevStepAction);
+    document.getElementById('restartBtn').addEventListener('click', function() {
+      form.reset();
+      currentStep = 0;
+      updateDelayUI();
+      updateWizard();
+      resultsPanel.classList.remove('visible');
+      wizardPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.getElementById('printBtn').addEventListener('click', function() { window.print(); });
+    document.getElementById('emailBtn').addEventListener('click', function() {
+      const email = form.elements.email.value.trim();
+      const name = form.elements.fullName.value.trim();
+      if (!email || !name) {
+        alert('Please provide both name and email if you would like to email the summary.');
+        return;
+      }
+      const subject = encodeURIComponent('Your Latitude 37 build timing summary');
+      const body = encodeURIComponent(latestSummary);
+      window.location.href = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+    });
+
+    updateDelayUI();
+    updateWizard();
+    runCalculatorTests();
+  </script>
+</body>
+</html>
