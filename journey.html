@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Journey with Latitude 37</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F1EA;
+    --cream-warm: #EDE6D8;
+    --paper: #FAF7F1;
+    --brown: #6B4F3A;
+    --brown-soft: #8A6F58;
+    --charcoal: #2C2826;
+    --charcoal-soft: #4A4441;
+    --muted: #8B847D;
+    --gold: #B8935A;
+    --rule: #D8CFC0;
+    --rule-soft: rgba(107, 79, 58, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 120px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--charcoal);
+    line-height: 1.6;
+    font-weight: 400;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ---------- HEADER ---------- */
+  .header {
+    position: sticky;
+    top: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule-soft);
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    background: rgba(250, 247, 241, 0.94);
+  }
+
+  .header-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 14px 20px 10px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .brand-mark {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+  }
+
+  .brand-mark span {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  .brand-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--brown);
+    font-weight: 400;
+  }
+
+  /* Sticky nav - horizontal scrolling pill nav */
+  .nav {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 2px 0 4px;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-item {
+    flex-shrink: 0;
+    padding: 6px 12px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border-radius: 100px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .nav-item .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  .nav-item:hover {
+    color: var(--charcoal);
+  }
+
+  .nav-item.active {
+    color: var(--charcoal);
+    border-color: var(--rule);
+    background: var(--cream);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 56px 28px 40px;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brown);
+    margin-bottom: 22px;
+    font-weight: 500;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(36px, 8vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    color: var(--charcoal);
+    margin-bottom: 24px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--brown);
+  }
+
+  .hero-intro {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--charcoal-soft);
+    max-width: 560px;
+    margin-bottom: 14px;
+  }
+
+  .hero-intro + .hero-intro {
+    margin-top: 14px;
+  }
+
+  /* Organic geometry watermark - hero */
+  .hero-geometry {
+    position: absolute;
+    top: 36px;
+    right: 20px;
+    width: 110px;
+    height: 110px;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* Divider rule */
+  .rule {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+  .rule::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ---------- STAGE ---------- */
+  .stage {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 56px 28px 40px;
+    position: relative;
+  }
+
+  .stage-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 36px;
+    position: relative;
+  }
+
+  .stage-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 1;
+    color: var(--gold);
+    flex-shrink: 0;
+    padding-top: 4px;
+  }
+
+  .stage-title-block {
+    flex: 1;
+  }
+
+  .stage-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .stage-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(34px, 7vw, 44px);
+    line-height: 1;
+    color: var(--charcoal);
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .stage-orient {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.4;
+    color: var(--brown);
+    font-weight: 400;
+  }
+
+  /* Duration ribbon */
+  .duration {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    padding: 6px 14px;
+    background: var(--cream);
+    border-radius: 100px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--charcoal-soft);
+    font-weight: 500;
+  }
+
+  .duration-icon {
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--brown);
+    border-radius: 50%;
+  }
+
+  .duration-note {
+    display: block;
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* Content blocks */
+  .block {
+    margin-bottom: 32px;
+    position: relative;
+  }
+
+  .block:last-child {
+    margin-bottom: 0;
+  }
+
+  .block-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brown);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+
+  .block-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--brown);
+  }
+
+  .block-body {
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: var(--charcoal-soft);
+  }
+
+  .block-body p + p {
+    margin-top: 12px;
+  }
+
+  /* The line of visibility - separator between "what you see" and "behind the scenes" */
+  .visibility-line {
+    margin: 36px 0 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--muted);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+
+  .visibility-line::before,
+  .visibility-line::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* Behind-the-scenes block uses warm cream background */
+  .behind-scenes {
+    background: var(--cream);
+    margin: 0 -28px;
+    padding: 36px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .behind-scenes .block {
+    margin-bottom: 0;
+  }
+
+  .behind-scenes .block-label {
+    color: var(--brown);
+  }
+
+  /* Process list within behind-the-scenes */
+  .process-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 8px;
+  }
+
+  .process-list li {
+    position: relative;
+    padding: 14px 0 14px 28px;
+    border-bottom: 1px solid var(--rule-soft);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--charcoal-soft);
+  }
+
+  .process-list li:last-child {
+    border-bottom: none;
+  }
+
+  .process-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 22px;
+    width: 12px;
+    height: 1px;
+    background: var(--brown);
+  }
+
+  .process-list .process-name {
+    display: block;
+    font-weight: 500;
+    color: var(--charcoal);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+
+  /* Behind-the-scenes geometry watermark */
+  .scenes-geometry {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 120px;
+    height: 120px;
+    opacity: 0.18;
+    pointer-events: none;
+  }
+
+  /* Reassurance callout - replaces "risks" for client-facing */
+  .reassurance {
+    margin-top: 22px;
+    padding: 20px 22px;
+    border-left: 2px solid var(--gold);
+    background: rgba(184, 147, 90, 0.04);
+  }
+
+  .reassurance-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--brown);
+    margin-bottom: 6px;
+  }
+
+  .reassurance-body {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--charcoal-soft);
+  }
+
+  /* Stage divider */
+  .stage-divider {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .stage-divider svg {
+    width: 28px;
+    height: 28px;
+    opacity: 0.5;
+  }
+
+  .stage-divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+    max-width: 80px;
+  }
+
+  /* ---------- CLOSING ---------- */
+  .closing {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 28px 80px;
+    text-align: center;
+    position: relative;
+  }
+
+  .closing-mark {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 28px;
+    opacity: 0.6;
+  }
+
+  .closing h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(28px, 6vw, 38px);
+    line-height: 1.15;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .closing h2 em {
+    font-style: italic;
+    color: var(--brown);
+  }
+
+  .closing-body {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--charcoal-soft);
+    max-width: 480px;
+    margin: 0 auto 32px;
+  }
+
+  .closing-cta {
+    display: inline-block;
+    padding: 14px 32px;
+    border: 1px solid var(--charcoal);
+    color: var(--charcoal);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .closing-cta:hover {
+    background: var(--charcoal);
+    color: var(--paper);
+  }
+
+  .footer {
+    border-top: 1px solid var(--rule-soft);
+    padding: 28px 28px 36px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .footer-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--brown);
+    margin-bottom: 8px;
+  }
+
+  /* ---------- Desktop refinements ---------- */
+  @media (min-width: 768px) {
+    .header-inner {
+      padding: 18px 32px 14px;
+    }
+
+    .hero {
+      padding: 80px 32px 60px;
+    }
+
+    .stage {
+      padding: 80px 32px 60px;
+    }
+
+    .behind-scenes {
+      margin: 0 -32px;
+      padding: 48px 32px;
+    }
+
+    .stage-num {
+      font-size: 56px;
+    }
+
+    .closing {
+      padding: 80px 32px 100px;
+    }
+
+    .hero-geometry {
+      width: 160px;
+      height: 160px;
+      top: 60px;
+      right: 32px;
+    }
+
+    .scenes-geometry {
+      width: 180px;
+      height: 180px;
+    }
+  }
+
+  /* Reveal on scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER + STICKY NAV ===== -->
+<header class="header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-mark">
+        Latitude 37
+        <span>Crafted for life</span>
+      </div>
+      <div class="brand-tagline">Your journey</div>
+    </div>
+    <nav class="nav" id="nav">
+      <a href="#stage-1" class="nav-item" data-stage="1"><span class="num">i</span>Exploring</a>
+      <a href="#stage-2" class="nav-item" data-stage="2"><span class="num">ii</span>Planning</a>
+      <a href="#stage-3" class="nav-item" data-stage="3"><span class="num">iii</span>Choosing</a>
+      <a href="#stage-4" class="nav-item" data-stage="4"><span class="num">iv</span>Designing</a>
+      <a href="#stage-5" class="nav-item" data-stage="5"><span class="num">v</span>Committing</a>
+      <a href="#stage-6" class="nav-item" data-stage="6"><span class="num">vi</span>Building</a>
+      <a href="#stage-7" class="nav-item" data-stage="7"><span class="num">vii</span>Living</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <svg class="hero-geometry" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="100" r="78" fill="none" stroke="#6B4F3A" stroke-width="1" stroke-dasharray="2 4" opacity="0.55"/>
+    <path d="M 38 38 L 162 38 L 162 162 L 38 162 Z" fill="none" stroke="#6B4F3A" stroke-width="1" opacity="0.4" stroke-linejoin="round" transform="rotate(8 100 100)"/>
+  </svg>
+  <div class="hero-eyebrow">Your journey with us</div>
+  <h1>Building a home is a journey - <em>and we walk it with you.</em></h1>
+  <p class="hero-intro">Most designers and builders show you their process. We share ours alongside the journey we know you're on, detailing what you're likely experiencing, and what we're doing behind the scenes to make you feel like you're not on your own.</p>
+  <p class="hero-intro">Read it top to bottom, or jump to the stage that's on your mind.</p>
+</section>
+
+<div class="rule"></div>
+
+<!-- ===== STAGE 1: EXPLORING ===== -->
+<section class="stage" id="stage-1">
+  <div class="stage-header">
+    <div class="stage-num">i</div>
+    <div class="stage-title-block">
+      <div class="stage-eyebrow">Stage one</div>
+      <h2 class="stage-title">Exploring</h2>
+      <p class="stage-orient">The earliest stirrings of a custom home - curiosity, conversations, gathering ideas.</p>
+      <div class="duration">
+        <span class="duration-icon"></span>
+        Typically 1–6 months
+      </div>
+      <span class="duration-note">Some clients move quickly; most take their time here, and that's exactly right.</span>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">What you're experiencing</div>
+    <div class="block-body">
+      <p>This is the dreaming phase - and it should feel that way. You're collecting ideas, noticing what's being built in your neighbourhood, and talking with family and friends about what's actually possible. There's real excitement here, but also a subtle weight: you want to imagine generously without setting yourself up for disappointment, and you're listening carefully to people who've done this before, looking for the stories that ring true.</p>
+      <p>What you need most right now is room to think, honest information, and a sense of what's realistic - not a sales pitch.</p>
+    </div>
+  </div>
+
+  <div class="visibility-line">behind the scenes</div>
+
+  <div class="behind-scenes">
+    <svg class="scenes-geometry" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="80" fill="none" stroke="#6B4F3A" stroke-width="1" stroke-dasharray="2 4"/>
+      <rect x="35" y="35" width="130" height="130" fill="none" stroke="#6B4F3A" stroke-width="1" transform="rotate(-6 100 100)"/>
+    </svg>
+    <div class="block">
+      <div class="block-label">What we're doing</div>
+      <div class="block-body">
+        <p>You won't be in touch with us yet, but we're laying the groundwork for the conversation we'll eventually have. Our website, recent project stories, and open homes are designed to give you a clear, honest sense of who we are and how we work, so when you're ready, you're not starting from scratch.</p>
+      </div>
+      <ul class="process-list">
+        <li>
+          <span class="process-name">Open and discoverable</span>
+          Knowledge Hub indepth guides, designer stories, explainer pages and helpful tools that show our work, our thinking, and what is actually required to build at this level are all available at L37.com.au.
+        </li>
+        <li>
+          <span class="process-name">Open homes</span>
+          Opportunities to walk through real Latitude 37 homes and feel the craft in person, not just in renders. You could also have a conversation with the people who live there.
+        </li>
+        <li>
+          <span class="process-name">Creating space for exploration</span>
+          If you sign up for updates, we share Open Home schedules and considered content - never pressure - so you can keep exploring at your own pace.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="reassurance">
+    <div class="reassurance-label">A note from us</div>
+    <div class="reassurance-body">If a designer or builder tells you "anything is possible" at this stage, treat it cautiously. We'd rather help you understand what's likely, what's stretch, and what isn't - even before you've engaged us.</div>
+  </div>
+</section>
+
+<div class="stage-divider">
+  <div class="stage-divider-line"></div>
+  <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="20" cy="20" r="14" fill="none" stroke="#6B4F3A" stroke-width="1"/>
+    <rect x="9" y="9" width="22" height="22" fill="none" stroke="#6B4F3A" stroke-width="1" transform="rotate(8 20 20)"/>
+  </svg>
+  <div class="stage-divider-line"></div>
+</div>
+
+<!-- ===== STAGE 2: PLANNING ===== -->
+<section class="stage" id="stage-2">
+  <div class="stage-header">
+    <div class="stage-num">ii</div>
+    <div class="stage-title-block">
+      <div class="stage-eyebrow">Stage two</div>
+      <h2 class="stage-title">Planning</h2>
+      <p class="stage-orient">Narrowing the field - meeting designers and builders, testing fit, understanding cost.</p>
+      <div class="duration">
+        <span class="duration-icon"></span>
+        Typically 2–4 months
+      </div>
+      <span class="duration-note">Can happen faster if you're ready to move; we'll meet you at your pace.</span>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">What you're experiencing</div>
+    <div class="block-body">
+      <p>The mood shifts. You're hopeful but more careful now - shortlisting, meeting designers and builders, comparing quality and reputation, weighing whether to engage a designer separately or work with one partner. You want clarity on cost without being talked down to, and you're judging trust as much as competence: who feels safe, who feels straight with you, who has the chemistry to walk this journey with you for the next two or three years.</p>
+      <p>You need feasibility, options, and a real sense of what your money will buy...without the horror stories playing in the background.</p>
+    </div>
+  </div>
+
+  <div class="visibility-line">behind the scenes</div>
+
+  <div class="behind-scenes">
+    <svg class="scenes-geometry" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="80" fill="none" stroke="#6B4F3A" stroke-width="1" stroke-dasharray="2 4"/>
+      <rect x="35" y="35" width="130" height="130" fill="none" stroke="#6B4F3A" stroke-width="1" transform="rotate(-6 100 100)"/>
+    </svg>
+    <div class="block">
+      <div class="block-label">What we're doing</div>
+      <div class="block-body">
+        <p>If we meet at this stage, our job is to be useful, not to win you. We'll have an open conversation about your land, your vision, and your budget, and tell you honestly where the fit is strong and where it isn't. The goal is to help you make a good decision, even if that decision is to take more time.</p>
+      </div>
+      <ul class="process-list">
+        <li>
+          <span class="process-name">Introductory conversation</span>
+          An unhurried, no-pressure meeting to understand what you're trying to build and what success looks like for you.
+        </li>
+        <li>
+          <span class="process-name">Honest feasibility</span>
+          A grounded conversation about what's realistic at your budget - not a sales pitch about what's possible in theory.
+        </li>
+        <li>
+          <span class="process-name">Onboarding materials</span>
+          Clear written information about how we work, what to expect, and what each stage costs, so nothing is hidden.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="reassurance">
+    <div class="reassurance-label">A note from us</div>
+    <div class="reassurance-body">Mis-aligned expectations are the single biggest source of friction in custom design and builds. We'd rather have a hard conversation now than a harder one later.</div>
+  </div>
+</section>
+
+<div class="stage-divider">
+  <div class="stage-divider-line"></div>
+  <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="20" cy="20" r="14" fill="none" stroke="#6B4F3A" stroke-width="1"/>
+    <rect x="9" y="9" width="22" height="22" fill="none" stroke="#6B4F3A" stroke-width="1" transform="rotate(8 20 20)"/>
+  </svg>
+  <div class="stage-divider-line"></div>
+</div>
+
+<!-- ===== STAGE 3: CHOOSING ===== -->
+<section class="stage" id="stage-3">
+  <div class="stage-header">
+    <div class="stage-num">iii</div>
+    <div class="stage-title-block">
+      <div class="stage-eyebrow">Stage three</div>
+      <h2 class="stage-title">Choosing</h2>
+      <p class="stage-orient">Testing your preferred partner with a real concept - the first true measure of fit.</p>
+      <div class="duration">
+        <span class="duration-icon"></span>
+        Typically 6–10 weeks
+      </div>
+      <span class="duration-note">From design brief to concept presentation. Pace depends on how much refinement you want.</span>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">What you're experiencing</div>
+    <div class="block-body">
+      <p>This is the moment of focused investment. You've sat in the design brief meeting, and you're watching closely: are they listening, do they understand us, can we afford what we actually want? You're deepening your understanding of how things work and testing the chemistry. You want certainty before you go further, and you want to feel seen and heard, not processed.</p>
+      <p>What you need is genuine listening, an honest reality-check on cost, and a concept that reflects you, not a template with your name on it.</p>
+    </div>
+  </div>
+
+  <div class="visibility-line">behind the scenes</div>
+
+  <div class="behind-scenes">
+    <svg class="scenes-geometry" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="80" fill="none" stroke="#6B4F3A" stroke-width="1" stroke-dasharray="2 4"/>
+      <rect x="35" y="35" width="130" height="130" fill="none" stroke="#6B4F3A" stroke-width="1" transform="rotate(-6 100 100)"/>
+    </svg>
+    <div class="block">
+      <div class="block-label">What we're doing</div>
+      <div class="block-body">
+        <p>This is Stage 1 of our Concept Design process. A small fee secures site information and gets us moving. Our Head of Client Experience and Senior Designer work with you to translate your brief into a first concept - with options - and an indicative build cost, so you can test the partnership before committing further.</p>
+      </div>
+      <ul class="process-list">
+        <li>
+          <span class="process-name">Discovery session</span>
+          An initial project discussion to understand your site, your brief, and your priorities.
+        </li>
+        <li>
+          <span class="process-name">Custom Home Design Agreement</span>
+          A clear, written agreement covering Stage 1 (Concept Design). Investment: $1,000 plus site information costs.
+        </li>
+        <li>
+          <span class="process-name">Design brief meeting</span>
+          A detailed conversation between you, your Client Experience Lead, and your Designer about your brief and project value.
+        </li>
+        <li>
+          <span class="process-name">Design presentation meeting</span>
+          We present the first design concepts alongside an indicative build cost, and we discuss it openly.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="reassurance">
+    <div class="reassurance-label">A note from us</div>
+    <div class="reassurance-body">When the numbers feel tight, we don't frame it as "taking scope out" - that makes refinement feel like loss. We frame it as shaping the brief together, so what stays is what matters most.</div>
+  </div>
+</section>
+
+<div class="stage-divider">
+  <div class="stage-divider-line"></div>
+  <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="20" cy="20" r="14" fill="none" stroke="#6B4F3A" stroke-width="1"/>
+    <rect x="9" y="9" width="22" height="22" fill="none" stroke="#6B4F3A" stroke-width="1" transform="rotate(8 20 20)"/>
+  </svg>
+  <div class="stage-divider-line"></div>
+</div>
+
+<!-- ===== STAGE 4: DESIGNING ===== -->
+<section class="stage" id="stage-4">
+  <div class="stage-header">
+    <div class="stage-num">iv</div>
+    <div class="stage-title-block">
+      <div class="stage-eyebrow">Stage four</div>
+      <h2 class="stage-title">Designing</h2>
+      <p class="stage-orient">Concept becomes a considered design - trade-offs made, decisions confirmed, vision refined.</p>
+      <div class="duration">
+        <span class="duration-icon"></span>
+        Typically 8–14 weeks
+      </div>
+      <span class="duration-note">Stage 2 and Stage 3 combined. We can move faster if you're decisive, slower if you want to sit with choices.</span>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">What you're experiencing</div>
+    <div class="block-body">
+      <p>Excitement returns - your home is becoming real on the page. But it comes with its own weight: hard decisions about design, materials, and function; trade-offs between vision and budget; the desire for early proof that you've chosen well. You're refining details with our guidance, sharing progress with people you love, and watching for the signals that say you're in safe hands.</p>
+      <p>What you need now is collaborative shaping, calm decision-making, and the reassurance that the choices in front of you are the right ones.</p>
+    </div>
+  </div>
+
+  <div class="visibility-line">behind the scenes</div>
+
+  <div class="behind-scenes">
+    <svg class="scenes-geometry" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="80" fill="none" stroke="#6B4F3A" stroke-width="1" stroke-dasharray="2 4"/>
+      <rect x="35" y="35" width="130" height="130" fill="none" stroke="#6B4F3A" stroke-width="1" transform="rotate(-6 100 100)"/>
+    </svg>
+    <div class="block">
+      <div class="block-label">What we're doing</div>
+      <div class="block-body">
+        <p>This is Stage 2 (Design Development) and Stage 3 (Design Approval) of our Concept Design process. We refine your design, build a full-colour 3D model, and prepare a Custom Home Proposal - a detailed cost breakdown that makes the next decision clear-eyed.</p>
+      </div>
+      <ul class="process-list">
+        <li>
+          <span class="process-name">Stage 2 — Design Development</span>
+          Concept amended and finalised; development of a full-colour 3D model so you can see your home in dimension, not just in plan.
+        </li>
+        <li>
+          <span class="process-name">Preliminary pricing</span>
+          The Custom Home Proposal (CHP) is developed and presented, outlining the build cost breakdown line by line.
+        </li>
+        <li>
+          <span class="process-name">Stage 3 - Design Approval</span>
+          Investment: 2.5% of CHP value. Your sign-off to move into full project documentation.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="reassurance">
+    <div class="reassurance-label">A note from us</div>
+    <div class="reassurance-body">Trade-off conversations should feel like shaping, not signing in blood. We sit on the same side of the table as you when we work through them.</div>
+  </div>
+</section>
+
+<div class="stage-divider">
+  <div class="stage-divider-line"></div>
+  <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="20" cy="20" r="14" fill="none" stroke="#6B4F3A" stroke-width="1"/>
+    <rect x="9" y="9" width="22" height="22" fill="none" stroke="#6B4F3A" stroke-width="1" transform="rotate(8 20 20)"/>
+  </svg>
+  <div class="stage-divider-line"></div>
+</div>
+
+<!-- ===== STAGE 5: COMMITTING ===== -->
+<section class="stage" id="stage-5">
+  <div class="stage-header">
+    <div class="stage-num">v</div>
+    <div class="stage-title-block">
+      <div class="stage-eyebrow">Stage five</div>
+      <h2 class="stage-title">Committing</h2>
+      <p class="stage-orient">Working drawings, interior design, contract - the partnership becomes formal.</p>
+      <div class="duration">
+        <span class="duration-icon"></span>
+        Typically 4–6 months
+      </div>
+      <span class="duration-note">Project documentation, interior design and contract preparation often run in parallel.</span>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">What you're experiencing</div>
+    <div class="block-body">
+      <p>You're engaged and energised at the start - there's a lot happening. As detail compounds, decision fatigue can creep in: working drawings, fittings, fixtures, appliances, lift, pool, landscape. You want to feel confident that each choice is the right one and that the partnership has the steadiness to carry you through. You're reviewing the contract carefully, sharing the design with people who matter to you, and preparing to meet the construction team who will build your home.</p>
+      <p>What you need is steady pacing, real collaboration, and pricing clarity at every step.</p>
+    </div>
+  </div>
+
+  <div class="visibility-line">behind the scenes</div>
+
+  <div class="behind-scenes">
+    <svg class="scenes-geometry" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="80" fill="none" stroke="#6B4F3A" stroke-width="1" stroke-dasharray="2 4"/>
+      <rect x="35" y="35" width="130" height="130" fill="none" stroke="#6B4F3A" stroke-width="1" transform="rotate(-6 100 100)"/>
+    </svg>
+    <div class="block">
+      <div class="block-label">What we're doing</div>
+      <div class="block-body">
+        <p>This is our Project Documentation phase, running in parallel with Interior Design and culminating in contract signing and construction preparation. A lot of disciplines coordinate here - design, engineering, interior design, building surveying, estimating - and our job is to make that complexity feel straight forward from your perspective.</p>
+      </div>
+      <ul class="process-list">
+        <li>
+          <span class="process-name">Working drawings</span>
+          Town planning (if required), heating &amp; cooling, electrical, energy rating, engineering - all coordinated and documented.
+        </li>
+        <li>
+          <span class="process-name">Interior design</span>
+          Interior Design Brief Meeting, fitting &amp; fixture selections, presentation of material palette and finishes, detailed schedule.
+        </li>
+        <li>
+          <span class="process-name">QC review &amp; contract</span>
+          Project documentation goes through Latitude 37 QC review. Bill of Quantities reconciles allowances. Contract is prepared and signed (5% deposit, less previous payments).
+        </li>
+        <li>
+          <span class="process-name">Construction preparation</span>
+          Demolition (where applicable), insurances, service approvals, building permits. The site file is issued, ready for construction to start.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="reassurance">
+    <div class="reassurance-label">A note from us</div>
+    <div class="reassurance-body">Interior pricing is the easiest place to lose trust. We hold ourselves to transparency here - clear allowances, clear reconciliation, no surprises at Bill of Quantities.</div>
+  </div>
+</section>
+
+<div class="stage-divider">
+  <div class="stage-divider-line"></div>
+  <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="20" cy="20" r="14" fill="none" stroke="#6B4F3A" stroke-width="1"/>
+    <rect x="9" y="9" width="22" height="22" fill="none" stroke="#6B4F3A" stroke-width="1" transform="rotate(8 20 20)"/>
+  </svg>
+  <div class="stage-divider-line"></div>
+</div>
+
+<!-- ===== STAGE 6: BUILDING ===== -->
+<section class="stage" id="stage-6">
+  <div class="stage-header">
+    <div class="stage-num">vi</div>
+    <div class="stage-title-block">
+      <div class="stage-eyebrow">Stage six</div>
+      <h2 class="stage-title">Building</h2>
+      <p class="stage-orient">Your home rises - base, frame, lockup, fix, completion. Visible progress and just enough detail.</p>
+      <div class="duration">
+        <span class="duration-icon"></span>
+        Typically 12–18 months
+      </div>
+      <span class="duration-note">Varies with complexity, site conditions, and the scale of your home.</span>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">What you're experiencing</div>
+    <div class="block-body">
+      <p>The excitement of seeing your design come to life is real, and so is the impatience. You're tracking progress against the plan, sharing reports and photos with family and friends, and making progressive payments along the way. On the good weeks, progress is visible. On the quieter weeks - when trades coordinate, materials arrive, inspections happen - it can feel like nothing's moving, even when it is. You want reassurance that the quality matches the promise, and steady communication when timelines shift.</p>
+      <p>What you need is honest progress updates, a clear point of contact, and confidence that the craft on site matches the craft on paper.</p>
+    </div>
+  </div>
+
+  <div class="visibility-line">behind the scenes</div>
+
+  <div class="behind-scenes">
+    <svg class="scenes-geometry" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="80" fill="none" stroke="#6B4F3A" stroke-width="1" stroke-dasharray="2 4"/>
+      <rect x="35" y="35" width="130" height="130" fill="none" stroke="#6B4F3A" stroke-width="1" transform="rotate(-6 100 100)"/>
+    </svg>
+    <div class="block">
+      <div class="block-label">What we're doing</div>
+      <div class="block-body">
+        <p>Construction runs through five stages, each with its own QA inspection and site meetings. Your Site Manager and Construction Manager carry the day-to-day, with independent Quality Inspectors at every gate so quality is never just our word for it.</p>
+      </div>
+      <ul class="process-list">
+        <li>
+          <span class="process-name">Base</span>
+          Site set up, underground services, piers and piles (if applicable), formwork, concrete slab - Base QA inspection complete.
+        </li>
+        <li>
+          <span class="process-name">Frame</span>
+          Frame and structural steel erected; Frame QA inspection and Building Surveyor inspection; Frame Meeting on site with you.
+        </li>
+        <li>
+          <span class="process-name">Lockup</span>
+          Windows, roofing, HVAC and plumbing roughed in, cladding completed, external doors installed. Your home is now lockable.
+        </li>
+        <li>
+          <span class="process-name">Fix</span>
+          Electrical roughed in, pre-plaster Hold Point QA, plastering, joinery, skirting, architraves and internal doors. Pre-paint QA.
+        </li>
+        <li>
+          <span class="process-name">Completion</span>
+          Painting, tiling, fit-offs, timber flooring, cleaning, caulking. Building Surveyor final inspection. Certificate of Occupancy issued.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="reassurance">
+    <div class="reassurance-label">A note from us</div>
+    <div class="reassurance-body">"Days when nothing happened" are part of every build - but they shouldn't feel that way to you. We commit to regular, honest updates so the quiet weeks feel transparent, not invisible.</div>
+  </div>
+</section>
+
+<div class="stage-divider">
+  <div class="stage-divider-line"></div>
+  <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="20" cy="20" r="14" fill="none" stroke="#6B4F3A" stroke-width="1"/>
+    <rect x="9" y="9" width="22" height="22" fill="none" stroke="#6B4F3A" stroke-width="1" transform="rotate(8 20 20)"/>
+  </svg>
+  <div class="stage-divider-line"></div>
+</div>
+
+<!-- ===== STAGE 7: LIVING ===== -->
+<section class="stage" id="stage-7">
+  <div class="stage-header">
+    <div class="stage-num">vii</div>
+    <div class="stage-title-block">
+      <div class="stage-eyebrow">Stage seven</div>
+      <h2 class="stage-title">Living</h2>
+      <p class="stage-orient">Handover, moving in, and the long tail of maintenance, warranty, and relationship.</p>
+      <div class="duration">
+        <span class="duration-icon"></span>
+        Handover + 12 months of warranty
+      </div>
+      <span class="duration-note">Maintenance list within 90 days; check-ins at 3, 6 and 12 months.</span>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">What you're experiencing</div>
+    <div class="block-body">
+      <p>You walk through your finished home, accept the keys, and move in. There's a deep pride here, especially when the experience has held up to the promise - and a strong hope that the relationship continues with the same care. You're reflecting on the journey, telling the story to friends and family, settling into a new chapter. Small issues may surface; you want them resolved without friction.</p>
+      <p>What you need is a clean handover, responsive aftercare, and the sense that Latitude 37 stands behind the home for the long run, not just up until the keys change hands.</p>
+    </div>
+  </div>
+
+  <div class="visibility-line">behind the scenes</div>
+
+  <div class="behind-scenes">
+    <svg class="scenes-geometry" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="80" fill="none" stroke="#6B4F3A" stroke-width="1" stroke-dasharray="2 4"/>
+      <rect x="35" y="35" width="130" height="130" fill="none" stroke="#6B4F3A" stroke-width="1" transform="rotate(-6 100 100)"/>
+    </svg>
+    <div class="block">
+      <div class="block-label">What we're doing</div>
+      <div class="block-body">
+        <p>Handover is staged with care - pre-completion QA, client final inspection, outstanding works list, final cleaning. After handover, our Warranty Manager and team stay in touch through structured check-ins, so the home keeps performing the way it should.</p>
+      </div>
+      <ul class="process-list">
+        <li>
+          <span class="process-name">Handover</span>
+          PCQA inspection, defects completed, re-cleaning, client final inspection, Outstanding Works List, final QA sign-off, handover site meeting.
+        </li>
+        <li>
+          <span class="process-name">Maintenance &amp; warranty</span>
+          Maintenance list submitted within 90 days, Warranty Manager inspection, agreed defects completed within 28 days.
+        </li>
+        <li>
+          <span class="process-name">Ongoing check-ins</span>
+          Latitude 37 team check-ins at 3, 6 and 12 months - staying close to how the home is living.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="reassurance">
+    <div class="reassurance-label">A note from us</div>
+    <div class="reassurance-body">How a journey ends shapes how it's remembered. We pay particular attention to handover and aftercare for that reason - the quality of the last chapter matters as much as the first.</div>
+  </div>
+</section>
+
+<!-- ===== CLOSING ===== -->
+<section class="closing">
+  <svg class="closing-mark" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="30" cy="30" r="22" fill="none" stroke="#6B4F3A" stroke-width="1"/>
+    <rect x="11" y="11" width="38" height="38" fill="none" stroke="#6B4F3A" stroke-width="1" transform="rotate(8 30 30)"/>
+  </svg>
+  <h2>Process exists to deliver <em>experience.</em></h2>
+  <p class="closing-body">Every step we've shown you is in service of what you're feeling at each stage - clarity when you need to decide, space when you need to think, honesty when the conversation is hard. Client feedback on the way through helps us improve how you experience your journey.</p> 
+  <p class="closing-body">That's what Latitude 37 cares about most...that we create experiences that you want to recommend.</p>
+  <a href="mailto:enquiries@l37.com.au" class="closing-cta">Start a conversation</a>
+</section>
+
+<footer class="footer">
+  <div class="footer-tagline">Latitude to create. Crafted for life.</div>
+  <div>Latitude 37 &nbsp;·&nbsp; 285 Belmore Road, Balwyn North VIC 3104 &nbsp;·&nbsp; L37.com.au</div>
+</footer>
+
+<script>
+  // Sticky nav active state
+  const stages = document.querySelectorAll('.stage');
+  const navItems = document.querySelectorAll('.nav-item');
+  const navContainer = document.getElementById('nav');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        const stageNum = id.replace('stage-', '');
+        navItems.forEach(item => {
+          item.classList.toggle('active', item.dataset.stage === stageNum);
+        });
+        // Scroll active item into view in horizontal nav
+        const activeItem = document.querySelector(`.nav-item[data-stage="${stageNum}"]`);
+        if (activeItem && navContainer) {
+          const itemLeft = activeItem.offsetLeft;
+          const itemWidth = activeItem.offsetWidth;
+          const containerWidth = navContainer.offsetWidth;
+          navContainer.scrollTo({
+            left: itemLeft - (containerWidth / 2) + (itemWidth / 2),
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+  }, { rootMargin: '-30% 0px -50% 0px' });
+
+  stages.forEach(stage => observer.observe(stage));
+
+  // Reveal on scroll
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.stage, .closing').forEach(el => {
+    el.classList.add('reveal');
+    revealObserver.observe(el);
+  });
+</script>
+
+</body>
+</html>
