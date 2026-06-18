@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Latitude 37 - Marketing Performance - May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* L37 V2.0 surfaces */
+    --bone:#EAE4DA;
+    --paper:#EDECE9;
+    --grey:#F1F2F2;
+    --soft:#F7F7F7;
+    /* type */
+    --charcoal:#231F20;
+    --lead:#4B4E53;
+    /* accent (sole brand accent) */
+    --biro:#0040CC;
+    --biro-soft:rgba(0,64,204,.08);
+    --biro-line:rgba(0,64,204,.22);
+    /* concern tone - a disciplined departure for dashboard legibility */
+    --brick:#9C3A2E;
+    --brick-soft:rgba(156,58,46,.09);
+    --hair:rgba(35,31,32,.14);
+    --hair-soft:rgba(35,31,32,.07);
+    --serif:"Spectral",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    --mono:"Roboto Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--bone);
+    color:var(--charcoal);
+    font-family:var(--sans);
+    font-size:15px;
+    line-height:1.55;
+    letter-spacing:.005em;
+  }
+  .wrap{max-width:1100px;margin:0 auto;padding:48px 32px 80px}
+
+  /* ---------- shared type ---------- */
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--lead);
+  }
+  h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;margin:0}
+  .data{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    display:flex;align-items:flex-end;justify-content:space-between;
+    gap:24px;padding-bottom:22px;border-bottom:1.5px solid var(--charcoal);
+  }
+  .brandmark{display:flex;align-items:center;gap:14px}
+  .mark{flex:0 0 auto}
+  .brandmark .lockup{line-height:1.1}
+  .brandmark .name{font-family:var(--serif);font-size:22px;letter-spacing:.02em}
+  .brandmark .sub{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--lead);margin-top:3px}
+  .masthead .title{text-align:right}
+  .masthead .title h1{font-size:23px;line-height:1.15}
+  .masthead .title .period{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--biro);margin-top:6px}
+
+  /* ---------- executive read ---------- */
+  .read{margin:38px 0 8px}
+  .read .lede{
+    font-family:var(--serif);font-size:21px;line-height:1.42;font-weight:400;
+    max-width:80ch;color:var(--charcoal);margin:14px 0 0;
+  }
+  .read .lede b{font-weight:600}
+  .signals{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:30px;
+    border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+  }
+  .signal{padding:20px 22px 22px;border-left:1px solid var(--hair)}
+  .signal:first-child{border-left:none}
+  .signal .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--biro)}
+  .signal.warn .tag{color:var(--brick)}
+  .signal p{margin:10px 0 0;font-size:14px;line-height:1.5;color:var(--lead)}
+  .signal p b{color:var(--charcoal);font-weight:600}
+
+  /* ---------- flywheel ---------- */
+  .flywheel-block{
+    margin:46px 0;display:grid;grid-template-columns:340px 1fr;gap:40px;align-items:center;
+    background:var(--soft);border:1px solid var(--hair);border-radius:2px;padding:34px 36px;
+  }
+  .flywheel-svg{width:100%;height:auto;display:block}
+  .fw-legend .eyebrow{display:block;margin-bottom:14px}
+  .fw-stage{display:flex;gap:14px;padding:12px 0;border-top:1px solid var(--hair-soft)}
+  .fw-stage:first-of-type{border-top:none}
+  .fw-stage .dot{flex:0 0 auto;width:11px;height:11px;border-radius:50%;margin-top:5px;background:var(--biro)}
+  .fw-stage.warn .dot{background:var(--brick)}
+  .fw-stage .copy .h{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--charcoal)}
+  .fw-stage .copy .s{font-size:13.5px;color:var(--lead);margin-top:2px;line-height:1.45}
+  .fw-stage.warn .copy .h{color:var(--brick)}
+
+  /* ---------- stage panels ---------- */
+  .stage{margin-top:54px}
+  .stage-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;
+    padding-bottom:14px;border-bottom:1px solid var(--charcoal)}
+  .stage-head .left{display:flex;align-items:baseline;gap:18px}
+  .stage-num{font-family:var(--mono);font-size:12px;color:var(--biro);letter-spacing:.1em}
+  .stage-head h2{font-size:30px;letter-spacing:-.02em}
+  .stage-head .meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--lead);text-align:right;line-height:1.8}
+  .stage.concern .stage-head{border-bottom-color:var(--brick)}
+  .stage.concern .stage-num{color:var(--brick)}
+
+  .stage-body{display:grid;grid-template-columns:1.35fr 1fr;gap:40px;margin-top:24px}
+  @media (max-width:860px){.stage-body{grid-template-columns:1fr}}
+
+  /* metric table */
+  .metrics{width:100%;border-collapse:collapse;font-size:13.5px}
+  .metrics caption{text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--lead);padding:14px 0 8px}
+  .metrics th{font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--lead);text-align:right;padding:6px 0 8px;border-bottom:1px solid var(--hair)}
+  .metrics th.metric-name{text-align:left}
+  .metrics td{padding:9px 0;border-bottom:1px solid var(--hair-soft);vertical-align:baseline}
+  .metrics td.metric-name{color:var(--charcoal)}
+  .metrics td.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--lead)}
+  .metrics td.now{color:var(--charcoal);font-weight:500}
+  .metrics .src{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--lead);opacity:.7}
+  .chg{font-family:var(--mono);font-size:12px;text-align:right;white-space:nowrap}
+  .chg.up{color:var(--biro)}
+  .chg.down{color:var(--brick)}
+  .chg.flat{color:var(--lead)}
+  .chg.new{color:var(--lead);opacity:.75}
+  .pill{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--lead);border:1px solid var(--hair);border-radius:999px;padding:1px 7px}
+
+  /* stat strip (Be Chosen) */
+  .statstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--hair);border-radius:2px;margin-bottom:18px}
+  .stat{padding:16px 16px 18px;border-left:1px solid var(--hair-soft)}
+  .stat:first-child{border-left:none}
+  .stat .v{font-family:var(--serif);font-size:30px;line-height:1;color:var(--charcoal)}
+  .stat .v small{font-size:15px;color:var(--lead)}
+  .stat .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--lead);margin-top:8px}
+  .sources-note{font-size:12.5px;color:var(--lead);line-height:1.5;margin:4px 0 0}
+
+  /* commentary */
+  .commentary{background:var(--paper);border:1px solid var(--hair);border-radius:2px;padding:24px 26px}
+  .commentary .eyebrow{display:block;margin-bottom:12px}
+  .commentary p{margin:0 0 12px;font-size:14px;line-height:1.6;color:var(--charcoal)}
+  .commentary p:last-child{margin-bottom:0}
+  .commentary .focus{border-left:2px solid var(--biro);padding-left:14px;color:var(--lead)}
+  .stage.concern .commentary .focus{border-left-color:var(--brick)}
+
+  .baselining{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--lead);opacity:.85;
+    border:1px dashed var(--hair);border-radius:2px;padding:12px 14px;margin-top:14px;line-height:1.6}
+  .baselining b{color:var(--charcoal);font-weight:500}
+
+  footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--hair);
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--lead)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(8px);animation:rise .7s cubic-bezier(.2,.6,.2,1) forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none}.spin{animation:none!important}}
+
+  @media (max-width:820px){
+    .signals{grid-template-columns:1fr}
+    .signal{border-left:none;border-top:1px solid var(--hair)}
+    .signal:first-child{border-top:none}
+    .flywheel-block{grid-template-columns:1fr;gap:28px}
+    .statstrip{grid-template-columns:repeat(2,1fr)}
+    .stat:nth-child(3){border-left:none}
+  }
+
+  @media print{
+    body{background:#fff}
+    .wrap{padding:0}
+    .flywheel-block,.commentary,.stage,.signals{break-inside:avoid}
+    .reveal{animation:none;opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- MASTHEAD -->
+  <header class="masthead reveal">
+    <div class="brandmark">
+      <svg class="mark" width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
+        <rect x="6.5" y="6.5" width="27" height="27" fill="none" stroke="#231F20" stroke-width="1.4"/>
+        <circle cx="20" cy="20" r="13.5" fill="none" stroke="#0040CC" stroke-width="1.4"/>
+      </svg>
+      <div class="lockup">
+        <div class="name">Latitude&nbsp;37</div>
+        <div class="sub">Marketing&nbsp;·&nbsp;Flywheel</div>
+      </div>
+    </div>
+    <div class="title">
+      <h1>Marketing Performance</h1>
+      <div class="period">May 2026 · monthly read</div>
+    </div>
+  </header>
+
+  <!-- EXECUTIVE READ -->
+  <section class="read reveal" style="animation-delay:.06s">
+    <span class="eyebrow">What matters this month</span>
+    <p class="lede">Discovery and consideration are both up strongly month on month. The constraint is not conversion - once a prospect is qualified, <b>SQL to CDA is running at 75%</b>. The constraint sits at both ends of the flywheel: too few qualified, well-matched enquiries coming in, and a <b>referral engine that is quietly degrading</b>.</p>
+
+    <div class="signals">
+      <div class="signal">
+        <span class="tag">Visibility is shifting</span>
+        <p>Sessions and engagement are up, but AI Overviews are compressing traditional web traffic, so visibility now has to be read beyond sessions. Early AEO signals are encouraging: <b>L37 is the most cited brand</b> in our tracked set, and two of the last six CDAs came via AI referral.</p>
+      </div>
+      <div class="signal">
+        <span class="tag">Conversion is healthy</span>
+        <p>SQL to CDA is strong at <b>75% YTD</b>. The drag is upstream - readiness, fit and budget alignment below $1.5m - not closing. The fix is better qualification, not more raw volume.</p>
+      </div>
+      <div class="signal warn">
+        <span class="tag">The engine is at risk</span>
+        <p>Advocacy is the <b>largest historical driver of pipeline</b> and it is degrading. NPS response sits at 14%, almost certainly masking passive and detractor sentiment. A weak referral engine starves the whole flywheel.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLYWHEEL -->
+  <section class="flywheel-block reveal" style="animation-delay:.12s">
+    <svg class="flywheel-svg" viewBox="0 0 360 360" role="img" aria-label="L37 marketing flywheel: Be Found, Be Trusted, Be Chosen, Be Referred, with Be Referred flagged as the area of concern.">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10" fill="none" stroke="#0040CC" stroke-width="1.6"/>
+        </marker>
+      </defs>
+
+      <!-- momentum ring -->
+      <circle class="spin" cx="180" cy="180" r="120" fill="none" stroke="#0040CC" stroke-width="1" stroke-dasharray="2 7" opacity=".5"/>
+
+      <!-- directional arcs Found -> Trusted -> Chosen -> Referred -> Found -->
+      <path d="M 222 76 A 120 120 0 0 1 284 138" fill="none" stroke="#0040CC" stroke-width="1.4" marker-end="url(#arrow)"/>
+      <path d="M 284 222 A 120 120 0 0 1 222 284" fill="none" stroke="#0040CC" stroke-width="1.4" marker-end="url(#arrow)"/>
+      <path d="M 138 284 A 120 120 0 0 1 76 222" fill="none" stroke="#9C3A2E" stroke-width="1.4" marker-end="url(#arrow)"/>
+      <path d="M 76 138 A 120 120 0 0 1 138 76" fill="none" stroke="#0040CC" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+      <!-- centre mark: circle (human) + square (engineered) -->
+      <rect x="160" y="160" width="40" height="40" fill="none" stroke="#231F20" stroke-width="1.3"/>
+      <circle cx="180" cy="180" r="20" fill="none" stroke="#0040CC" stroke-width="1.3"/>
+      <text x="180" y="184" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="8" letter-spacing="1.5" fill="#4B4E53">L37</text>
+
+      <!-- nodes -->
+      <!-- Found (top) -->
+      <g>
+        <circle cx="180" cy="60" r="17" fill="#F7F7F7" stroke="#0040CC" stroke-width="1.4"/>
+        <text x="180" y="64" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="9" fill="#231F20">01</text>
+        <text x="180" y="30" text-anchor="middle" font-family="Spectral, serif" font-size="13" fill="#231F20">Be Found</text>
+      </g>
+      <!-- Trusted (right) -->
+      <g>
+        <circle cx="300" cy="180" r="17" fill="#F7F7F7" stroke="#0040CC" stroke-width="1.4"/>
+        <text x="300" y="184" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="9" fill="#231F20">02</text>
+        <text x="300" y="214" text-anchor="middle" font-family="Spectral, serif" font-size="13" fill="#231F20">Be Trusted</text>
+      </g>
+      <!-- Chosen (bottom) -->
+      <g>
+        <circle cx="180" cy="300" r="17" fill="#F7F7F7" stroke="#0040CC" stroke-width="1.4"/>
+        <text x="180" y="304" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="9" fill="#231F20">03</text>
+        <text x="180" y="338" text-anchor="middle" font-family="Spectral, serif" font-size="13" fill="#231F20">Be Chosen</text>
+      </g>
+      <!-- Referred (left) - concern -->
+      <g>
+        <circle cx="60" cy="180" r="17" fill="#fff" stroke="#9C3A2E" stroke-width="1.6"/>
+        <text x="60" y="184" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="9" fill="#9C3A2E">04</text>
+        <text x="60" y="150" text-anchor="middle" font-family="Spectral, serif" font-size="13" fill="#9C3A2E">Be Referred</text>
+      </g>
+    </svg>
+
+    <div class="fw-legend">
+      <span class="eyebrow">Flywheel health · May</span>
+      <div class="fw-stage">
+        <span class="dot"></span>
+        <div class="copy"><div class="h">01 · Be Found</div><div class="s">Up. Discovery and familiarity growing; visibility moving into AI-led discovery.</div></div>
+      </div>
+      <div class="fw-stage">
+        <span class="dot"></span>
+        <div class="copy"><div class="h">02 · Be Trusted</div><div class="s">Up. Deeper engagement and a strong lift in Open Home registration.</div></div>
+      </div>
+      <div class="fw-stage">
+        <span class="dot"></span>
+        <div class="copy"><div class="h">03 · Be Chosen</div><div class="s">Converts well (75%) but volume below target. Attribution being built.</div></div>
+      </div>
+      <div class="fw-stage warn">
+        <span class="dot"></span>
+        <div class="copy"><div class="h">04 · Be Referred</div><div class="s">At risk. Largest historical driver, now the weakest signal in the loop.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BE FOUND ============ -->
+  <section class="stage reveal" style="animation-delay:.04s">
+    <div class="stage-head">
+      <div class="left">
+        <span class="stage-num">01</span>
+        <h2>Be Found</h2>
+      </div>
+      <div class="meta">Discovery &amp; Familiarity<br>Prospect → MQL · Exploring, Planning</div>
+    </div>
+
+    <div class="stage-body">
+      <div>
+        <table class="metrics">
+          <caption>Discovery — Prospect</caption>
+          <thead><tr><th class="metric-name">Metric</th><th>Apr</th><th>May</th><th>Change</th></tr></thead>
+          <tbody>
+            <tr><td class="metric-name">Total sessions <span class="src">HS · 30d</span></td><td class="num">3,362</td><td class="num now">3,494</td><td class="chg up">▲ 3.9%</td></tr>
+            <tr><td class="metric-name">New visitor sessions <span class="src">HS · 30d</span></td><td class="num">1,353</td><td class="num now">2,295</td><td class="chg up">▲ 69.6%</td></tr>
+            <tr><td class="metric-name">Organic sessions <span class="src">HS</span></td><td class="num">—</td><td class="num now">305</td><td class="chg new">new</td></tr>
+            <tr><td class="metric-name">Direct sessions <span class="src">HS</span></td><td class="num">—</td><td class="num now">812</td><td class="chg new">new</td></tr>
+            <tr><td class="metric-name">Email marketing <span class="src">HS</span></td><td class="num">—</td><td class="num now">133</td><td class="chg new">new</td></tr>
+            <tr><td class="metric-name">Organic social <span class="src">HS</span></td><td class="num">—</td><td class="num now">41</td><td class="chg new">new</td></tr>
+            <tr><td class="metric-name">Paid social <span class="src">HS</span></td><td class="num">—</td><td class="num now">6</td><td class="chg new">new</td></tr>
+          </tbody>
+        </table>
+
+        <table class="metrics" style="margin-top:22px">
+          <caption>AEO — AI-led discovery <span class="pill">new · from 18 Jun</span></caption>
+          <tbody>
+            <tr><td class="metric-name">AEO sessions <span class="src">HS</span></td><td class="num">—</td><td class="num now">23</td><td class="chg new">baseline</td></tr>
+            <tr><td class="metric-name">AEO visibility <span class="src">HS</span></td><td class="num">—</td><td class="num now">14%</td><td class="chg new">baseline</td></tr>
+            <tr><td class="metric-name">AEO share of voice <span class="src">HS</span></td><td class="num">—</td><td class="num now">32%</td><td class="chg new">baseline</td></tr>
+            <tr><td class="metric-name">AEO citations <span class="src">HS</span></td><td class="num">—</td><td class="num now">2%</td><td class="chg new">baseline</td></tr>
+          </tbody>
+        </table>
+
+        <table class="metrics" style="margin-top:22px">
+          <caption>Familiarity — MQL</caption>
+          <thead><tr><th class="metric-name">Metric</th><th>Apr</th><th>May</th><th>Change</th></tr></thead>
+          <tbody>
+            <tr><td class="metric-name">Social reach <span class="src">HS</span></td><td class="num">30,588</td><td class="num now">77,101</td><td class="chg up">▲ 152.1%</td></tr>
+            <tr><td class="metric-name">Returning visitor sessions <span class="src">HS</span></td><td class="num">1,023</td><td class="num now">1,180</td><td class="chg up">▲ 15.3%</td></tr>
+            <tr><td class="metric-name">Direct traffic <span class="src">HS</span></td><td class="num">1,570</td><td class="num now">1,803</td><td class="chg up">▲ 14.8%</td></tr>
+            <tr><td class="metric-name">Organic search <span class="src">HS</span></td><td class="num">841</td><td class="num now">840</td><td class="chg flat">▼ 0.1%</td></tr>
+            <tr><td class="metric-name">Paid search <span class="src">GA</span></td><td class="num">1,074</td><td class="num now">652</td><td class="chg down">▼ 39.3%</td></tr>
+          </tbody>
+        </table>
+        <p class="sources-note" style="margin-top:10px"><span class="pill">context</span> &nbsp;Paid search decline is misleading: a PMax campaign ran in April but not May, while the new website and revamped SEM launched. Seven tightly targeted campaigns are now live; first read next month.</p>
+      </div>
+
+      <div class="commentary">
+        <span class="eyebrow">Commentary</span>
+        <p>Discovery and familiarity are up overall month on month, despite continued structural pressure on traditional website traffic. Industry data points the same way - Forbes reports a 61% reduction in organic click-through when an AI Overview is present. Visibility now has to be assessed beyond website sessions alone.</p>
+        <p>Paid search remains the strongest driver of web traffic, so we have launched seven tightly targeted campaigns aligned to high-intent services, locations and search behaviour. Over the next six months we expect a gradual reduction in reliance on traditional SEM, alongside increased testing of AEM - paid visibility within AI-led discovery.</p>
+        <p class="focus">Following the Knowledge Hub launch, the focus is brand visibility across AI platforms, in both answers and citations. AEO visibility, citation frequency and share of voice tracking has just started, so the near-term job is to set benchmarks and report movement and competitive visibility over time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BE TRUSTED ============ -->
+  <section class="stage reveal">
+    <div class="stage-head">
+      <div class="left">
+        <span class="stage-num">02</span>
+        <h2>Be Trusted</h2>
+      </div>
+      <div class="meta">Consideration<br>SQL · Planning</div>
+    </div>
+
+    <div class="stage-body">
+      <div>
+        <table class="metrics">
+          <caption>Consideration — SQL</caption>
+          <thead><tr><th class="metric-name">Metric</th><th>Apr</th><th>May</th><th>Change</th></tr></thead>
+          <tbody>
+            <tr><td class="metric-name">Open Home registrations <span class="src">Manual</span></td><td class="num">10</td><td class="num now">84</td><td class="chg up">▲ 740%</td></tr>
+            <tr><td class="metric-name">Avg session duration <span class="src">HS · sec</span></td><td class="num">128</td><td class="num now">222</td><td class="chg up">▲ 73.4%</td></tr>
+            <tr><td class="metric-name">LinkedIn interactions <span class="src">HS</span></td><td class="num">114</td><td class="num now">167</td><td class="chg up">▲ 46.5%</td></tr>
+            <tr><td class="metric-name">Meta interactions <span class="src">HS</span></td><td class="num">382</td><td class="num now">506</td><td class="chg up">▲ 32.5%</td></tr>
+            <tr><td class="metric-name">Form submissions <span class="src">HS</span></td><td class="num">56</td><td class="num now">73</td><td class="chg up">▲ 30.4%</td></tr>
+            <tr><td class="metric-name">Page views per session <span class="src">HS</span></td><td class="num">2.37</td><td class="num now">2.99</td><td class="chg up">▲ 26.2%</td></tr>
+            <tr><td class="metric-name">Form view conversion <span class="src">HS</span></td><td class="num">—</td><td class="num now">61.1%</td><td class="chg new">new</td></tr>
+          </tbody>
+        </table>
+        <div class="baselining"><b>Knowledge Hub — baselining.</b> Top-performing content by session time, downloads and CTA conversion to report from next month. The Hub launched late April / May, so current data is not yet clean enough to draw conclusions.</div>
+      </div>
+
+      <div class="commentary">
+        <span class="eyebrow">Commentary</span>
+        <p>Consideration is up month on month. Paid search continues to generate the highest volume of forms, while Open Homes remain a strong consideration driver, particularly where prospects are already familiar with the brand or actively progressing.</p>
+        <p>Social interaction has improved with minimal paid support. The next focus is engagement quality - saves, shares and viewing time - through better content and new formats, including Knowledge Hub articles, tools and decision-support resources.</p>
+        <p class="focus">Response to the Revell Open Home has been strong. The earlier Cliveden Open Home showed a materially higher conversion from CRM activity (66%) than from paid social (25%). We expect a similar pattern for Revell, which reinforces the value of owned-audience engagement. The focus for Open Homes is registration quality, not just volume.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BE CHOSEN ============ -->
+  <section class="stage reveal">
+    <div class="stage-head">
+      <div class="left">
+        <span class="stage-num">03</span>
+        <h2>Be Chosen</h2>
+      </div>
+      <div class="meta">Intent &amp; Conversion<br>CDA + EDA · Choosing, Designing, Committing</div>
+    </div>
+
+    <div class="stage-body">
+      <div>
+        <div class="statstrip">
+          <div class="stat"><div class="v">3</div><div class="k">CDAs YTD</div></div>
+          <div class="stat"><div class="v">17</div><div class="k">CDAs this FY</div></div>
+          <div class="stat"><div class="v">75<small>%</small></div><div class="k">SQL → CDA</div></div>
+          <div class="stat"><div class="v">2</div><div class="k">AI referrals · last 6</div></div>
+        </div>
+        <p class="sources-note"><b style="color:var(--charcoal)">Last 6 CDAs, known source:</b> 2 AI referrals · 1 REA referral · 1 former client · 2 Display Home enquiries. Display Home likely reflects the conversion point rather than the original channel of discovery.</p>
+        <div class="baselining" style="margin-top:16px"><b>Attribution — to build.</b> Conversion and time-to-convert by paid, organic, referral and Open Home are being built into HubSpot, with the past 12 months used to set benchmarks. Early reporting is manual and should be treated as directional rather than definitive.</div>
+      </div>
+
+      <div class="commentary">
+        <span class="eyebrow">Commentary</span>
+        <p>CDA volume remains below target. We have identified gaps in reliable channel-origin data, plus limited visibility of origin-to-CDA conversion and time-to-convert. These will be important lag indicators for whether Be Found activity is generating the right quality of demand.</p>
+        <p>Two AI referrals in the last six is a positive early signal, particularly as L37 is currently the most cited brand in our tracked competitive set. The data set is small, but it supports the focus on AEO visibility, Knowledge Hub content and AI-led discovery.</p>
+        <p class="focus">SQL-to-CDA conversion is strong at 75% this financial year: once prospects are qualified, conversion performs well. The main barriers remain budget misalignment (particularly sub-$1.5m enquiries) and client readiness. The job is better upstream qualification and expectation-setting, not simply more enquiry volume.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BE REFERRED ============ -->
+  <section class="stage concern reveal">
+    <div class="stage-head">
+      <div class="left">
+        <span class="stage-num">04</span>
+        <h2>Be Referred</h2>
+      </div>
+      <div class="meta">Advocacy · area of concern<br>Client · Building, Living</div>
+    </div>
+
+    <div class="stage-body">
+      <div>
+        <table class="metrics">
+          <caption>Advocacy — NPS &amp; reviews</caption>
+          <thead><tr><th class="metric-name">Metric</th><th>Apr</th><th>May</th><th>Change</th></tr></thead>
+          <tbody>
+            <tr><td class="metric-name">NPS sends <span class="src">HS · excl. follow-ups</span></td><td class="num">—</td><td class="num now">44</td><td class="chg new">new</td></tr>
+            <tr><td class="metric-name">NPS responses <span class="src">HS</span></td><td class="num">—</td><td class="num now">6</td><td class="chg new">new</td></tr>
+            <tr><td class="metric-name">NPS response rate <span class="src">HS</span></td><td class="num">—</td><td class="num now">13.6%</td><td class="chg down">below 35–65% target</td></tr>
+            <tr><td class="metric-name">Product reviews <span class="src">Manual</span></td><td class="num">4.7</td><td class="num now">4.7</td><td class="chg flat">— 0.0%</td></tr>
+          </tbody>
+        </table>
+        <div class="baselining" style="margin-top:16px"><b>Now automated.</b> Nine NPS surveys across the end-to-end client journey are live, giving consistent measurement of sentiment by stage. NPS-by-stage and overall reads to follow as response volume builds.</div>
+      </div>
+
+      <div class="commentary">
+        <span class="eyebrow">Commentary · greatest concern</span>
+        <p>As the largest historical driver of the sales pipeline, advocacy is the greatest concern in the flywheel. The infrastructure is now in place, but response volume is low: 6 completed responses from 44 surveys issued (14%), and only 3 with verbatim comments. Low response rates can create a misleadingly positive view of client experience.</p>
+        <p>All six responses are from Promoters (9–10/10). These clients are clearly satisfied, but the set is too small and too positively skewed to represent the broader base. A 35–65% response rate would give a more reliable read of sentiment and emerging experience risk.</p>
+        <p>The key concern is that non-response may be masking passive or detractor sentiment. History supports taking this seriously: recorded detractors rose from zero to six between 2021 and 2024, and the available data is more likely to err optimistic than negative.</p>
+        <p class="focus">Immediate opportunity: proactively review clients nearing completion and resolve any unmet needs or concerns before handover. This has to go beyond a positive handover moment - a happy handover will not overcome genuine dissatisfaction if important needs have gone unresolved through the journey.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Latitude 37 · Marketing Performance · May 2026</span>
+    <span>Be Found → Be Trusted → Be Chosen → Be Referred</span>
+    <span>HS HubSpot · GA Google Analytics · Manual</span>
+  </footer>
+
+</div>
+
+<script>
+  // ambient: slow rotation of the momentum ring only (respects reduced-motion via CSS)
+  (function(){
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var ring = document.querySelector('.spin');
+    if(!ring) return;
+    ring.style.transformOrigin = '180px 180px';
+    var a = 0, last = performance.now();
+    function tick(now){
+      a += (now - last) * 0.004; last = now;
+      ring.setAttribute('transform','rotate('+a+' 180 180)');
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
+</script>
+</body>
+</html>
