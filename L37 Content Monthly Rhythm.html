@@ -1,0 +1,71 @@
+<h2 class="sr-only">Monthly operating rhythm for the Latitude 37 Knowledge Hub. A plan is locked before the month, then four weekly production beats each turn a brief into a published article and two social posts. Inputs, tasks and outputs are shown as bands. Performance feeds the next month.</h2>
+
+<style>
+.rhythm{display:grid;grid-template-columns:84px repeat(4,1fr);gap:7px;font-size:12px;line-height:1.45;padding:8px 0}
+.rhythm .lbl{display:flex;align-items:center;font-weight:500;color:var(--color-text-secondary);font-size:12px}
+.wk{padding:7px 9px;border-radius:var(--border-radius-md);background:var(--color-background-secondary);border:1px solid var(--color-border-tertiary)}
+.wk b{font-weight:500;color:var(--color-text-primary)}
+.pill{display:inline-block;margin-top:4px;font-size:11px;padding:1px 7px;border-radius:999px;background:var(--color-background-tertiary);color:var(--color-text-secondary)}
+.plan{padding:9px 11px;border-radius:var(--border-radius-md);background:var(--color-background-tertiary);border:1px solid var(--color-border-tertiary);border-left:3px solid var(--color-border-secondary)}
+.cell{padding:8px 9px;border-radius:var(--border-radius-md);border:1px solid var(--color-border-tertiary)}
+.in{background:var(--color-background-secondary)}
+.task{background:var(--color-background-primary)}
+.out{background:var(--color-background-info);border-color:var(--color-border-info)}
+.out,.out *{color:var(--color-text-info)}
+.chip{display:inline-block;font-size:11px;padding:1px 6px;border-radius:var(--border-radius-md);border:1px solid var(--color-border-tertiary);background:var(--color-background-primary);margin:2px 2px 0 0;color:var(--color-text-secondary)}
+.seam{border-style:dashed;border-color:var(--color-border-secondary)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--color-text-secondary);margin:2px 0 10px}
+.legend span{display:flex;align-items:center;gap:6px}
+.sw{width:11px;height:11px;border-radius:3px;border:1px solid var(--color-border-secondary)}
+.loop{margin-top:9px;padding:9px 11px;border-radius:var(--border-radius-md);background:var(--color-background-secondary);border:1px solid var(--color-border-tertiary);font-size:12px;color:var(--color-text-secondary);display:flex;align-items:flex-start;gap:8px}
+.loop b{color:var(--color-text-primary);font-weight:500}
+</style>
+
+<div class="legend">
+  <span><span class="sw" style="background:var(--color-background-secondary)"></span>Inputs (what feeds the week)</span>
+  <span><span class="sw" style="background:var(--color-background-primary)"></span>Tasks (the work)</span>
+  <span><span class="sw" style="background:var(--color-background-info);border-color:var(--color-border-info)"></span>Outputs (what ships)</span>
+</div>
+
+<div class="rhythm">
+  <div class="lbl"></div>
+  <div class="wk"><b>Week 1</b><br><span class="pill">In-depth guide</span></div>
+  <div class="wk"><b>Week 2</b><br><span class="pill">Framework</span></div>
+  <div class="wk"><b>Week 3</b><br><span class="pill">Explainer</span></div>
+  <div class="wk"><b>Week 4</b><br><span class="pill">Design thinking</span></div>
+
+  <div class="lbl">Set ahead</div>
+  <div class="plan" style="grid-column: span 4">
+    <span style="color:var(--color-text-primary);font-weight:500">The month's plan, locked before week 1.</span>
+    <span class="chip">Monthly need defined</span>
+    <span class="chip">4 briefs locked</span>
+    <span class="chip">Query + H1 + FAQs</span>
+    <span class="chip">Journey + archetype</span>
+    <span class="chip">Social angle, Meta + LinkedIn</span>
+    <span class="chip">V2.0 voice</span>
+    <span class="chip">SME + case material</span>
+  </div>
+
+  <div class="lbl">Inputs</div>
+  <div class="cell in">Brief 1 + the human truth.<br>Theme goes live.</div>
+  <div class="cell in">Brief 2.<br>Pillar to link back to.<br>Week 1 signal.</div>
+  <div class="cell in">Brief 3.<br>SME / case material.<br>Week 2 signal.</div>
+  <div class="cell in">Brief 4.<br>Case material.<br>Running performance.</div>
+
+  <div class="lbl">Tasks</div>
+  <div class="cell task"><span class="chip">Draft</span><span class="chip">Refine</span><span class="chip">Publish</span><span class="chip">Amplify</span><span class="chip seam">Confirm theme live</span><span class="chip seam">Sequence pieces</span></div>
+  <div class="cell task"><span class="chip">Draft</span><span class="chip">Refine</span><span class="chip">Publish</span><span class="chip">Amplify</span></div>
+  <div class="cell task"><span class="chip">Draft</span><span class="chip">Refine</span><span class="chip">Publish</span><span class="chip">Amplify</span></div>
+  <div class="cell task"><span class="chip">Draft</span><span class="chip">Refine</span><span class="chip">Publish</span><span class="chip">Amplify</span><span class="chip seam">Month review</span><span class="chip seam">Research next theme</span></div>
+
+  <div class="lbl">Outputs</div>
+  <div class="cell out">Pillar article live, FAQ schema.<br>Meta + LinkedIn post.<br>Weeks 2 to 4 link here.</div>
+  <div class="cell out">Article live.<br>Meta + LinkedIn post.</div>
+  <div class="cell out">Article live.<br>Meta + LinkedIn post.</div>
+  <div class="cell out">Article live.<br>Meta + LinkedIn post.<br>Next month's briefs.</div>
+</div>
+
+<div class="loop">
+  <i class="ti ti-refresh" aria-hidden="true" style="margin-top:2px"></i>
+  <span><b>The loop.</b> The month ships 4 articles and 8 social posts. What performs feeds next month's need and briefs, so the plan layer is never written cold.</span>
+</div>
