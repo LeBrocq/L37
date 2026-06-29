@@ -1,0 +1,18 @@
+# 🍏 VS Code & Git Cheat Sheet (Mac Shortcuts)
+
+## 🖥️ Navigation & Settings
+* Cmd + ,            -> Open VS Code settings
+* Cmd + P            -> Search recent files / find lost files
+
+## 💻 Built-in Terminal
+* Ctrl + `           -> Open / close the bottom Terminal panel
+* git status         -> Check if Git is active and see changed files
+* git pull origin main -> Manually download and merge GitHub changes
+
+## 📂 File Management
+* Cmd + S            -> Save your current file
+* Cmd + Shift + T    -> Reopen your last closed file tab
+* Cmd + Shift + .    -> Reveal hidden files (like the .git folder)
+
+## 🛠️ Conflict Resolution (Run Once)
+* git config --global pull.rebase false -> Set Git to standard "Merge" mode
