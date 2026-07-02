@@ -364,8 +364,17 @@
   .cred .c .l{font-size:.8rem;color:var(--muted);letter-spacing:.04em;margin-top:.4rem}
 
   /* awards list */
-  .awards-grid{display:grid;grid-template-columns:1fr 1fr;margin-top:clamp(2.4rem,5vw,3.2rem);border-top:1px solid var(--line)}
-  @media(max-width:680px){.awards-grid{grid-template-columns:1fr}}
+  .awards-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:clamp(2.4rem,5vw,3.2rem);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .award-group{padding:1.8rem 1.8rem 1.8rem 0}
+  .award-group + .award-group{border-left:1px solid var(--line);padding-left:1.8rem}
+  .ag-title{font-family:var(--serif);font-weight:400;font-size:1.12rem;color:var(--ink);line-height:1.25}
+  .ag-sub{font-family:var(--serif);font-style:italic;font-size:.8rem;color:var(--muted);margin-top:.25rem}
+  .ag-list{list-style:none;padding:0;margin:1.1rem 0 0}
+  .ag-list li{font-size:.85rem;color:var(--ink-soft);line-height:1.45;margin-bottom:.7rem;font-weight:300}
+  .ag-list li:last-child{margin-bottom:0}
+  .ag-y{color:var(--clay)}
+  .ag-p{color:var(--ink)}
+  @media(max-width:760px){.awards-grid{grid-template-columns:1fr}.award-group{padding:1.5rem 0}.award-group + .award-group{border-left:0;border-top:1px solid var(--line);padding-left:0}}
   .award{padding:1.35rem 2rem 1.35rem 0;border-bottom:1px solid var(--line)}
   .award:nth-child(even){padding-left:2rem;border-left:1px solid var(--line)}
   @media(max-width:680px){.award:nth-child(even){padding-left:0;border-left:0}}
@@ -385,6 +394,7 @@
   .proof-card .cap{padding:1rem 1.2rem 1.2rem}
   .proof-card .cap .pn{font-family:var(--serif);font-size:1.08rem;color:var(--ink)}
   .proof-card .cap .pm{font-size:.8rem;color:var(--muted);margin-top:.25rem;font-weight:300}
+  .proof-card .cap .pa{font-size:.76rem;color:var(--clay);margin-top:.4rem;letter-spacing:.02em}
 
   /* testimonials */
   .testimonials{background:var(--paper-2);color:var(--ink)}
@@ -552,7 +562,7 @@
     <h2 class="reveal d1">Two distinct homes, resolved to the same uncompromising standard.</h2>
     <div class="homes-grid">
       <div class="home-card reveal d1">
-        <div class="home-img ph"><span>Photo to follow</span></div>
+        <div class="home-img" style="background-image:url('images/grove.jpg')"></div>
         <span class="num">Home I</span>
         <h3>Grove House</h3>
         <p class="desc">Shaped by established canopy, layered planting and a sense of retreat. A home that settles into its garden, where privacy and shade give every room a grounded character.</p>
@@ -572,7 +582,7 @@
         <span class="tag">Canopy &middot; Retreat &middot; Layered planting</span>
       </div>
       <div class="home-card reveal d2">
-        <div class="home-img ph"><span>Photo to follow</span></div>
+        <div class="home-img" style="background-image:url('images/pavilion.jpg')"></div>
         <span class="num">Home II</span>
         <h3>Pavilion House</h3>
         <p class="desc">Shaped by openness, light and seamless indoor-outdoor connection. A home that opens generously to its site, where living space and landscape flow together without seam.</p>
@@ -640,14 +650,29 @@
       <div class="c"><div class="n">2025</div><div class="l">Most recent HIA finalist</div></div>
     </div>
     <div class="awards-grid reveal d1">
-      <div class="award"><div class="yr">HIA &middot; Winner 2014, 2015, 2020, 2021, 2022, 2023 &middot; HIA &middot; Finalist 2024, 2025</div><div class="ti">Professional Medium Builder</div><div class="pr">Recognising governance, quality and reliability over a decade</div></div>
-      <div class="award"><div class="yr">2025 &middot; HIA Eastern Victoria</div><div class="ti">Spec Home of the Year; Move-in ready luxury</div><div class="pr">Promenade</div></div>
-      <div class="award"><div class="yr">2024 &middot; HIA Victoria &amp; MBV</div><div class="ti">Best Bathroom</div><div class="pr">Retreat House, Mt&nbsp;Eliza</div></div>
-      <div class="award"><div class="yr">2024 &middot; HIA Victoria &amp; MBV</div><div class="ti">Best Kitchen</div><div class="pr">View House, Mt&nbsp;Eliza</div></div>
-      <div class="award"><div class="yr">2022 &middot; HIA Victoria</div><div class="ti">Spec Home of the Year; Move-in ready luxury</div><div class="pr">Wimborne House, Mt&nbsp;Eliza</div></div>
-      <div class="award"><div class="yr">2022 &middot; Master Builders Australia</div><div class="ti">Best Display Home, Australia</div><div class="pr">Sanctuary House</div></div>
+      <div class="award-group">
+        <h3 class="ag-title">HIA Professional Medium Builder</h3>
+        <ul class="ag-list">
+          <li><span class="ag-y">HIA Winner</span> 2014, 2015, 2020, 2021, 2022, 2023</li>
+          <li><span class="ag-y">HIA Finalist</span> 2024, 2025</li>
+        </ul>
+      </div>
+      <div class="award-group">
+        <h3 class="ag-title">Spec Home of the Year</h3>
+        <div class="ag-sub">Move-in ready luxury</div>
+        <ul class="ag-list">
+          <li><span class="ag-y">2025</span> HIA Best Spec Home - <span class="ag-p">Promenade House</span></li>
+          <li><span class="ag-y">2022</span> HIA Best Spec Home - <span class="ag-p">Wimborne House</span></li>
+        </ul>
+      </div>
+      <div class="award-group">
+        <h3 class="ag-title">Interior Design Awards</h3>
+        <ul class="ag-list">
+          <li><span class="ag-y">2024</span> HIA Best Kitchen - <span class="ag-p">View House</span></li>
+          <li><span class="ag-y">2024</span> HIA Best Bathroom - <span class="ag-p">Retreat House</span></li>
+        </ul>
+      </div>
     </div>
-  </div>
 </section>
 
 <!-- PROOF : built in Mt&nbsp;Eliza -->
@@ -661,11 +686,11 @@
     <div class="proof-grid reveal d1">
       <div class="proof-card">
         <div class="img" style="background-image:url('images/view.jpg')"></div>
-        <div class="cap"><div class="pn">View House</div><div class="pm">Canadian Bay Road &middot; Mt&nbsp;Eliza &middot; HIA 2024 Best Kitchen</div></div>
+        <div class="cap"><div class="pn">View House</div><div class="pm">Canadian Bay Road &middot; Mt&nbsp;Eliza</div><div class="pa">HIA Best Kitchen 2024</div></div>
       </div>
       <div class="proof-card">
         <div class="img" style="background-image:url('images/retreat.jpg')"></div>
-        <div class="cap"><div class="pn">Retreat House</div><div class="pm">Canadian Bay Road &middot; Mt&nbsp;Eliza &middot; HIA 2024 Best Bathroom</div></div>
+        <div class="cap"><div class="pn">Retreat House</div><div class="pm">Canadian Bay Road &middot; Mt&nbsp;Eliza</div><div class="pa">HIA Best Bathroom 2024</div></div>
       </div>
       <div class="proof-card">
         <div class="img" style="background-image:url('images/haven.jpg')"></div>
@@ -673,11 +698,11 @@
       </div>
       <div class="proof-card">
         <div class="img" style="background-image:url('images/promenade.jpg')"></div>
-        <div class="cap"><div class="pn">Promenade House</div><div class="pm">Glen Shian Crescent &middot; Mt&nbsp;Eliza &middot; HIA 2025 Spec Home of the Year</div></div>
+        <div class="cap"><div class="pn">Promenade House</div><div class="pm">Glen Shian Crescent &middot; Mt&nbsp;Eliza</div><div class="pa">HIA Spec Home of the Year 2025</div></div>
       </div>
       <div class="proof-card">
         <div class="img" style="background-image:url('images/wimborne.jpg')"></div>
-        <div class="cap"><div class="pn">Wimborne House</div><div class="pm">Wimborne Avenue &middot; Mt&nbsp;Eliza &middot; HIA 2022 Spec Home of the Year</div></div>
+        <div class="cap"><div class="pn">Wimborne House</div><div class="pm">Wimborne Avenue &middot; Mt&nbsp;Eliza</div><div class="pa">HIA Spec Home of the Year 2022</div></div>
       </div>
       <div class="proof-card">
         <div class="img" style="background-image:url('images/rutland.jpg')"></div>
