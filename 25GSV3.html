@@ -364,9 +364,11 @@
   .cred .c .l{font-size:.8rem;color:var(--muted);letter-spacing:.04em;margin-top:.4rem}
 
   /* awards list */
-  .awards-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:clamp(2.4rem,5vw,3.2rem);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .award-group{padding:1.8rem 1.8rem 1.8rem 0}
-  .award-group + .award-group{border-left:1px solid var(--line);padding-left:1.8rem}
+  .awards-grid{display:grid;grid-template-columns:1fr 1fr;margin-top:clamp(2.4rem,5vw,3.2rem);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .award-group{padding:1.8rem 1.8rem}
+  .award-group:nth-child(odd){padding-left:0}
+  .award-group:nth-child(even){padding-right:0;padding-left:1.8rem;border-left:1px solid var(--line)}
+  .award-group:nth-child(n+3){border-top:1px solid var(--line)}
   .ag-title{font-family:var(--serif);font-weight:400;font-size:1.12rem;color:var(--ink);line-height:1.25}
   .ag-sub{font-family:var(--serif);font-style:italic;font-size:.8rem;color:var(--muted);margin-top:.25rem}
   .ag-list{list-style:none;padding:0;margin:1.1rem 0 0}
@@ -374,11 +376,7 @@
   .ag-list li:last-child{margin-bottom:0}
   .ag-y{color:var(--clay)}
   .ag-p{color:var(--ink)}
-  .award-national{margin-top:clamp(1.8rem,4vw,2.4rem)}
-  .award-national .an-label{display:block;font-family:var(--sans);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--clay)}
-  .award-national .an-title{display:block;font-family:var(--serif);font-size:1.12rem;color:var(--ink);margin:.32rem 0 .2rem}
-  .award-national .an-meta{display:block;font-size:.85rem;color:var(--muted);font-weight:300}
-  @media(max-width:760px){.awards-grid{grid-template-columns:1fr}.award-group{padding:1.5rem 0}.award-group + .award-group{border-left:0;border-top:1px solid var(--line);padding-left:0}}
+  @media(max-width:760px){.awards-grid{grid-template-columns:1fr}.award-group{padding:1.5rem 0}.award-group:nth-child(even){padding-left:0;border-left:0}.award-group:nth-child(n+2){border-top:1px solid var(--line)}}
   .award{padding:1.35rem 2rem 1.35rem 0;border-bottom:1px solid var(--line)}
   .award:nth-child(even){padding-left:2rem;border-left:1px solid var(--line)}
   @media(max-width:680px){.award:nth-child(even){padding-left:0;border-left:0}}
@@ -676,11 +674,12 @@
           <li><span class="ag-y">2024</span> HIA Best Bathroom - <span class="ag-p">Retreat House</span></li>
         </ul>
       </div>
-    </div>
-    <div class="award-national reveal d1">
-      <span class="an-label">Master Builders Australia &middot; 2022</span>
-      <span class="an-title">Best Display Home in Australia</span>
-      <span class="an-meta">Sanctuary House</span>
+      <div class="award-group">
+        <h3 class="ag-title">Best Display Home in Australia</h3>
+        <ul class="ag-list">
+          <li><span class="ag-y">2022</span> Master Builders Australia - <span class="ag-p">Sanctuary House</span></li>
+        </ul>
+      </div>
     </div>
 </section>
 
