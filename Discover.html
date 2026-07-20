@@ -58,12 +58,11 @@
     transition:background .5s ease, padding .5s ease, box-shadow .5s ease;
   }
   header.nav.scrolled{background:var(--paper);box-shadow:0 1px 0 var(--line);padding-top:1rem;padding-bottom:1rem}
-  .brand{
-    font-family:var(--serif);font-size:1.14rem;font-weight:400;color:#fff;
-    text-decoration:none;letter-spacing:.14em;transition:color .5s ease;
-  }
-  .brand .reg{font-weight:400;letter-spacing:.06em;opacity:.8}
-  header.nav.scrolled .brand{color:var(--ink)}
+  .brand{display:inline-block;line-height:0}
+  .brand img{height:30px;width:auto;display:block}
+  .brand .logo-ink{display:none}
+  header.nav.scrolled .brand .logo-white{display:none}
+  header.nav.scrolled .brand .logo-ink{display:block}
   .nav-cta{
     font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
     color:#fff;border:1px solid rgba(255,255,255,.65);border-radius:40px;
@@ -165,8 +164,10 @@
 <body>
 
 <header class="nav" id="nav">
-  <a href="#top" class="brand">LATITUDE <span class="reg">37</span></a>
-  <a href="#register" class="nav-cta">Register interest</a>
+<a href="#top" class="brand" aria-label="Latitude 37">
+    <img class="logo-white" src="images/L37_logo_white.png" alt="Latitude 37">
+    <img class="logo-ink" src="images/L37_logo_ink.png" alt="" aria-hidden="true">
+  </a>
 </header>
 
 <!-- ============ SCROLL ONE: THE HOOK ============ -->
