@@ -363,7 +363,7 @@ tr:last-child td{border-bottom:none;}
 
 /* ── FOOTER ─────────────────────────────────────────────────── */
 .footer{padding:clamp(56px,9vw,120px) 0 clamp(36px,5vw,56px);border-top:1px solid var(--rule);}
-.footer-inner{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:28px;}
+.footer-inner{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:28px;overflow:visible;}
 .footer-wm{font-family:var(--f-head);font-size:clamp(28px,4.5vw,52px);font-weight:500;letter-spacing:-0.01em;line-height:1;}
 .footer-note{font-family:var(--f-sub);font-size:12px;color:var(--ink-2);letter-spacing:0.04em;line-height:1.7;max-width:28ch;text-align:right;}
 
@@ -501,6 +501,52 @@ tr:last-child td{border-bottom:none;}
       <p>The setting was simple. The conversations were not.</p>
       <p>What we stood for. Who we worked with. What mattered. What didn't.</p>
       <p>That discipline of listening, working things through and making considered decisions still defines how we operate today.</p>
+
+      <figure style="margin:clamp(40px,6vw,64px) 0;">
+        <svg viewBox="0 0 440 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:400px;height:auto;display:block;" aria-label="A humble folding card table">
+
+          <!-- Table top — square proportions, slight perspective, organic corners like 1.7 -->
+          <path d="M 148,100 C 194,96 248,96 294,99 C 296,114 296,130 294,142 C 248,146 194,146 148,142 C 146,130 146,114 148,100 Z"
+                fill="#EAE4DA" stroke="#231F20" stroke-width="1.8" stroke-linejoin="round"/>
+          <!-- Inner edge — surface detail -->
+          <path d="M 152,104 C 196,100 248,100 290,103"
+                fill="none" stroke="#231F20" stroke-width="0.6" opacity="0.35"/>
+
+          <!-- FRONT-LEFT LEG -->
+          <path d="M 163,142 C 163,190 162,248 161,296" fill="none" stroke="#231F20" stroke-width="5" stroke-linecap="round"/>
+          <path d="M 166,142 C 166,190 165,248 164,296" fill="none" stroke="#EDECE9" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+
+          <!-- FRONT-RIGHT LEG -->
+          <path d="M 279,142 C 279,190 280,248 281,296" fill="none" stroke="#231F20" stroke-width="5" stroke-linecap="round"/>
+          <path d="M 282,142 C 282,190 283,248 284,296" fill="none" stroke="#EDECE9" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+
+          <!-- BACK-LEFT LEG -->
+          <path d="M 174,100 C 174,140 173,184 172,220" fill="none" stroke="#231F20" stroke-width="3.5" stroke-linecap="round" opacity="0.55"/>
+
+          <!-- BACK-RIGHT LEG -->
+          <path d="M 268,99 C 268,140 269,184 270,220" fill="none" stroke="#231F20" stroke-width="3.5" stroke-linecap="round" opacity="0.55"/>
+
+          <!-- METAL CORNER BRACKET — front left -->
+          <path d="M 153,140 L 160,152 L 170,150" fill="none" stroke="#4B4E53" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="160" cy="152" r="2.5" fill="#4B4E53"/>
+
+          <!-- METAL CORNER BRACKET — front right -->
+          <path d="M 289,140 L 282,152 L 272,150" fill="none" stroke="#4B4E53" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="282" cy="152" r="2.5" fill="#4B4E53"/>
+
+          <!-- DIAGONAL FOLDING BRACE — left side -->
+          <path d="M 165,182 C 169,170 172,158 174,148" fill="none" stroke="#4B4E53" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+          <circle cx="169" cy="168" r="2" fill="#4B4E53" opacity="0.6"/>
+
+          <!-- DIAGONAL FOLDING BRACE — right side -->
+          <path d="M 277,182 C 273,170 270,158 268,148" fill="none" stroke="#4B4E53" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+          <circle cx="273" cy="168" r="2" fill="#4B4E53" opacity="0.6"/>
+
+          <!-- CROSS BRACE — front, low, faint -->
+          <path d="M 165,228 C 200,224 244,224 279,228" fill="none" stroke="#4B4E53" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+
+        </svg>
+      </figure>
     </div></div>
   </div>
 
@@ -705,81 +751,105 @@ tr:last-child td{border-bottom:none;}
     <div class="si"><span class="sn">1.9</span>
     <div class="sb">
       <h2>How Latitude 37 works</h2>
-      <p>Three behaviours guide the way we work with clients and with each other. They are how we deliver on our promise.</p>
+      <p>Five principles guide the way we work with clients and with each other. They are not rules. They are how we exercise judgement.</p>
 
       <ul class="blist">
         <li>
-          <p class="blist-title">Show up well</p>
-          <p class="blist-body">Be present, prepared and respectful of the responsibility we hold.</p>
+          <p class="blist-title">Client-first, not client-led</p>
+          <p class="blist-body">We listen deeply, then we use our craft. Our judgement - about what serves the client well, about what the home needs to be - is part of what they are paying for.</p>
         </li>
         <li>
-          <p class="blist-title">Listen to understand</p>
-          <p class="blist-body">Take the time to understand what truly matters to the client.</p>
+          <p class="blist-title">Judgement, not rigidity</p>
+          <p class="blist-body">Our first response to a problem is "What do you think?" - not an immediate answer. We build the capability to exercise judgement, back the decisions our teams make, and reach for rigidity only when judgement hasn't yet been built.</p>
         </li>
         <li>
-          <p class="blist-title">Guide thoughtfully</p>
-          <p class="blist-body">Provide clarity and confidence as clients navigate a complex journey.</p>
+          <p class="blist-title">The long view, especially under pressure</p>
+          <p class="blist-body">We make decisions today that we would defend in twelve months. Under pressure, the short term becomes loud and the long view goes quiet by default. Our discipline is to hold both.</p>
+        </li>
+        <li>
+          <p class="blist-title">Endings endure - plan for it</p>
+          <p class="blist-body">Clients remember the peaks and the end. We plan endings as deliberately as beginnings - progressive touchpoints, open questions, no surprises. Endings are where advocacy is built or lost.</p>
+        </li>
+        <li>
+          <p class="blist-title">Disagree openly, commit fully</p>
+          <p class="blist-body">When we disagree, we say so in the room - not in the corridor afterwards. Once the call is made, we commit fully, including in front of those we lead. Disagreement is honest; whingeing is corrosive.</p>
         </li>
       </ul>
 
-      <p>When these behaviours are consistent, trust builds and relationships strengthen.</p>
+      <p>When these principles are consistent, trust builds and the business strengthens.</p>
 
       <figure style="margin:clamp(40px,6vw,64px) 0 0;background:#EAE4DA;padding:clamp(48px,7vw,88px) clamp(24px,5vw,80px);margin-left:calc(-1 * clamp(24px,5vw,80px));margin-right:calc(-1 * clamp(24px,5vw,80px));">
-        <svg viewBox="0 0 700 720" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:560px;height:auto;display:block;margin:0 auto;" aria-label="Three behaviours: Show up well, Listen to understand, Guide thoughtfully">
+        <svg viewBox="0 0 700 720" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:560px;height:auto;display:block;margin:0 auto;" aria-label="Five principles: Client-first, Judgement, Long view, Endings endure, Disagree openly">
 
-          <!-- Segment 1: top-right arc (12 o'clock to 4 o'clock) - Show up well - warm fill -->
-          <!-- Centroid angle: -30deg, at 2/3 radius: approx (523, 252) -->
-          <path d="M 350,350 Q 349,196 354,54 A 296,296 0 0,1 606,498 Q 476,428 350,350 Z"
+          <!-- Five equal segments at 72° each, starting from 12 o'clock -->
+          <!-- Segment 1: 270°-342° Client-first -->
+          <path d="M 350,350 L 350,54 A 296,296 0 0,1 631,247 Z"
                 fill="#EAE4DA" stroke="#231F20" stroke-width="1.5" stroke-linejoin="round"/>
 
-          <!-- Segment 2: bottom arc (4 o'clock to 8 o'clock) - Listen to understand - cool fill -->
-          <!-- Centroid angle: 90deg, at 2/3 radius: approx (350, 548) -->
-          <path d="M 350,350 Q 476,428 606,498 A 296,296 0 0,1 94,498 Q 224,428 350,350 Z"
+          <!-- Segment 2: 342°-54° Judgement -->
+          <path d="M 350,350 L 631,247 A 296,296 0 0,1 531,598 Z"
                 fill="#F1F2F2" stroke="#231F20" stroke-width="1.5" stroke-linejoin="round"/>
 
-          <!-- Segment 3: left arc (8 o'clock to 12 o'clock) - Guide thoughtfully - surface fill -->
-          <!-- Centroid angle: 210deg, at 2/3 radius: approx (177, 252) -->
-          <path d="M 350,350 Q 224,428 94,498 A 296,296 0 0,1 354,54 Q 349,196 350,350 Z"
+          <!-- Segment 3: 54°-126° Long view -->
+          <path d="M 350,350 L 531,598 A 296,296 0 0,1 169,598 Z"
                 fill="#EDECE9" stroke="#231F20" stroke-width="1.5" stroke-linejoin="round"/>
 
-          <!-- Organic outer circle - slightly imperfect bezier, no fill -->
+          <!-- Segment 4: 126°-198° Endings endure -->
+          <path d="M 350,350 L 169,598 A 296,296 0 0,1 69,247 Z"
+                fill="#F1F2F2" stroke="#231F20" stroke-width="1.5" stroke-linejoin="round"/>
+
+          <!-- Segment 5: 198°-270° Disagree openly -->
+          <path d="M 350,350 L 69,247 A 296,296 0 0,1 350,54 Z"
+                fill="#EAE4DA" stroke="#231F20" stroke-width="1.5" stroke-linejoin="round"/>
+
+          <!-- Organic outer circle -->
           <path d="M 354,54 C 448,49 636,144 649,350 C 662,556 452,648 350,648 C 248,648 40,554 51,350 C 62,146 260,59 354,54 Z"
                 fill="none" stroke="#231F20" stroke-width="1.5"/>
 
           <!-- Centre dot -->
           <circle cx="350" cy="350" r="4" fill="#231F20"/>
 
-          <!-- SEGMENT 1: Show up well - upper right centroid ~(510, 235) -->
-          <text x="510" y="215" text-anchor="middle"
+          <!-- Label 1: CLIENT-FIRST — top right, centroid (458, 202) -->
+          <text x="458" y="190" text-anchor="middle"
                 font-family="'Steradian','DM Sans',system-ui,sans-serif"
-                font-weight="500" font-size="13" fill="#231F20" letter-spacing="3">SHOW UP WELL</text>
-          <text x="510" y="242" text-anchor="middle"
+                font-weight="500" font-size="11" fill="#231F20" letter-spacing="2">CLIENT-FIRST</text>
+          <text x="458" y="210" text-anchor="middle"
                 font-family="'Cormorant Garamond',Georgia,serif"
-                font-size="20" fill="#231F20">Present. Prepared.</text>
-          <text x="510" y="265" text-anchor="middle"
-                font-family="'Cormorant Garamond',Georgia,serif"
-                font-size="20" fill="#231F20">Responsible.</text>
+                font-size="17" fill="#4B4E53">not client-led</text>
 
-          <!-- SEGMENT 2: Listen to understand - bottom centre centroid ~(350, 542) -->
+          <!-- Label 2: JUDGEMENT — right, centroid (525, 407) -->
+          <text x="525" y="395" text-anchor="middle"
+                font-family="'Steradian','DM Sans',system-ui,sans-serif"
+                font-weight="500" font-size="11" fill="#231F20" letter-spacing="2">JUDGEMENT</text>
+          <text x="525" y="415" text-anchor="middle"
+                font-family="'Cormorant Garamond',Georgia,serif"
+                font-size="17" fill="#4B4E53">not rigidity</text>
+
+          <!-- Label 3: THE LONG VIEW — bottom, centroid (350, 534) -->
           <text x="350" y="522" text-anchor="middle"
                 font-family="'Steradian','DM Sans',system-ui,sans-serif"
-                font-weight="500" font-size="13" fill="#231F20" letter-spacing="3">LISTEN TO UNDERSTAND</text>
-          <text x="350" y="549" text-anchor="middle"
+                font-weight="500" font-size="11" fill="#231F20" letter-spacing="2">THE LONG VIEW</text>
+          <text x="350" y="542" text-anchor="middle"
                 font-family="'Cormorant Garamond',Georgia,serif"
-                font-size="20" fill="#231F20">What truly matters.</text>
+                font-size="17" fill="#4B4E53">especially under pressure</text>
 
-          <!-- SEGMENT 3: Guide thoughtfully - upper left centroid ~(190, 235) -->
-          <text x="190" y="215" text-anchor="middle"
+          <!-- Label 4: ENDINGS ENDURE — left, centroid (175, 407) -->
+          <text x="175" y="395" text-anchor="middle"
                 font-family="'Steradian','DM Sans',system-ui,sans-serif"
-                font-weight="500" font-size="13" fill="#231F20" letter-spacing="3">GUIDE</text>
-          <text x="190" y="237" text-anchor="middle"
-                font-family="'Steradian','DM Sans',system-ui,sans-serif"
-                font-weight="500" font-size="13" fill="#231F20" letter-spacing="3">THOUGHTFULLY</text>
-          <text x="190" y="264" text-anchor="middle"
+                font-weight="500" font-size="11" fill="#231F20" letter-spacing="2">ENDINGS ENDURE</text>
+          <text x="175" y="415" text-anchor="middle"
                 font-family="'Cormorant Garamond',Georgia,serif"
-                font-size="20" fill="#231F20">Clarity. Confidence.</text>
+                font-size="17" fill="#4B4E53">plan for it</text>
 
-          <!-- Outer label at bottom -->
+          <!-- Label 5: DISAGREE OPENLY — top left, centroid (242, 202) -->
+          <text x="242" y="190" text-anchor="middle"
+                font-family="'Steradian','DM Sans',system-ui,sans-serif"
+                font-weight="500" font-size="11" fill="#231F20" letter-spacing="2">DISAGREE OPENLY</text>
+          <text x="242" y="210" text-anchor="middle"
+                font-family="'Cormorant Garamond',Georgia,serif"
+                font-size="17" fill="#4B4E53">commit fully</text>
+
+          <!-- Outer label -->
           <text x="350" y="700" text-anchor="middle"
                 font-family="'Steradian','DM Sans',system-ui,sans-serif"
                 font-weight="500" font-size="10" fill="#4B4E53" letter-spacing="3">LATITUDE TO CREATE · CRAFTED FOR LIFE</text>
@@ -796,64 +866,79 @@ tr:last-child td{border-bottom:none;}
     <div class="sb">
       <h2>What this looks like in practice</h2>
       <p>"Latitude to create. Crafted for life." is not a statement. It's how we make decisions every day.</p>
-      <p>It shows up in small moments.</p>
+      <p>Each of our five principles has a practical expression. This is what they look like in the work.</p>
 
-      <h3>Latitude to create means</h3>
+      <h3>Client-first, not client-led</h3>
       <ul class="plist">
-        <li>Taking the time to understand what matters before moving to solutions.</li>
-        <li>Creating space for clients to explore, not rushing them to decide.</li>
-        <li>Staying open to better ideas, even when they challenge the brief.</li>
-        <li>Being curious, not defensive, when something doesn't feel right.</li>
+        <li>We take the time to understand what matters before moving to solutions.</li>
+        <li>We attend to the moments that genuinely matter - and don't treat every complaint as the next thing to fix.</li>
+        <li>We bring our experience to bear on what the client doesn't yet know they'll value.</li>
       </ul>
 
-      <h3>Crafted for life means</h3>
+      <h3>Judgement, not rigidity</h3>
       <ul class="plist">
-        <li>Getting the details right, even when no one is watching.</li>
-        <li>Thinking beyond handover - how the home will live, age and endure.</li>
-        <li>Following through on commitments, not leaving loose ends.</li>
-        <li>Making decisions that hold up over time, not just in the moment.</li>
+        <li>Our first response to a problem is "What do you think?" - not an immediate answer.</li>
+        <li>We give our teams time and space to bring solutions alongside problems.</li>
+        <li>We back the decisions they make, even when we would have made them differently.</li>
       </ul>
 
-      <p>Often, these two are in tension. Speed vs care. Creativity vs buildability. Client ambition vs budget reality.</p>
-      <p>Our role is not to take sides. It is to navigate that tension with judgement.</p>
+      <h3>The long view, especially under pressure</h3>
+      <ul class="plist">
+        <li>We make decisions today that we would defend in twelve months.</li>
+        <li>We hold both short-term and long-term when pressure makes the short term loud.</li>
+        <li>We ask whether the short-term move serves the long-term position - not whether short-term thinking is wrong.</li>
+      </ul>
+
+      <h3>Endings endure - plan for it</h3>
+      <ul class="plist">
+        <li>We plan endings as deliberately as beginnings - progressive touchpoints, open questions, no surprises.</li>
+        <li>At handover, we show we've listened by mapping insights back through the build.</li>
+        <li>We don't let an unresolved issue sit. Clients remember what they had to live with.</li>
+      </ul>
+
+      <h3>Disagree openly, commit fully</h3>
+      <ul class="plist">
+        <li>When we disagree with a decision, we say so in the room - not in the corridor afterwards.</li>
+        <li>Once the call is made, we commit fully, including in front of those we lead.</li>
+        <li>Disagreement is honest. Whingeing is corrosive - and is often driven by people feeling they haven't been heard.</li>
+      </ul>
 
       <h3>What it doesn't look like</h3>
       <ul class="plist">
-        <li>Rushing decisions to keep things moving.</li>
-        <li>Defaulting to "we've always done it this way."</li>
-        <li>Passing issues on because they sit with another team.</li>
-        <li>Accepting "good enough" when better is achievable.</li>
-        <li>Avoiding hard conversations with clients or colleagues.</li>
-        <li>Prioritising speed or cost at the expense of the outcome.</li>
+        <li>Doing what the client asks without applying our judgement.</li>
+        <li>Overriding the team's decision because we'd have done it differently.</li>
+        <li>Making a reactive call under pressure without asking what it costs long-term.</li>
+        <li>Winding down at the end of a project instead of finishing deliberately.</li>
+        <li>Raising concerns in the corridor after the decision has been made.</li>
       </ul>
 
       <h3>How this shows up across the business</h3>
 
       <h4>In early conversations - Exploring, Planning, Choosing</h4>
       <ul class="plist">
-        <li>We don't jump straight to solutions.</li>
-        <li>We help clients make sense of what matters, even if it slows things down.</li>
-        <li>We guide, rather than sell.</li>
+        <li>We don't jump straight to solutions - we establish what matters first.</li>
+        <li>We guide, rather than sell. We qualify, rather than chase.</li>
+        <li>We use our judgement about fit, not just appetite.</li>
       </ul>
 
       <h4>In design and pre-site - Designing, Committing</h4>
       <ul class="plist">
-        <li>We challenge ideas constructively to improve the outcome.</li>
+        <li>We challenge ideas constructively - the music room joinery is worth rebuilding if it's wrong.</li>
         <li>We resolve complexity early, not pass it forward.</li>
-        <li>We align design, cost and buildability - not treat them separately.</li>
+        <li>We align design, cost and buildability - and hold that alignment under pressure.</li>
       </ul>
 
       <h4>In construction - Building, Living</h4>
       <ul class="plist">
         <li>We don't walk past details that will be visible later.</li>
-        <li>We communicate early when something changes.</li>
-        <li>We finish properly, not just practically.</li>
+        <li>We communicate early when something changes - clients should never be surprised.</li>
+        <li>We plan the ending from the beginning, not when we're six weeks out.</li>
       </ul>
 
       <h4>Across every role</h4>
       <ul class="plist">
         <li>We take responsibility for the whole experience, not just our part.</li>
-        <li>We share context early to avoid downstream issues.</li>
+        <li>We commit to the decisions we've made together, in public and in private.</li>
         <li>We make decisions with the client in mind, not just the task in front of us.</li>
       </ul>
 
@@ -1069,7 +1154,7 @@ tr:last-child td{border-bottom:none;}
   <div class="act-opener fu">
     <span class="act-n">Act II</span>
     <h2>The Guide</h2>
-    <p>How we operate, how we deliver, and where to find everything you need.</p>
+    <p>How we work, how we deliver, and where to find everything you need.</p>
   </div>
 
   <!-- 2.1 How we work -->
@@ -1761,7 +1846,7 @@ tr:last-child td{border-bottom:none;}
 <footer class="footer">
   <div class="w">
     <div class="footer-inner">
-      <div class="footer-wm">Latitude 37</div>
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAAA4CAYAAACMliGyAAAHVElEQVR42u2d/VHjOBjGHxj+X3ewYijgshUgKthcBQkVkKvAoQKgApIKFirAVLDeCvB14Ktg748oB8NZH5YlWU6e30wGJhBFeiU9el99+eTiq/iNbjYArjEuAsCb4e/XKp992QBYJMi/iw1fAMiO9ysAVxMph6mefOvoTaXrYxeTXV1o1KsF8Kq+sw5oyxh11gA4T9AWCgBLAJcAZp/qqFV2qgE8K7v1YRk575Wy03+cIW9sDXjh2bkIsQ28+449/yAwFYDbz53oiGzyaOmThfq7BLBSdrrt0UcfI5fhf4PxaeZGt42UUhmdkBQCsFSe6aPGOz1UbgD89PCo96J5l2s/Pc28wbkYfMW+SRKzVCH28gjKWgK4HyhgK2UvCmBPw7twyf5IRgwJywMu4w2AdaC0ZsoTpAA6Inv8n2R/JCOxPlARFMrzC8lq5L7afn4j10UQiX5zLHP0W3FaOoYvQ1ZoU4Vih1CO1J3gTwdvReB9pdNFBIHdhP8QTiYUgVWqvLWyaaHaWGmxmamvbgKItk5gG3Ss5OcqgAuP/1/RGSGOAlg5dO6PnWrt0CbXeN8yM3UKy8B62xEatwCe1Otehc99++rQbXemVeQtOlbvTydm/GvDZxgGkxg0qj2ew7795RGHsSvB1Jc2sM8Lrgy2KiLZSFhEu9O7zFEA55r3a1WI1tNlJ2SoEH6DeUO0OJBIZGbxpFx4tjg5KUP2jU6QcwyBdaHGw4efpabSCoNAEhIifL7Cbk+c0PxPyJXTsaihn4+re6RhsmNK7087N5ubAAqD+119+FkaQud79lMSWQSvod/XVqg2XE24jE/qNbQv6+wXWgC9vL8cQ+ClQfyajt8/8539kySgsgjcnCbSRnKvuXh/OQrgwnHeQTcPIXFcR5TIeJjmwv44ctuUhn64CfxdN77eX24hsEm8qo6ClQYvcs3+SRKEibptFzPPNNcD8lJnYBOhBGkVMbT+/H1zX+8vNwHUeX/PHSreKFGUmhGBAkhi06p22DVoF/BbkPPdydAkFkCpEX9hyeNfETRD+Hp/uYXAc8Oo0WcuoQD3BJJ0IghDOzxkRMcLhgjuCmGvERMwz/09uCSSiwAuDQ1GJ4D3HmJKSCoBJDtqxLlDUcI8ZebkEecigAuDG9saGl9lSK9g2yNkdGbYbRkKfUrGNF3gfCY7BwEUhpD12fLZZ0P4QS+QpGi79A7do7yfgURwafH+KteEclgE0YlfA/uK0Qb6O8Z4XT6JSYHwm319b+apE5e9QvfNNTPleOgWJwSAHxh+A5HJ+9v2SSgHASwNRraxD4OlRlgLjsQk8cA9RJCqidukxvsxuh/o3g4kMeykjMn7a/o6PWML4MxQGAG3h6SYXOoVuCWGxMF06ujXkdumwe7ORV3IWw4QwCBzf7kI4I3nCOsKr8snMRAwb8F4oonQYDdHvwgYnQX1/oDxF0FkgvQl2+LoXr4PRcZlerR0/IrVbp0KEGN7f2N7gEukObc7Z4NMMtrr8DkXKw0COHZ4WVoG1e3E67KA+U7OOuD3jOr9jS2AqW5u4XX56Ub7mcELr3rWmY9XEVsY7iyhr3dHnIiHu0G/a+tDXgoR3PsbUwCFYZRp4bdyW2hGlQLTv59tCrwawt277LY+tI4N3SQyY9SjhNvD0GOceEhNC/0Z5zl253nbHnYzfc+o3t+YAmgyzDfPRiShv6SyBAUwNk/QL2rNsFsRNJ0HLVQ9rSzil0JghMrzJczHND/ygMPZd/oK/SUPrvv47mDeJ9nHky8tdvfmzFNQbGwtjeEmQgOv8P54vq4OWIB7AmNSQb8ncy8qb0ooX1UH2Hvtl8q7sAnNbYB8CgC/I4T/qwDpvAz4bAv74z5d2RimIaSqR91gVihveW4ZLEN5f09DCnpmaSjCM91Xh9FVJ5xD2GrEtQCvy0/BNezHnebwO6b4kKkXXwUUHjngs03gMrkMZpUS/38AfFH92qUMfQayhaW/Dyr3GNtgSovhh4ZhOnhdfnwaDH+2q87DWmdY3ge4z21ODReRksrz3U9dSEebuYqWhP0RnYMYQwBlhPDXJQ0JXpefgqfAIlhnKDKNytPqgOuxQvgLTPsOZN4PO8pVAOcGEQq1f2prmU8g8dnA7UHiLt7Ct4zEr1Lifo7jWFS7R5h5V5+BzOb9BclXagH8HjH8dUnnhtqU1Es6V4LReNRhDh5Wq/Jyq/JzheO7YWiN4bc5+wxk0b0/ADi5+CpkpMbf9Ah/W4Td4CoDCe0M3RP6IfN7KN/hUidz7DbHFp/ys8/HL5gvwQ1RZlfhaxFny82QfNnyHLsul9gtSkjH/GyVF9nXjgV2i2k6gl2vf3LxVdBXIYT0QSgh34v5F/X+33h/QFM9hYJQAAkhR8spTUAIoQASQggFkBBCKICEEEIBJIQQCiAhhFAACSGEAkgIIRRAQgihABJCyEQ4A5+bSwg5YgF8oRkIIQyBCSGEAkgIIRRAQgihABJCCAWQEEIOhDPEeY4rIYRkz7/7qqOrFwha0wAAAABJRU5ErkJggg==" alt="Latitude 37" style="height:32px;width:auto;display:block;padding-left:0;margin-left:0;">
       <p class="footer-note">Internal document.<br>Not for distribution.<br>Version 1.0</p>
     </div>
   </div>
