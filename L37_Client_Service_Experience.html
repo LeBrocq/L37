@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L37 Client Service Experience</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!--
+  L37 V2.0 design language.
+  Brand fonts (Merlo Original, Steradian, September Spirit) are named first in each stack
+  and will resolve when this page is served alongside the L37 brand kit @font-face rules.
+  In preview they fall back gracefully. Roboto Mono loads from Google Fonts.
+  Content lives in the markup, edit cells directly. Protocols are illustrative placeholders.
+-->
+<style>
+  :root{
+    --bone:#EAE4DA; --paper:#EDECE9; --grey:#F1F2F2; --soft:#F7F7F7;
+    --charcoal:#231F20; --lead:#4B4E53; --biro:#0040CC; --white:#FFFFFF;
+    --serif:'Merlo Original', Georgia, 'Times New Roman', serif;
+    --sans:'Steradian', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --mono:'Roboto Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+    --hand:'September Spirit', 'Segoe Script', cursive;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{
+    background:var(--soft); color:var(--charcoal);
+    font-family:var(--sans); font-size:15px; line-height:1.5;
+    -webkit-font-smoothing:antialiased; padding:40px 28px 56px;
+  }
+  .wrap{max-width:1260px; margin:0 auto;}
+
+  .eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--biro); margin:0 0 10px;}
+  h1{font-family:var(--serif); font-weight:600; font-size:34px; line-height:1.1;
+    margin:0 0 14px; letter-spacing:-.01em;}
+  .thesis{max-width:60ch; margin:0 0 26px; color:var(--lead); font-size:16px;}
+  .thesis strong{color:var(--charcoal); font-weight:600;}
+
+  .legend{display:flex; flex-wrap:wrap; gap:22px 30px; align-items:center;
+    padding:14px 0 22px; border-top:1px solid rgba(35,31,32,.12);
+    border-bottom:1px solid rgba(35,31,32,.12); margin-bottom:26px;}
+  .legend .item{display:flex; align-items:center; gap:9px; font-size:13px; color:var(--lead);}
+  .mk-circle{width:13px; height:13px; border:1.5px solid var(--charcoal);
+    border-radius:50%; display:inline-block; flex:none;}
+  .mk-square{width:12px; height:12px; background:var(--charcoal);
+    display:inline-block; flex:none;}
+  .legend .item b{color:var(--charcoal); font-weight:600;}
+
+  .scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:6px;}
+  .matrix{
+    display:grid; grid-template-columns:158px repeat(7, minmax(132px,1fr));
+    gap:7px; min-width:980px;
+  }
+
+  /* corner + rail (row labels) */
+  .corner{padding:6px 4px; display:flex; align-items:flex-end;}
+  .corner span{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--lead);}
+  .rail{padding:14px 12px; border-radius:2px;}
+  .rail .rl{font-family:var(--mono); font-size:11px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--charcoal); font-weight:500; display:block; margin-bottom:6px;}
+  .rail .rd{font-size:12.5px; line-height:1.4; color:var(--lead);}
+
+  /* stage headers */
+  .stagehead{padding:12px 12px 14px; border-bottom:2px solid var(--biro);}
+  .stagehead .num{font-family:var(--mono); font-size:11px; color:var(--biro);
+    letter-spacing:.08em; display:block; margin-bottom:5px;}
+  .stagehead .nm{font-family:var(--serif); font-size:19px; font-weight:600;
+    line-height:1.05; display:block;}
+  .stagehead .ms{font-family:var(--mono); font-size:10.5px; color:var(--lead);
+    letter-spacing:.03em; margin-top:8px; display:flex; align-items:center; gap:7px;}
+  .stagehead .ms .node{width:9px; height:9px; background:var(--biro); flex:none;}
+
+  /* body cells */
+  .cell{padding:14px 12px; border-radius:2px; font-size:13px; line-height:1.42;}
+  .cell .tag{display:inline-flex; align-items:center; gap:7px;
+    font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--lead); margin-bottom:8px;}
+
+  .exp{background:var(--bone);}
+  .exp .quote{font-family:var(--serif); font-style:italic; font-size:14.5px;
+    line-height:1.34; color:var(--charcoal);}
+  .exp .tag .mk-circle{width:11px; height:11px; border-color:var(--charcoal);}
+
+  .proc{background:var(--grey);}
+  .proc .tag .mk-square{width:10px; height:10px;}
+
+  .prin{background:var(--paper);}
+  .prin .pname{font-weight:600; color:var(--biro); display:block; margin-bottom:5px;
+    font-size:12.5px; line-height:1.25;}
+
+  .prot{background:var(--soft); border:1px solid rgba(35,31,32,.07);}
+
+  /* lane note */
+  .lane{margin-top:22px; background:var(--charcoal); color:var(--paper);
+    border-radius:2px; padding:22px 24px; display:flex; gap:20px; align-items:flex-start;}
+  .lane .road{flex:none; width:64px; height:64px; position:relative; margin-top:2px;}
+  .lane .road .r{position:absolute; inset:0; border:1.5px solid rgba(237,236,233,.35); border-radius:2px;}
+  .lane .road .dash{position:absolute; left:50%; top:8px; bottom:8px; width:0;
+    border-left:2px dashed rgba(237,236,233,.5); transform:translateX(-50%);}
+  .lane .road .car{position:absolute; width:10px; height:10px; background:var(--biro);
+    left:calc(50% - 5px); top:38px;}
+  .lane h3{font-family:var(--serif); font-size:17px; font-weight:600; margin:0 0 7px;}
+  .lane p{margin:0; font-size:13.5px; line-height:1.5; color:rgba(237,236,233,.85); max-width:78ch;}
+  .lane p b{color:var(--white); font-weight:600;}
+
+  footer{margin-top:24px; font-family:var(--mono); font-size:10.5px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--lead); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+  @media (max-width:720px){
+    body{padding:26px 16px 40px;}
+    h1{font-size:27px;}
+    .scroll::after{content:'Scroll to see the full journey →'; display:block;
+      font-family:var(--mono); font-size:10px; color:var(--lead); padding-top:8px;}
+  }
+  @media print{
+    body{background:var(--white); padding:0;}
+    @page{size:A3 landscape; margin:12mm;}
+    .scroll{overflow:visible;} .matrix{min-width:0;}
+    .lane{background:var(--white); color:var(--charcoal); border:1px solid var(--charcoal);}
+    .lane p{color:var(--lead);} .lane p b{color:var(--charcoal);}
+    .lane .road .r,.lane .road .dash{border-color:var(--charcoal);}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">The L37 Way · Client Service Experience</p>
+  <h1>How we deliver the service, stage by stage</h1>
+  <p class="thesis"><strong>L37 delivers a service, not a product.</strong> The service is the whole journey:
+  engineered through <strong>process</strong>, guided by <strong>principles</strong>, and carried by <strong>protocols</strong>.
+  This is what the client experiences at each of the seven stages, and how we deliver it.</p>
+
+  <div class="legend">
+    <div class="item"><span class="mk-circle"></span><span><b>The experience</b> — what the client should feel. Human.</span></div>
+    <div class="item"><span class="mk-square"></span><span><b>The process</b> — how we deliver it. Engineered.</span></div>
+  </div>
+
+  <div class="scroll">
+    <div class="matrix">
+
+      <!-- header row -->
+      <div class="corner"><span>Stage →</span></div>
+      <div class="stagehead"><span class="num">01</span><span class="nm">Explore</span><span class="ms"><span class="node"></span>Enquiry to brief</span></div>
+      <div class="stagehead"><span class="num">02</span><span class="nm">Plan</span><span class="ms"><span class="node"></span>Feasibility &amp; budget</span></div>
+      <div class="stagehead"><span class="num">03</span><span class="nm">Choose</span><span class="ms"><span class="node"></span>CDA signed</span></div>
+      <div class="stagehead"><span class="num">04</span><span class="nm">Design</span><span class="ms"><span class="node"></span>EDA signed</span></div>
+      <div class="stagehead"><span class="num">05</span><span class="nm">Commit</span><span class="ms"><span class="node"></span>Building contract</span></div>
+      <div class="stagehead"><span class="num">06</span><span class="nm">Build</span><span class="ms"><span class="node"></span>Three claim milestones</span></div>
+      <div class="stagehead"><span class="num">07</span><span class="nm">Live</span><span class="ms"><span class="node"></span>Handover + 12 months</span></div>
+
+      <!-- experience row -->
+      <div class="rail" style="background:var(--bone)"><span class="rl">Experience</span><span class="rd">What the client should feel, at each stage. </span></div>
+      <div class="cell exp"><span class="tag"><span class="mk-circle"></span>Felt</span><br><span class="quote">“They understood what we were really after, before selling us anything.”</span></div>
+      <div class="cell exp"><span class="tag"><span class="mk-circle"></span>Felt</span><br><span class="quote">“Someone was thinking three moves ahead for us.”</span></div>
+      <div class="cell exp"><span class="tag"><span class="mk-circle"></span>Felt</span><br><span class="quote">“We were confident this was the right partner。”</span></div>
+      <div class="cell exp"><span class="tag"><span class="mk-circle"></span>Felt</span><br><span class="quote">“Our home, made better than we pictured, and we were heard during the process。”</span></div>
+      <div class="cell exp"><span class="tag"><span class="mk-circle"></span>Felt</span><br><span class="quote">“We knew exactly what we were getting, and why it cost what it cost。”</span></div>
+      <div class="cell exp"><span class="tag"><span class="mk-circle"></span>Felt</span><br><span class="quote">“No surprises, and we could see it was being done properly。”</span></div>
+      <div class="cell exp"><span class="tag"><span class="mk-circle"></span>Felt</span><br><span class="quote">“We're really proud of the home, and of how it was delivered。”</span></div>
+
+      <!-- processes row -->
+      <div class="rail" style="background:var(--grey)"><span class="rl">Processes</span><span class="rd">The workflows. What we do, and when. The preferred lane.</span></div>
+      <div class="cell proc"><span class="tag"><span class="mk-square"></span>What we do</span><br>First contact, qualifying the brief and the aspiration behind it. Expectations set honestly from the start.</div>
+      <div class="cell proc"><span class="tag"><span class="mk-square"></span>What we do</span><br>Feasibility, site and budget alignment, planning pathway and timing.</div>
+      <div class="cell proc"><span class="tag"><span class="mk-square"></span>What we do</span><br>Concept Design Agreement. The first formal commitment. Brief translated into concept.</div>
+      <div class="cell proc"><span class="tag"><span class="mk-square"></span>What we do</span><br>Detailed design developed and resolved across disciplines.</div>
+      <div class="cell proc"><span class="tag"><span class="mk-square"></span>What we do</span><br>Scope locked, priced, final contract signed and first significant instalment made.</div>
+      <div class="cell proc"><span class="tag"><span class="mk-square"></span>What we do</span><br>Construction across three progress-claim milestones, with quality control on site.</div>
+      <div class="cell proc"><span class="tag"><span class="mk-square"></span>What we do</span><br>Defects resolved before handover, 'fresh eyes' inspections, then twelve months of care.</div>
+
+      <!-- principles row -->
+      <div class="rail" style="background:var(--paper)"><span class="rl">Principles</span><span class="rd">The values. How we judge, and when we might deviate from the preferred lane. Multiple principles may apply, but there is usually one dominant one.</span></div>
+      <div class="cell prin"><span class="pname">Client-first, not client-led</span><br>Start by deeply understanding the outcome the client wants, not only the request in front of you.</div>
+      <div class="cell prin"><span class="pname">The long view</span><br>Sequence and timing that serve the finished home, not the fastest start.</div>
+      <div class="cell prin"><span class="pname">Client-first, with judgement</span><br>Interpret the desire into a concept better than the client could have specified.</div>
+      <div class="cell prin"><span class="pname">Judgement, not rigidity</span><br>Where a request conflicts with a key agreement, find a viable route to the desire. Recommend against request only to protect something the client values more, ideally with a better route.</div>
+      <div class="cell prin"><span class="pname">The long view</span><br>Hold pricing and margin discipline. Reshape scope rather than discount value.</div>
+      <div class="cell prin"><span class="pname">Disagree openly, commit fully</span><br>One consistent voice to the client. Deliver to agreed quality SLAs (Service Level Agreement) and warranty mitigation.</div>
+      <div class="cell prin"><span class="pname">Endings endure, plan for it</span><br>One of the moments the client remembers most. All snags resolved, and stay present after.</div>
+
+      <!-- protocols row -->
+      <div class="rail" style="background:var(--soft); border:1px solid rgba(35,31,32,.07)"><span class="rl">Protocols</span><span class="rd">Communication. How and when we keep the client informed, and with us on the journey. <em>(Illustrative - replace with L37's protocols.)</em></span></div>
+      <div class="cell prot"><span class="tag">Comms</span><br>Responsive and straight. Clear about what's possible and what it takes. No overpromising.</div>
+      <div class="cell prot"><span class="tag">Comms</span><br>Trade-offs framed in context, not cost alone. Guide the decision for the client to make.</div>
+      <div class="cell prot"><span class="tag">Comms</span><br>Clear on what the CDA covers and why. Set the rhythm for the design phase.</div>
+      <div class="cell prot"><span class="tag">Comms</span><br>Honour scheduled client touchpoints, even when under pressure. Where the answer is no, show why and show the alternatives.</div>
+      <div class="cell prot"><span class="tag">Comms</span><br>Transparent on price and scope. Align internally before it reaches the client.</div>
+      <div class="cell prot"><span class="tag">Comms</span><br>Proactive updates at each milestone. Issues raised early, never saved for handover or for the client to discover.</div>
+      <div class="cell prot"><span class="tag">Comms</span><br>A handover conversation to hear their feedback directly, then scheduled check-ins through the first year.</div>
+
+    </div>
+  </div>
+
+  <div class="lane">
+    <div class="road" aria-hidden="true"><span class="r"></span><span class="dash"></span><span class="car"></span></div>
+    <div>
+      <h3>The preferred lane</h3>
+      <p>The process is the preferred lane. L37 holds it by default and leaves it only where the client's outcome genuinely needs it. Deciding when to deviate is <b>judgement, not rigidity</b>. That is why the key agreements work best as the 'lane' (preferred), not a 'fence' (fixed): the preferred way of doing things that the team is trusted to depart from when the client's outcome warrants it, rather than as unbreakable rules that turn every non-standard request into a refusal.</p>
+    </div>
+  </div>
+
+  <footer>
+    <span>The L37 Way · Client Service Experience</span>
+    <span>Engineered process · in service of · human experience</span>
+  </footer>
+
+</div>
+</body>
+</html>
